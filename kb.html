@@ -1,0 +1,1124 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BLR Community — База знаний</title>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg: #ffffff;
+    --text: #0d0d0d;
+    --accent: #ffdd00;
+    --card-bg: #f7f7f7;
+    --card-border: #e8e8e8;
+    --sidebar-bg: #0d0d0d;
+    --sidebar-w: 260px;
+    --radius: 14px;
+    --font: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: var(--font);
+    background: var(--bg);
+    color: var(--text);
+    display: flex;
+    min-height: 100vh;
+  }
+
+  /* ── SIDEBAR ── */
+  .sidebar {
+    width: var(--sidebar-w);
+    min-width: var(--sidebar-w);
+    background: var(--sidebar-bg);
+    color: #fff;
+    position: fixed;
+    top: 0; left: 0;
+    height: 100vh;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    padding: 28px 0 32px;
+    z-index: 100;
+  }
+
+  .sidebar::-webkit-scrollbar { width: 4px; }
+  .sidebar::-webkit-scrollbar-thumb { background: #333; border-radius: 2px; }
+
+  .sidebar-logo {
+    padding: 0 24px 8px;
+  }
+
+  .sidebar-logo .brand {
+    font-size: 15px;
+    font-weight: 700;
+    color: #fff;
+    letter-spacing: -0.3px;
+    line-height: 1.3;
+    display: block;
+    text-decoration: none;
+  }
+
+  .sidebar-logo .brand span {
+    color: var(--accent);
+  }
+
+  .sidebar-back {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 12px;
+    color: #888;
+    text-decoration: none;
+    padding: 6px 24px 0;
+    transition: color 0.15s;
+  }
+  .sidebar-back:hover { color: #bbb; }
+
+  .sidebar-divider {
+    height: 1px;
+    background: #1e1e1e;
+    margin: 20px 24px;
+  }
+
+  .sidebar-nav {
+    flex: 1;
+    padding: 0 12px;
+  }
+
+  .nav-group {
+    margin-bottom: 4px;
+  }
+
+  .nav-group-title {
+    display: block;
+    font-size: 11px;
+    font-weight: 600;
+    color: #555;
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+    padding: 8px 12px 4px;
+    text-decoration: none;
+    cursor: pointer;
+    border-radius: 6px;
+    transition: color 0.15s;
+  }
+  .nav-group-title:hover { color: #aaa; }
+  .nav-group-title.active { color: var(--accent); }
+
+  .nav-sub {
+    list-style: none;
+    padding: 0 0 6px 0;
+  }
+
+  .nav-sub li a {
+    display: block;
+    font-size: 13px;
+    color: #aaa;
+    text-decoration: none;
+    padding: 5px 12px;
+    border-radius: 6px;
+    transition: color 0.15s, background 0.15s;
+  }
+  .nav-sub li a:hover { color: #fff; background: #1a1a1a; }
+  .nav-sub li a.active { color: var(--accent); }
+
+  /* ── BURGER ── */
+  .burger {
+    display: none;
+    position: fixed;
+    top: 16px; left: 16px;
+    z-index: 200;
+    background: var(--sidebar-bg);
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    width: 40px; height: 40px;
+    cursor: pointer;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+  }
+  .burger span {
+    display: block;
+    width: 20px; height: 2px;
+    background: #fff;
+    border-radius: 2px;
+    transition: transform 0.2s, opacity 0.2s;
+  }
+  .burger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+  .burger.open span:nth-child(2) { opacity: 0; }
+  .burger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+  .overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.5);
+    z-index: 99;
+  }
+  .overlay.visible { display: block; }
+
+  /* ── MAIN ── */
+  .main {
+    margin-left: var(--sidebar-w);
+    flex: 1;
+    min-width: 0;
+  }
+
+  .content {
+    max-width: 740px;
+    padding: 56px 48px 96px;
+  }
+
+  /* ── SECTION ── */
+  .section {
+    margin-bottom: 80px;
+  }
+
+  .section-intro {
+    font-size: 15px;
+    color: #555;
+    margin-bottom: 32px;
+    line-height: 1.6;
+  }
+
+  /* ── HEADINGS ── */
+  h1 { font-size: 32px; font-weight: 800; letter-spacing: -0.8px; margin-bottom: 8px; }
+  h2 { font-size: 26px; font-weight: 700; letter-spacing: -0.5px; margin-bottom: 16px; }
+  h3 { font-size: 18px; font-weight: 700; margin-bottom: 10px; }
+  h4 { font-size: 15px; font-weight: 600; margin-bottom: 8px; }
+
+  .tag {
+    display: inline-block;
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.6px;
+    padding: 3px 9px;
+    border-radius: 20px;
+    background: var(--card-border);
+    color: #666;
+    margin-bottom: 12px;
+  }
+  .tag.active { background: var(--accent); color: var(--text); }
+  .tag.done { background: #e8e8e8; color: #999; }
+
+  /* ── CARD ── */
+  .card {
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    border-radius: var(--radius);
+    padding: 24px;
+    margin-bottom: 20px;
+  }
+
+  .card p {
+    font-size: 14px;
+    line-height: 1.65;
+    color: #444;
+    margin-top: 8px;
+  }
+
+  /* ── GRID ── */
+  .grid-2 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin-bottom: 40px;
+  }
+
+  .grid-card {
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    border-radius: var(--radius);
+    padding: 20px;
+    cursor: pointer;
+    transition: border-color 0.15s, transform 0.15s;
+    text-decoration: none;
+    color: var(--text);
+    display: block;
+  }
+  .grid-card:hover {
+    border-color: #c8c8c8;
+    transform: translateY(-2px);
+  }
+
+  .grid-card .card-name {
+    font-size: 15px;
+    font-weight: 700;
+    margin-bottom: 4px;
+  }
+
+  .grid-card .card-desc {
+    font-size: 13px;
+    color: #666;
+    line-height: 1.5;
+  }
+
+  /* ── DETAIL SECTION ── */
+  .detail-section {
+    scroll-margin-top: 32px;
+    padding-top: 32px;
+    border-top: 1px solid var(--card-border);
+    margin-bottom: 56px;
+  }
+
+  .detail-section:first-of-type {
+    border-top: none;
+    padding-top: 0;
+  }
+
+  /* ── LISTS ── */
+  ul.custom {
+    list-style: none;
+    padding: 0;
+    margin: 12px 0;
+  }
+  ul.custom li {
+    font-size: 14px;
+    line-height: 1.65;
+    color: #444;
+    padding: 4px 0 4px 18px;
+    position: relative;
+  }
+  ul.custom li::before {
+    content: '—';
+    position: absolute;
+    left: 0;
+    color: #bbb;
+  }
+
+  ol.custom {
+    list-style: none;
+    counter-reset: steps;
+    padding: 0;
+    margin: 12px 0;
+  }
+  ol.custom li {
+    counter-increment: steps;
+    font-size: 14px;
+    line-height: 1.65;
+    color: #444;
+    padding: 5px 0 5px 28px;
+    position: relative;
+  }
+  ol.custom li::before {
+    content: counter(steps);
+    position: absolute;
+    left: 0;
+    top: 5px;
+    width: 20px; height: 20px;
+    background: var(--accent);
+    color: var(--text);
+    border-radius: 50%;
+    font-size: 11px;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  /* ── QUOTE ── */
+  blockquote {
+    border-left: 3px solid var(--accent);
+    padding: 12px 20px;
+    margin: 20px 0;
+    background: #fafafa;
+    border-radius: 0 8px 8px 0;
+  }
+  blockquote p {
+    font-size: 14px;
+    font-style: italic;
+    color: #444;
+    line-height: 1.65;
+    margin: 0;
+  }
+  blockquote cite {
+    display: block;
+    font-size: 12px;
+    color: #999;
+    margin-top: 8px;
+    font-style: normal;
+  }
+
+  /* ── STAT BLOCK ── */
+  .stat-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+    margin: 20px 0;
+  }
+  .stat-item {
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    border-radius: 10px;
+    padding: 16px;
+    text-align: center;
+  }
+  .stat-num {
+    font-size: 26px;
+    font-weight: 800;
+    color: var(--text);
+    display: block;
+  }
+  .stat-label {
+    font-size: 12px;
+    color: #888;
+    margin-top: 2px;
+    line-height: 1.3;
+  }
+
+  /* ── TOOL BADGE ── */
+  .tools {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 14px;
+  }
+  .tool-badge {
+    font-size: 12px;
+    font-weight: 500;
+    background: var(--text);
+    color: var(--bg);
+    border-radius: 6px;
+    padding: 4px 10px;
+  }
+
+  /* ── PILLAR ── */
+  .pillar-card {
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    border-radius: var(--radius);
+    padding: 28px;
+    margin-bottom: 20px;
+  }
+  .pillar-card h3 {
+    font-size: 22px;
+    font-weight: 800;
+    letter-spacing: -0.5px;
+    margin-bottom: 4px;
+  }
+  .pillar-card .pillar-sub {
+    font-size: 14px;
+    color: #666;
+    margin-bottom: 16px;
+  }
+  .pillar-card p {
+    font-size: 14px;
+    line-height: 1.65;
+    color: #444;
+  }
+  .pillar-accent { color: var(--accent); }
+
+  /* ── PAGE HEADER ── */
+  .page-header {
+    margin-bottom: 48px;
+    padding-bottom: 32px;
+    border-bottom: 1px solid var(--card-border);
+  }
+  .page-header h1 { margin-bottom: 12px; }
+  .page-header p {
+    font-size: 15px;
+    color: #666;
+    line-height: 1.6;
+    max-width: 560px;
+  }
+
+  /* ── SPRINT CARD ── */
+  .sprint-card {
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    border-radius: var(--radius);
+    padding: 22px 24px;
+    margin-bottom: 16px;
+    display: flex;
+    align-items: flex-start;
+    gap: 16px;
+    cursor: pointer;
+    transition: border-color 0.15s;
+    text-decoration: none;
+    color: var(--text);
+  }
+  .sprint-card:hover { border-color: #c0c0c0; }
+  .sprint-card .sprint-meta { flex: 1; }
+  .sprint-card .sprint-name {
+    font-size: 16px;
+    font-weight: 700;
+    margin-bottom: 4px;
+  }
+  .sprint-card .sprint-dates {
+    font-size: 12px;
+    color: #999;
+    margin-bottom: 8px;
+  }
+  .sprint-card .sprint-desc {
+    font-size: 14px;
+    color: #555;
+    line-height: 1.5;
+  }
+
+  /* ── STORY CARD ── */
+  .story-card {
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    border-radius: var(--radius);
+    padding: 22px 24px;
+    cursor: pointer;
+    transition: border-color 0.15s, transform 0.15s;
+    text-decoration: none;
+    color: var(--text);
+    display: block;
+  }
+  .story-card:hover { border-color: #c0c0c0; transform: translateY(-2px); }
+  .story-card .story-name {
+    font-size: 16px;
+    font-weight: 700;
+    margin-bottom: 6px;
+  }
+  .story-card .story-teaser {
+    font-size: 13px;
+    color: #666;
+    line-height: 1.5;
+  }
+
+  .stories-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+    margin-bottom: 40px;
+  }
+
+  /* ── FORMULA ── */
+  .formula {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-wrap: wrap;
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    border-radius: 10px;
+    padding: 16px 20px;
+    margin: 16px 0;
+    font-size: 13px;
+  }
+  .formula .f-step {
+    font-weight: 600;
+    color: var(--text);
+  }
+  .formula .f-arrow {
+    color: #ccc;
+  }
+
+  p { line-height: 1.65; }
+  .text-sm { font-size: 14px; color: #444; line-height: 1.65; }
+  .mt-12 { margin-top: 12px; }
+  .mt-20 { margin-top: 20px; }
+  .mb-8 { margin-bottom: 8px; }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 768px) {
+    .sidebar {
+      transform: translateX(-100%);
+      transition: transform 0.25s ease;
+    }
+    .sidebar.open { transform: translateX(0); }
+    .burger { display: flex; }
+    .main { margin-left: 0; }
+    .content { padding: 72px 20px 80px; }
+    .grid-2 { grid-template-columns: 1fr; }
+    .stories-grid { grid-template-columns: 1fr; }
+    .stat-grid { grid-template-columns: 1fr 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<!-- Sidebar -->
+<aside class="sidebar" id="sidebar">
+  <div class="sidebar-logo">
+    <span class="brand">brain <span>love</span> & robots</span>
+  </div>
+  <a href="./" class="sidebar-back">← на главную</a>
+  <div class="sidebar-divider"></div>
+
+  <nav class="sidebar-nav">
+
+    <div class="nav-group">
+      <a href="#formats" class="nav-group-title" data-section="formats">форматы</a>
+      <ul class="nav-sub">
+        <li><a href="#alignment" data-section="alignment">alignment</a></li>
+        <li><a href="#unblocking" data-section="unblocking">unblocking</a></li>
+        <li><a href="#protagonist" data-section="protagonist">протагонист</a></li>
+        <li><a href="#fire" data-section="fire">костёр</a></li>
+        <li><a href="#stress" data-section="stress">стресс-шеринг</a></li>
+        <li><a href="#metaskills" data-section="metaskills">метанавыки</a></li>
+      </ul>
+    </div>
+
+    <div class="nav-group">
+      <a href="#sprints" class="nav-group-title" data-section="sprints">спринты</a>
+      <ul class="nav-sub">
+        <li><a href="#sprint-ra1" data-section="sprint-ra1">radical alignment #1</a></li>
+        <li><a href="#sprint-healthos" data-section="sprint-healthos">health os</a></li>
+        <li><a href="#sprint-ra2" data-section="sprint-ra2">radical alignment #2</a></li>
+      </ul>
+    </div>
+
+    <div class="nav-group">
+      <a href="#stories" class="nav-group-title" data-section="stories">истории</a>
+      <ul class="nav-sub">
+        <li><a href="#masha" data-section="masha">Маша</a></li>
+        <li><a href="#tonya" data-section="tonya">Тоня</a></li>
+        <li><a href="#vlad" data-section="vlad">Влад</a></li>
+        <li><a href="#katya" data-section="katya">Катя</a></li>
+        <li><a href="#lyosha" data-section="lyosha">Лёша</a></li>
+        <li><a href="#max" data-section="max">Макс</a></li>
+      </ul>
+    </div>
+
+    <div class="nav-group">
+      <a href="#methodology" class="nav-group-title" data-section="methodology">методология</a>
+      <ul class="nav-sub">
+        <li><a href="#enabled" data-section="enabled">enabled</a></li>
+        <li><a href="#capable" data-section="capable">capable</a></li>
+        <li><a href="#empowered" data-section="empowered">empowered</a></li>
+      </ul>
+    </div>
+
+  </nav>
+</aside>
+
+<!-- Burger -->
+<button class="burger" id="burger" aria-label="Меню">
+  <span></span><span></span><span></span>
+</button>
+<div class="overlay" id="overlay"></div>
+
+<!-- Main content -->
+<main class="main">
+<div class="content">
+
+  <div class="page-header">
+    <h1>База знаний BLR</h1>
+    <p>brain love & robots — подписочное комьюнити где люди применяют AI в реальной жизни: в здоровье, работе, творчестве и личных системах.</p>
+    <p style="margin-top:12px">Здесь собраны форматы которые работают, истории участников которые прошли путь, спринты которые уже случились — и методология на которой всё держится. Не курс и не учебник. Живые практики живых людей.</p>
+  </div>
+
+  <!-- ═══════════════════════════ FORMATS ═══════════════════════════ -->
+  <section class="section" id="formats">
+    <h2>Форматы</h2>
+    <p class="section-intro">В BLR есть форматы — повторяющиеся практики, которые появились из реального опыта комьюнити. Каждый формат — это отдельный способ что-то сделать с AI или с собой, рядом с другими людьми.</p>
+
+    <div class="grid-2">
+      <a href="#alignment" class="grid-card">
+        <div class="card-name">alignment</div>
+        <div class="card-desc">остановиться и понять где ты сейчас</div>
+      </a>
+      <a href="#unblocking" class="grid-card">
+        <div class="card-name">unblocking</div>
+        <div class="card-desc">сделать первый шаг вместе</div>
+      </a>
+      <a href="#protagonist" class="grid-card">
+        <div class="card-name">протагонист</div>
+        <div class="card-desc">увидеть как это делают другие</div>
+      </a>
+      <a href="#fire" class="grid-card">
+        <div class="card-name">костёр</div>
+        <div class="card-desc">поговорить о том что живо прямо сейчас</div>
+      </a>
+      <a href="#stress" class="grid-card">
+        <div class="card-name">стресс-шеринг</div>
+        <div class="card-desc">назвать страх и не получить в ответ совет</div>
+      </a>
+      <a href="#metaskills" class="grid-card">
+        <div class="card-name">метанавыки</div>
+        <div class="card-desc">научиться думать с AI, а не гнаться за инструментами</div>
+      </a>
+    </div>
+
+    <!-- alignment -->
+    <div class="detail-section" id="alignment">
+      <span class="tag">практика</span>
+      <h3>alignment</h3>
+      <p class="text-sm">Момент остановки — посмотреть честно где ты сейчас, что изменилось, куда на самом деле хочешь.</p>
+
+      <p class="text-sm mt-20">Каждый день — один вопрос. Ты пишешь 15–30 минут: без структуры, без правильных ответов. Просто честно. Рядом — люди из комьюнити которые делают то же самое.</p>
+
+      <p class="text-sm mt-12">AI в alignment — не ассистент и не планировщик. Это собеседник, который помогает услышать себя.</p>
+
+      <blockquote>
+        <p>«80% честный контакт с собой, 20% AI. Именно это соотношение мне и нужно»</p>
+        <cite>— участница BLR</cite>
+      </blockquote>
+
+      <div class="card mt-20">
+        <h4>Как это устроено</h4>
+        <ul class="custom">
+          <li>Вопросы на каждый день — один, но точный</li>
+          <li>Свободный джорналинг — пишешь как думаешь, без редактуры</li>
+          <li>Можно поделиться в комьюнити, можно оставить себе</li>
+          <li>Коуч-промпт — если хочешь пойти глубже с AI</li>
+          <li>Финальный звонок — зафиксировать где ты и что берёшь вперёд</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- unblocking -->
+    <div class="detail-section" id="unblocking">
+      <span class="tag">практика</span>
+      <h3>unblocking</h3>
+      <p class="text-sm">Звонок для тех кто хочет начать — но что-то мешает. Без лекций. Ты просто берёшь свою задачу и делаешь с AI прямо здесь.</p>
+
+      <p class="text-sm mt-20">Рядом — люди на разных уровнях. Кто-то уже делал, кто-то впервые. Это не про то чтобы быть умным — это про то чтобы попробовать и почувствовать что получается.</p>
+
+      <blockquote>
+        <p>«бывают моменты когда сталкиваешься с заморозкой, страхом. И это очень просто пройти — когда соединяешься с любопытством»</p>
+      </blockquote>
+
+      <blockquote>
+        <p>«можно выгрузить сомнения в AI — и он предложит неожиданное направление которое отличается от всего что я себе представляла»</p>
+        <cite>— участница BLR</cite>
+      </blockquote>
+
+      <div class="card mt-20">
+        <h4>Как проходит</h4>
+        <ol class="custom">
+          <li>Короткий чекин — кто где сейчас, что хочется попробовать</li>
+          <li>Демо — смотришь как кто-то делает что-то простое с AI</li>
+          <li>Практика — берёшь свою задачу и пробуешь сам</li>
+          <li>Делишься что получилось — или что не получилось</li>
+        </ol>
+      </div>
+    </div>
+
+    <!-- protagonist -->
+    <div class="detail-section" id="protagonist">
+      <span class="tag">звонок</span>
+      <h3>протагонист</h3>
+      <p class="text-sm">Участник BLR рассказывает свою историю — не как эксперт, а как человек который что-то попробовал и прошёл через это.</p>
+
+      <p class="text-sm mt-20">Протагонист — не спикер. Он не учит, не даёт советы. Он показывает свой путь: что было до, что изменилось, что это значит для него.</p>
+
+      <p class="text-sm mt-12">Смотришь — и узнаёшь что-то своё. Или понимаешь что хочешь попробовать то же самое.</p>
+
+      <div class="formula mt-20">
+        <span class="f-step">ситуация</span>
+        <span class="f-arrow">→</span>
+        <span class="f-step">AI</span>
+        <span class="f-arrow">→</span>
+        <span class="f-step">результат</span>
+        <span class="f-arrow">→</span>
+        <span class="f-step">смысл</span>
+      </div>
+    </div>
+
+    <!-- fire -->
+    <div class="detail-section" id="fire">
+      <span class="tag">открытый круг</span>
+      <h3>костёр</h3>
+      <p class="text-sm">Открытый групповой звонок — пространство где участники говорят из себя, про себя, про то что живо прямо сейчас.</p>
+
+      <p class="text-sm mt-20">Говоришь из себя — про то что живо прямо сейчас. Не к конкретному человеку, а в пространство. Кто-то делает жест — значит откликнулось.</p>
+
+      <p class="text-sm mt-12">Нет повестки. Нет правильных ответов. Нет непрошеных советов. То что сказано — остаётся внутри звонка.</p>
+
+      <blockquote>
+        <p>«как будто стоим у костра и что-то бросаем в огонь. Не говорим другому человеку — говорим пространству»</p>
+      </blockquote>
+
+      <div class="card mt-20">
+        <h4>Как это устроено</h4>
+        <ul class="custom">
+          <li>Говоришь про себя, из своих ощущений — не про других</li>
+          <li>Идёшь туда где ещё нет ответа — это и есть смелость</li>
+          <li>Что говорится на звонке — остаётся на звонке</li>
+          <li>Не даёшь советов — просто присутствуешь</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- stress -->
+    <div class="detail-section" id="stress">
+      <span class="tag">контейнер честности</span>
+      <h3>стресс-шеринг</h3>
+      <p class="text-sm">Пространство где можно сказать «мне страшно» и не получить в ответ инструкцию как это исправить.</p>
+
+      <p class="text-sm mt-20">Бывает что не знаешь с чего начать. Или понимаешь что что-то меняется — и не знаешь как к этому относиться. Или просто страшно что опаздываешь.</p>
+
+      <p class="text-sm mt-12">Здесь можно об этом сказать. Без инструкций как исправить. Без «попробуй вот это». Просто — назвать.</p>
+
+      <blockquote>
+        <p>«мне важно быть в среде где это нормально — не знать, сомневаться, начинать заново»</p>
+        <cite>— участница BLR</cite>
+      </blockquote>
+    </div>
+
+    <!-- metaskills -->
+    <div class="detail-section" id="metaskills">
+      <span class="tag">практика · встроена в спринты</span>
+      <h3>метанавыки</h3>
+      <p class="text-sm">Навыки работы с AI которые не устаревают вместе с инструментами.</p>
+
+      <p class="text-sm mt-20">Инструменты меняются каждые несколько месяцев. Метанавыки — нет. Это не про то как пользоваться конкретной кнопкой в Claude. Это про то как думать вместе с AI — в любом контексте, с любым инструментом.</p>
+
+      <div class="card mt-20">
+        <h4>Что это на практике</h4>
+        <ul class="custom">
+          <li>Вести дневник с AI — не как напоминалку, а как собеседника</li>
+          <li>Делать deep research по своей теме — структурно, с несколькими точками зрения</li>
+          <li>Строить агентов под свои задачи — не по туториалу, а под себя</li>
+          <li>Замечать как меняется мышление — и что с этим делать</li>
+          <li>Разгружать голову — выносить сомнения и получать неожиданные направления</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════ SPRINTS ═══════════════════════════ -->
+  <section class="section" id="sprints">
+    <h2>Спринты</h2>
+    <p class="section-intro">Спринт в BLR — это не курс с программой. Это среда где живые люди с реальными кейсами показывают что у них получилось — и ты берёшь что своё.</p>
+
+    <a href="#sprint-ra1" class="sprint-card">
+      <div class="sprint-meta">
+        <div class="sprint-name">Новогодний марафон / Radical Alignment #1</div>
+        <div class="sprint-dates">30 дек 2025 — 11 янв 2026</div>
+        <div class="sprint-desc">10 дней практики джорналинга. Каждый день — один вопрос про себя, про то что меняется, про то куда правда хочется.</div>
+      </div>
+      <span class="tag done">done</span>
+    </a>
+
+    <a href="#sprint-healthos" class="sprint-card">
+      <div class="sprint-meta">
+        <div class="sprint-name">Health OS</div>
+        <div class="sprint-dates">16 фев — нач апр 2026</div>
+        <div class="sprint-desc">Как с помощью AI выстроить персональную систему здоровья. Пять участников показали что у них получилось — каждый со своим подходом.</div>
+      </div>
+      <span class="tag done">done</span>
+    </a>
+
+    <a href="#sprint-ra2" class="sprint-card">
+      <div class="sprint-meta">
+        <div class="sprint-name">Radical Alignment #2</div>
+        <div class="sprint-dates">апрель 2026</div>
+        <div class="sprint-desc">Снова alignment — через три месяца. Те кто делал на НГ — сравнивают с собой тогда. Кто впервые — чистый заход.</div>
+      </div>
+      <span class="tag active">active</span>
+    </a>
+
+    <!-- sprint-ra1 -->
+    <div class="detail-section" id="sprint-ra1">
+      <span class="tag done">done</span>
+      <h3>Новогодний марафон / Radical Alignment #1</h3>
+
+      <p class="text-sm mt-20">Первая неделя — смотришь назад: что случилось, где была тяжесть, что хочется оставить позади. Вторая — смотришь вперёд: откуда приходит энергия, куда правда хочется.</p>
+
+      <p class="text-sm mt-12">Финал — живой звонок. Фиксируешь где ты сейчас и что берёшь с собой в следующие три месяца.</p>
+    </div>
+
+    <!-- sprint-healthos -->
+    <div class="detail-section" id="sprint-healthos">
+      <span class="tag done">done</span>
+      <h3>Health OS</h3>
+
+      <div class="card mt-20">
+        <h4>Звонки</h4>
+        <ul class="custom">
+          <li>19 фев: Влад Куклев — Telegram-бот как персональный тренер</li>
+          <li>26 фев: Маша + Тоня — «Второй мозг: генетика, анализы, оркестр моделей»</li>
+          <li>5 мар: Лёша Евдокимов — датчик глюкозы + AI-аналитика</li>
+          <li>12 мар: Катя Кирилова — совет директоров из агентов</li>
+        </ul>
+      </div>
+
+      <blockquote>
+        <p>Когда начинаешь активно работать с AI — быстро обнаруживаешь что тело не поспевает. Здоровье стало следующей задачей. AI помогает прийти к врачу подготовленным — не заменить его, а понять свои данные лучше.</p>
+      </blockquote>
+    </div>
+
+    <!-- sprint-ra2 -->
+    <div class="detail-section" id="sprint-ra2">
+      <span class="tag active">active</span>
+      <h3>Radical Alignment #2</h3>
+
+      <p class="text-sm mt-20">Апрель 2026. Если делал на Новый год — возвращаешься с тем что написал тогда и смотришь что изменилось. Если впервые — просто начинаешь.</p>
+
+      <p class="text-sm mt-12">Первый разговор спринта — с Максом Януковичем, философом техники: о том как оставаться собой рядом с AI, о субъектности, о том что между тобой и нейросетью происходит на самом деле.</p>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════ STORIES ═══════════════════════════ -->
+  <section class="section" id="stories">
+    <h2>Истории</h2>
+    <p class="section-intro">Реальные люди, реальные задачи, реальные результаты.</p>
+
+    <div class="formula">
+      <span class="f-step">ситуация</span>
+      <span class="f-arrow">→</span>
+      <span class="f-step">AI</span>
+      <span class="f-arrow">→</span>
+      <span class="f-step">результат</span>
+      <span class="f-arrow">→</span>
+      <span class="f-step">смысл</span>
+    </div>
+
+    <div class="stories-grid mt-20">
+      <a href="#masha" class="story-card">
+        <div class="story-name">Маша Куликовская</div>
+        <div class="story-teaser">Медицинская ОС — анализы из разных стран в одном месте</div>
+      </a>
+      <a href="#tonya" class="story-card">
+        <div class="story-name">Тоня Жукова</div>
+        <div class="story-teaser">18 агентов deep research — 7 лет загадки холестерина</div>
+      </a>
+      <a href="#vlad" class="story-card">
+        <div class="story-name">Влад Куклев</div>
+        <div class="story-teaser">Health-бот в Telegram — 5 недель без пропусков</div>
+      </a>
+      <a href="#katya" class="story-card">
+        <div class="story-name">Катя Кирилова</div>
+        <div class="story-teaser">Совет директоров из агентов — здоровье как sandbox</div>
+      </a>
+      <a href="#lyosha" class="story-card">
+        <div class="story-name">Лёша Евдокимов</div>
+        <div class="story-teaser">CGM + AI — метаболическая карта и баня ×13</div>
+      </a>
+      <a href="#max" class="story-card">
+        <div class="story-name">Макс Янукович</div>
+        <div class="story-teaser">Философ техники — субъектность и стенс в AI</div>
+      </a>
+    </div>
+
+    <!-- masha -->
+    <div class="detail-section" id="masha">
+      <h3>Маша Куликовская</h3>
+      <div class="card mt-12">
+        <p><strong>Ситуация:</strong> анализы разбросаны по клиникам разных стран. Врачи не видят полную картину.</p>
+        <p class="mt-12"><strong>AI:</strong> Claude Extension + Claude Code, команда агентов-врачей с полярными позициями (консервативный vs прогрессивный).</p>
+        <p class="mt-12"><strong>Результат:</strong> полная медицинская история в одном месте. Мама получила альтернативу статинам с меньшим воздействием на ЖКТ.</p>
+        <p class="mt-12"><strong>Смысл:</strong> LLM — отражение твоего мышления. Важно намеренно добавлять полярные позиции.</p>
+      </div>
+      <blockquote>
+        <p>«Лучше всего — прийти к врачу которому давно доверяешь, но подготовленным. AI не заменяет врача — он помогает задать правильные вопросы»</p>
+      </blockquote>
+      <div class="tools">
+        <span class="tool-badge">Claude Extension</span>
+        <span class="tool-badge">Claude Code</span>
+        <span class="tool-badge">VS Code</span>
+      </div>
+    </div>
+
+    <!-- tonya -->
+    <div class="detail-section" id="tonya">
+      <h3>Тоня Жукова</h3>
+      <div class="card mt-12">
+        <p><strong>Ситуация:</strong> 7 лет повышенного холестерина. Ни один врач не спросил про Lp(a). Несколько лет пониженного железа — всем казалось «в норме».</p>
+        <p class="mt-12"><strong>AI:</strong> Automoy — 18 агентов (скауты, критики, статистики, фактчекеры, кросс-рефы, action mapper). Источники: PubMed и открытые базы. Время: час–несколько часов в фоне.</p>
+        <p class="mt-12"><strong>Результат:</strong> нашёлся Lp(a) как причина холестерина. Portfolio diet → анализы улучшились. По железу — сначала генетика и Helicobacter, не инвазивные процедуры.</p>
+        <p class="mt-12"><strong>Смысл:</strong> система ищет не просто ответы на вопрос — она ищет interconnections. Что работает вместе, с учётом конкретного контекста.</p>
+      </div>
+      <div class="tools">
+        <span class="tool-badge">Claude (Automoy — 18 агентов)</span>
+      </div>
+    </div>
+
+    <!-- vlad -->
+    <div class="detail-section" id="vlad">
+      <h3>Влад Куклев</h3>
+      <div class="card mt-12">
+        <p><strong>Ситуация:</strong> 8 лет попыток выстроить систему здоровья. Программы рассыпались как только пропускал тренировку.</p>
+        <p class="mt-12"><strong>AI:</strong> AI-тренер в Telegram. Стек: Gemini Studio + Claude Code + Telegram + Whoop API.</p>
+        <p class="mt-12"><strong>Результат:</strong> 5 недель подряд 5–6 тренировок без пропусков и волевых усилий. До этого никогда.</p>
+        <p class="mt-12"><strong>Смысл:</strong> агент знает твою историю, пишет сам когда нужно, адаптируется под конкретный день. Это не чат — это кто-то кто живёт рядом и помнит всё.</p>
+      </div>
+      <div class="tools">
+        <span class="tool-badge">Gemini Studio</span>
+        <span class="tool-badge">Claude Code</span>
+        <span class="tool-badge">Telegram</span>
+        <span class="tool-badge">Whoop API</span>
+      </div>
+    </div>
+
+    <!-- katya -->
+    <div class="detail-section" id="katya">
+      <h3>Катя Кирилова</h3>
+      <div class="card mt-12">
+        <p><strong>Ситуация:</strong> 10 лет назад — тяжёлое выгорание. С тех пор строит систему здоровья. Решила начать переводить её на AI — и заодно научиться работать с агентами на том что важно лично.</p>
+        <p class="mt-12"><strong>AI:</strong> 8 агентов на Claude Code. Longevity Coordinator оркестрирует остальных. Данные: Oura + Garmin + Telegram-бот ежевечерний чекин.</p>
+        <p class="mt-12"><strong>Результат:</strong> фитнес-агент пишет план тренировок и автоматически записывает их в Garmin — приходит в часы. Помог выстроить режим вайбкодинга чтобы не выгорать.</p>
+        <p class="mt-12"><strong>Смысл:</strong> когда учишься новому — лучше начинать с того что важно для тебя лично. Здесь цена ошибки низкая, а мотивация высокая. Навык переносится на всё остальное.</p>
+      </div>
+      <div class="tools">
+        <span class="tool-badge">Claude Code</span>
+        <span class="tool-badge">Oura</span>
+        <span class="tool-badge">Garmin</span>
+        <span class="tool-badge">Telegram</span>
+      </div>
+    </div>
+
+    <!-- lyosha -->
+    <div class="detail-section" id="lyosha">
+      <h3>Лёша Евдокимов</h3>
+      <div class="card mt-12">
+        <p><strong>Ситуация:</strong> жена подарила CGM-датчик (Libre). Смотреть на голые цифры скучно — непонятно почему это происходит.</p>
+        <p class="mt-12"><strong>AI:</strong> данные с датчика + Apple Watch + фото еды — всё собирается в одно место. AI строит картину: как конкретные вещи (еда, сон, нагрузка, баня) влияют на твои показатели. Плюс AI-врач с анализами за 10 лет.</p>
+        <p class="mt-12"><strong>Результат:</strong> нашёл что термальный стресс бани в 13 раз сильнее влияет на нервную систему, чем тренировка. Организм не успевал восстанавливаться. AI-врач увидел то, что живой эндокринолог видел, но выводов не сделал.</p>
+        <p class="mt-12"><strong>Смысл:</strong> одни и те же продукты у разных людей дают разные реакции. Можно затрекать тонкие индивидуальные паттерны.</p>
+      </div>
+      <div class="tools">
+        <span class="tool-badge">CGM Libre</span>
+        <span class="tool-badge">Apple Watch</span>
+        <span class="tool-badge">Atlas (генетика)</span>
+      </div>
+    </div>
+
+    <!-- max -->
+    <div class="detail-section" id="max">
+      <h3>Макс Янукович</h3>
+      <div class="card mt-12">
+        <p><strong>Ситуация:</strong> философ техники, исследует AI через призму философии.</p>
+        <p class="mt-12"><strong>Тезис:</strong> стенс из которого взаимодействуешь с AI определяет весь спектр возможностей. Видишь алгоритм — ограничиваешь. Видишь другого — расширяешься.</p>
+        <p class="mt-12"><strong>Вывод:</strong> social skills помогают с AI больше, чем технические. Эмпатия к нейросети = понимание что она знает и чего не знает о твоём проекте.</p>
+      </div>
+      <blockquote>
+        <p>«Если я вижу в нём лишь бездушный алгоритм который выполняет мои команды — я заведомо ограничиваю спектр того что между нами может возникать»</p>
+      </blockquote>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════ METHODOLOGY ═══════════════════════════ -->
+  <section class="section" id="methodology">
+    <h2>Методология</h2>
+    <p class="section-intro">Три пиллара — не уровни курса и не ранги. Это описание того, где человек находится в отношениях с AI.</p>
+
+    <!-- enabled -->
+    <div class="detail-section" id="enabled">
+      <div class="pillar-card">
+        <h3><span class="pillar-accent">enabled</span></h3>
+        <p class="pillar-sub">понял что это возможно</p>
+        <p>Что-то переключилось. AI больше не кажется чужим или «не для меня». Видишь как другие люди — такие же как ты — делают что-то реальное, и понимаешь: это возможно.</p>
+        <p style="margin-top: 12px;">Enabled — это не знание. Это ощущение что барьер снят. Часто оно приходит просто от того что ты оказался в правильном месте рядом с правильными людьми.</p>
+      </div>
+    </div>
+
+    <!-- capable -->
+    <div class="detail-section" id="capable">
+      <div class="pillar-card">
+        <h3><span class="pillar-accent">capable</span></h3>
+        <p class="pillar-sub">умеет применить AI в своей жизни</p>
+        <p>Ты уже что-то сделал. Не посмотрел, не прочитал — а взял свою задачу и прошёл через неё с AI. Что-то получилось. Появился артефакт, результат, ощущение «я могу».</p>
+        <p style="margin-top: 12px;">Это про личный опыт — не чужой. Чужой опыт вдохновляет, свой — меняет.</p>
+      </div>
+    </div>
+
+    <!-- empowered -->
+    <div class="detail-section" id="empowered">
+      <div class="pillar-card">
+        <h3><span class="pillar-accent">empowered</span></h3>
+        <p class="pillar-sub">знает зачем ему AI, действует из своего контекста</p>
+        <p>Ты знаешь зачем тебе AI. Не потому что так надо — а потому что это твоё. Ты используешь его из своей логики, своих задач, своей жизни. Не догоняешь — идёшь своим темпом.</p>
+        <blockquote style="margin-top: 16px;">
+          <p>«можно выгрузить сомнения в AI — и он предложит неожиданное направление которое отличается от всего что я себе представляла»</p>
+          <cite>— Ri Gruenko, анблокинг 11.03</cite>
+        </blockquote>
+        <p style="margin-top: 12px;">Это не про код. Это про AI как зеркало для мышления.</p>
+      </div>
+    </div>
+
+  </section>
+
+</div>
+</main>
+
+<script>
+(function() {
+  const sidebar = document.getElementById('sidebar');
+  const burger = document.getElementById('burger');
+  const overlay = document.getElementById('overlay');
+
+  // Burger toggle
+  burger.addEventListener('click', function() {
+    const open = sidebar.classList.toggle('open');
+    burger.classList.toggle('open', open);
+    overlay.classList.toggle('visible', open);
+  });
+  overlay.addEventListener('click', function() {
+    sidebar.classList.remove('open');
+    burger.classList.remove('open');
+    overlay.classList.remove('visible');
+  });
+
+  // Smooth scroll + close sidebar on mobile for nav links
+  document.querySelectorAll('.sidebar-nav a[href^="#"]').forEach(function(link) {
+    link.addEventListener('click', function(e) {
+      e.preventDefault();
+      const target = document.querySelector(link.getAttribute('href'));
+      if (target) {
+        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+      if (window.innerWidth <= 768) {
+        sidebar.classList.remove('open');
+        burger.classList.remove('open');
+        overlay.classList.remove('visible');
+      }
+    });
+  });
+
+  // Grid cards smooth scroll
+  document.querySelectorAll('a[href^="#"].grid-card, a[href^="#"].sprint-card, a[href^="#"].story-card').forEach(function(card) {
+    card.addEventListener('click', function(e) {
+      e.preventDefault();
+      const target = document.querySelector(card.getAttribute('href'));
+      if (target) {
+        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    });
+  });
+
+  // IntersectionObserver for active sidebar highlighting
+  const allSections = document.querySelectorAll('[id]');
+  const navLinks = document.querySelectorAll('.sidebar-nav a[data-section]');
+  const navGroupTitles = document.querySelectorAll('.nav-group-title[data-section]');
+
+  const sectionToGroup = {
+    'alignment': 'formats', 'unblocking': 'formats', 'protagonist': 'formats',
+    'fire': 'formats', 'stress': 'formats', 'metaskills': 'formats',
+    'sprint-ra1': 'sprints', 'sprint-healthos': 'sprints', 'sprint-ra2': 'sprints',
+    'masha': 'stories', 'tonya': 'stories', 'vlad': 'stories',
+    'katya': 'stories', 'lyosha': 'stories', 'max': 'stories',
+    'enabled': 'methodology', 'capable': 'methodology', 'empowered': 'methodology'
+  };
+
+  function setActive(sectionId) {
+    navLinks.forEach(function(a) {
+      a.classList.toggle('active', a.dataset.section === sectionId);
+    });
+    const groupId = sectionToGroup[sectionId] || sectionId;
+    navGroupTitles.forEach(function(a) {
+      a.classList.toggle('active', a.dataset.section === sectionId || a.dataset.section === groupId);
+    });
+  }
+
+  const observer = new IntersectionObserver(function(entries) {
+    entries.forEach(function(entry) {
+      if (entry.isIntersecting) {
+        setActive(entry.target.id);
+      }
+    });
+  }, {
+    rootMargin: '-10% 0px -80% 0px',
+    threshold: 0
+  });
+
+  allSections.forEach(function(section) {
+    observer.observe(section);
+  });
+})();
+</script>
+</body>
+</html>
