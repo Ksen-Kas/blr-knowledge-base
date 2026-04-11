@@ -151,6 +151,14 @@
   .badge.active { background: #ffdd00; color: #0d0d0d; }
   .badge.done { background: #f0f0f0; color: #999999; }
 
+  /* quote */
+  .quote-block {
+    background: #f7f7f7; border-left: 3px solid #ffdd00;
+    border-radius: 0 12px 12px 0; padding: 20px 24px; margin-top: 32px;
+  }
+  .quote-text { font-size: 15px; color: #333333; line-height: 1.6; font-style: italic; margin-bottom: 8px; }
+  .quote-author { font-size: 12px; font-weight: 700; color: #999999; text-transform: lowercase; }
+
   footer {
     border-top: 1px solid #e8e8e8;
     margin-top: 0;
@@ -182,9 +190,9 @@
     <div class="container nav-inner">
       <div class="logo">brain love &amp; robots</div>
       <div class="nav-links">
-        <a href="#happens">что происходит</a>
-        <a href="#cases">кейсы</a>
         <a href="#for-whom">для кого</a>
+        <a href="#cases">кейсы</a>
+        <a href="#happens">что происходит</a>
         <a href="kb.html">материалы</a>
       </div>
       <a class="btn outline-light" href="https://t.me/brainloveandrobots" target="_blank">→ telegram</a>
@@ -194,12 +202,12 @@
   <!-- HERO -->
   <header class="hero">
     <div class="container">
-      <div class="hero-label">подписочное AI-комьюнити</div>
-      <h1>место где люди осваивают AI<br><span>в своей реальной жизни</span></h1>
+      <div class="hero-label">AI-комьюнити</div>
+      <h1>среда где перестаёшь тревожиться<br><span>и начинаешь делать</span></h1>
       <p class="hero-desc">
-        brain love &amp; robots — это не курс и не подкаст. это среда где 100+ человек
-        вместе работают с AI: берут своё — здоровье, карьеру, проекты — и разбираются
-        что с этим можно сделать. курс заканчивается, среда — нет.
+        brain love &amp; robots — это место где люди со схожим мышлением находят своё применение AI
+        и перестают тревожиться про изменения, которые уже происходят. не курс — среда.
+        курс заканчивается, среда остаётся.
       </p>
       <div class="hero-actions">
         <a class="btn filled" href="kb.html">посмотреть материалы →</a>
@@ -213,35 +221,142 @@
     </div>
   </header>
 
+  <!-- ДЛЯ КОГО -->
+  <section id="for-whom" class="section">
+    <div class="container">
+      <div class="section-label">для кого</div>
+      <h2>ты здесь если...</h2>
+      <p class="section-intro">не список профессий — ситуации, которые узнаёшь</p>
+      <div class="for-whom-list">
+        <div class="fwi">
+          <div class="fwi-check">✓</div>
+          <div class="fwi-text">
+            <strong>«все несутся, а я стою»</strong> — видишь что вокруг что-то происходит,
+            но не понимаешь куда конкретно тебе это приложить и с чего начать
+          </div>
+        </div>
+        <div class="fwi">
+          <div class="fwi-check">✓</div>
+          <div class="fwi-text">
+            <strong>«мне страшно, что всё меняется»</strong> — хочется не просто не отстать,
+            а найти своё место в этом и перестать угадывать
+          </div>
+        </div>
+        <div class="fwi">
+          <div class="fwi-check">✓</div>
+          <div class="fwi-text">
+            <strong>«не могу начать, хотя очень хочу»</strong> — пробовал, что-то получилось,
+            но застрял: непонятно как сделать так, чтобы это реально работало в твоей жизни
+          </div>
+        </div>
+        <div class="fwi">
+          <div class="fwi-check">✓</div>
+          <div class="fwi-text">
+            <strong>«хочу быть там где это нормально»</strong> — устал объяснять окружению
+            зачем тебе это. хочется среду где люди думают похоже и двигаются вместе
+          </div>
+        </div>
+      </div>
+
+      <div class="quote-block">
+        <div class="quote-text">«Есть человек, который руководит командой разработчиков, но у него такие же мысли, как у меня. Я подумала: со мной всё хорошо, какое счастье.»</div>
+        <div class="quote-author">Ксения, участница BLR</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- КЕЙСЫ -->
+  <section id="cases" class="section">
+    <div class="container">
+      <div class="section-label">реальные примеры</div>
+      <h2>что делают участники</h2>
+      <p class="section-intro">живые истории — не теория, не чужие кейсы с конференций</p>
+      <div class="cases">
+
+        <article class="case-card">
+          <div class="case-tag">здоровье · Health OS</div>
+          <div class="case-title">перестал угадывать — начал слышать себя</div>
+          <div class="case-text">
+            Влад хотел понять как тело реагирует на нагрузку. подключил Whoop к AI
+            и настроил ежедневный анализ сна и восстановления. работает автоматически каждое утро.
+          </div>
+          <div class="case-result">→ данные которые раньше нужно было угадывать</div>
+        </article>
+
+        <article class="case-card">
+          <div class="case-tag">здоровье · Health OS</div>
+          <div class="case-title">чувство контроля без тревоги</div>
+          <div class="case-text">
+            Маша запуталась в здоровье — слишком много данных, непонятно что важно.
+            собрала систему из 18 агентов: second brain который думает вместе с ней.
+          </div>
+          <div class="case-result">→ ответ на вопрос который 7 лет не давал покоя</div>
+        </article>
+
+        <article class="case-card">
+          <div class="case-tag">решения · Health OS</div>
+          <div class="case-title">больше не застревает в одиночку</div>
+          <div class="case-text">
+            Катя принимала решения одна и застревала. создала совет из 8 AI-коучей —
+            задаёт вопрос и получает разные точки зрения. решение принимает сама, но уже не в пустоте.
+          </div>
+          <div class="case-result">→ разные углы на каждое решение без застревания</div>
+        </article>
+
+        <article class="case-card">
+          <div class="case-tag">здоровье · Health OS</div>
+          <div class="case-title">данные которые раньше были только у врачей</div>
+          <div class="case-text">
+            Лёша хотел понять метаболизм. подключил датчик глюкозы и AI-аналитику —
+            теперь видит как еда и сон влияют на его энергию. конкретно, не в среднем.
+          </div>
+          <div class="case-result">→ видит своё тело, а не общие рекомендации</div>
+        </article>
+
+      </div>
+      <div style="margin-top: 20px;">
+        <a class="btn outline sm" href="kb.html">все кейсы подробно →</a>
+      </div>
+    </div>
+  </section>
+
   <!-- ЧТО ПРОИСХОДИТ -->
   <section id="happens" class="section">
     <div class="container">
-      <div class="section-label">формат</div>
+      <div class="section-label">форматы</div>
       <h2>что здесь происходит</h2>
-      <p class="section-intro">три вещи которые происходят регулярно — не один раз, а постоянно</p>
-      <div class="pillars">
-        <div class="pillar">
-          <div class="pillar-icon">⚡</div>
-          <div class="pillar-title">спринты</div>
-          <div class="pillar-text">
-            4–6 недель, общая тема. участники работают с AI в своём контексте —
-            каждый берёт из общей темы то, что нужно ему. сейчас: Radical Alignment — фокус и приоритеты с AI.
-          </div>
-        </div>
+      <p class="section-intro">четыре формата которые повторяются — не один раз, а постоянно</p>
+      <div class="pillars" style="grid-template-columns: repeat(2,1fr);">
         <div class="pillar">
           <div class="pillar-icon">🎙</div>
-          <div class="pillar-title">живые звонки</div>
+          <div class="pillar-title">протагонист-звонки</div>
           <div class="pillar-text">
-            каждую неделю — разговор с участником который сделал что-то реальное с AI.
-            не лекция, а диалог. здесь видно что возможно и как именно это работает у конкретного человека.
+            разговор с участником у которого есть реальная история. не эксперт —
+            человек «такой же как ты». видно что возможно и как именно это работает на практике.
           </div>
         </div>
         <div class="pillar">
-          <div class="pillar-icon">🛠</div>
-          <div class="pillar-title">инструменты</div>
+          <div class="pillar-icon">⚡</div>
+          <div class="pillar-title">анблокинг</div>
           <div class="pillar-text">
-            промпты, коуч-скрипты, AI-стек (Claude Code, Codex), реальные системы которые люди строят —
-            всё это собирается в открытую базу знаний и остаётся с тобой после.
+            живая помощь когда застрял. попробовать прямо на звонке и выйти из фрустрации
+            в любопытство. не лекция — работа с реальной задачей в реальном времени.
+          </div>
+        </div>
+        <div class="pillar">
+          <div class="pillar-icon">🔥</div>
+          <div class="pillar-title">костёр</div>
+          <div class="pillar-text">
+            групповой звонок без повестки. про то, как быть человеком рядом с AI.
+            не про инструменты — про смыслы, страхи, открытия. можно просто прийти и послушать.
+          </div>
+        </div>
+        <div class="pillar">
+          <div class="pillar-icon">🗓</div>
+          <div class="pillar-title">спринты</div>
+          <div class="pillar-text">
+            4–6 недель на одну тему. участники работают с AI в своём контексте —
+            каждый берёт из общей темы то, что нужно ему. Health OS, Radical Alignment и дальше.
           </div>
         </div>
       </div>
@@ -266,99 +381,10 @@
           </div>
         </div>
       </div>
-    </div>
-  </section>
 
-  <!-- КЕЙСЫ -->
-  <section id="cases" class="section">
-    <div class="container">
-      <div class="section-label">реальные примеры</div>
-      <h2>что делают участники</h2>
-      <p class="section-intro">живые кейсы — не теория, не чужие истории с конференций</p>
-      <div class="cases">
-
-        <article class="case-card">
-          <div class="case-tag">здоровье · Health OS</div>
-          <div class="case-title">AI-аналитика сна и нагрузки каждое утро</div>
-          <div class="case-text">
-            Влад подключил трекер Whoop к Claude и настроил ежедневный отчёт:
-            сколько спал, как восстановился, что это значит для дня. работает автоматически.
-          </div>
-          <div class="case-result">→ Claude Code + Whoop API</div>
-        </article>
-
-        <article class="case-card">
-          <div class="case-tag">здоровье · Health OS</div>
-          <div class="case-title">18 агентов для медицинских исследований</div>
-          <div class="case-text">
-            Маша и Тоня собрали систему: скауты, критики, статистики, фактчекеры.
-            за одну сессию нашли ответ на вопрос который 7 лет не давал покоя.
-          </div>
-          <div class="case-result">→ исследование уровня научной статьи за 1–2 часа</div>
-        </article>
-
-        <article class="case-card">
-          <div class="case-tag">решения · Health OS</div>
-          <div class="case-title">совет из 8 AI-коучей для принятия решений</div>
-          <div class="case-text">
-            Катя создала 8 агентов-советников: по longevity, спорту, питанию, стратегии.
-            задаёт вопрос — получает разные точки зрения от каждого, принимает решение сама.
-          </div>
-          <div class="case-result">→ Claude Code + VS Code + Garmin API</div>
-        </article>
-
-        <article class="case-card">
-          <div class="case-tag">здоровье · Health OS</div>
-          <div class="case-title">метаболическая карта на CGM + AI</div>
-          <div class="case-text">
-            Лёша носил датчик глюкозы 16 дней, снимал данные каждые 5 минут.
-            написал AI-аналитику поверх — визуализация метаболизма которую не даёт ни одна клиника.
-          </div>
-          <div class="case-result">→ CGM + Claude Code, жена — контрольная группа</div>
-        </article>
-
-      </div>
-      <div style="margin-top: 20px;">
-        <a class="btn outline sm" href="kb.html">все кейсы подробно →</a>
-      </div>
-    </div>
-  </section>
-
-  <!-- ДЛЯ КОГО -->
-  <section id="for-whom" class="section">
-    <div class="container">
-      <div class="section-label">для кого</div>
-      <h2>ты здесь если...</h2>
-      <p class="section-intro">не список профессий — ситуации когда это имеет смысл</p>
-      <div class="for-whom-list">
-        <div class="fwi">
-          <div class="fwi-check">✓</div>
-          <div class="fwi-text">
-            <strong>слышишь про AI отовсюду</strong>, но не понимаешь что конкретно делать —
-            и хочешь увидеть как живые люди применяют это в своих задачах, а не абстрактные кейсы
-          </div>
-        </div>
-        <div class="fwi">
-          <div class="fwi-check">✓</div>
-          <div class="fwi-text">
-            <strong>пробовал ChatGPT или Claude</strong>, что-то получилось — и хочешь пойти глубже:
-            не просто чат, а системы которые работают на тебя каждый день
-          </div>
-        </div>
-        <div class="fwi">
-          <div class="fwi-check">✓</div>
-          <div class="fwi-text">
-            <strong>устал учиться ради обучения</strong> — хочешь среду где ты берёшь
-            реальную задачу из своей жизни и разбираешься с ней, а не проходишь чужие упражнения
-          </div>
-        </div>
-        <div class="fwi">
-          <div class="fwi-check">✓</div>
-          <div class="fwi-text">
-            <strong>думаешь о здоровье, карьере, своих проектах</strong> — и интересно
-            что AI может дать лично тебе в этом, а не в среднем по больнице
-          </div>
-        </div>
+      <div class="quote-block">
+        <div class="quote-text">«От "я теряюсь и стыжусь, что ничего не понимаю" — к "я могу руками и головой делать вещи вместе с AI".»</div>
+        <div class="quote-author">Юля, участница BLR</div>
       </div>
     </div>
   </section>
@@ -385,9 +411,9 @@
     <div class="container footer-inner">
       <div>brain love &amp; robots © 2026</div>
       <div class="footer-links">
-        <a href="#happens">что происходит</a>
-        <a href="#cases">кейсы</a>
         <a href="#for-whom">для кого</a>
+        <a href="#cases">кейсы</a>
+        <a href="#happens">форматы</a>
         <a href="kb.html">материалы</a>
       </div>
       <div class="footer-right"><a href="https://t.me/brainloveandrobots">→ telegram</a></div>
