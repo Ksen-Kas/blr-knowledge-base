@@ -520,6 +520,73 @@
   .mt-20 { margin-top: 20px; }
   .mb-8 { margin-bottom: 8px; }
 
+  /* ── CALL CARD ── */
+  .call-card {
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    border-radius: var(--radius);
+    padding: 20px 22px;
+    margin-bottom: 14px;
+  }
+  .call-card .call-name {
+    font-size: 15px;
+    font-weight: 700;
+    margin-bottom: 4px;
+  }
+  .call-card .call-date {
+    font-size: 12px;
+    color: #999;
+    margin-bottom: 8px;
+  }
+  .call-card .call-desc {
+    font-size: 13px;
+    color: #555;
+    line-height: 1.55;
+    margin-bottom: 12px;
+  }
+  .call-links {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+  .link-btn {
+    display: inline-block;
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--text);
+    background: var(--accent);
+    border-radius: 7px;
+    padding: 5px 12px;
+    text-decoration: none;
+    transition: opacity 0.15s;
+  }
+  .link-btn:hover { opacity: 0.8; }
+  .link-btn.secondary {
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    color: #555;
+  }
+  .link-btn.secondary:hover { border-color: #aaa; opacity: 1; }
+
+  /* ── TOOL ITEM ── */
+  .tool-item {
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    border-radius: var(--radius);
+    padding: 18px 22px;
+    margin-bottom: 12px;
+  }
+  .tool-item .tool-name {
+    font-size: 15px;
+    font-weight: 700;
+    margin-bottom: 4px;
+  }
+  .tool-item .tool-desc {
+    font-size: 13px;
+    color: #555;
+    line-height: 1.55;
+  }
+
   /* ── RESPONSIVE ── */
   @media (max-width: 768px) {
     .sidebar {
@@ -587,6 +654,14 @@
         <li><a href="#enabled" data-section="enabled">enabled</a></li>
         <li><a href="#capable" data-section="capable">capable</a></li>
         <li><a href="#empowered" data-section="empowered">empowered</a></li>
+      </ul>
+    </div>
+
+    <div class="nav-group">
+      <a href="#toolbox" class="nav-group-title" data-section="toolbox">инструменты</a>
+      <ul class="nav-sub">
+        <li><a href="#tool-coach-prompt" data-section="tool-coach-prompt">коуч-промпт</a></li>
+        <li><a href="#tool-claude-codex" data-section="tool-claude-codex">claude code + codex</a></li>
       </ul>
     </div>
 
@@ -827,19 +902,57 @@
       <span class="tag done">done</span>
       <h3>Health OS</h3>
 
-      <div class="card mt-20">
-        <h4>Звонки</h4>
-        <ul class="custom">
-          <li>19 фев: Влад Куклев — Telegram-бот как персональный тренер</li>
-          <li>26 фев: Маша + Тоня — «Второй мозг: генетика, анализы, оркестр моделей»</li>
-          <li>5 мар: Лёша Евдокимов — датчик глюкозы + AI-аналитика</li>
-          <li>12 мар: Катя Кирилова — совет директоров из агентов</li>
-        </ul>
-      </div>
+      <p class="text-sm mt-20">Когда начинаешь активно работать с AI — быстро обнаруживаешь что тело не поспевает. Здоровье стало следующей задачей. Пять участников показали как они строят персональную систему здоровья с AI — каждый со своим подходом.</p>
 
-      <blockquote>
-        <p>Когда начинаешь активно работать с AI — быстро обнаруживаешь что тело не поспевает. Здоровье стало следующей задачей. AI помогает прийти к врачу подготовленным — не заменить его, а понять свои данные лучше.</p>
-      </blockquote>
+      <div style="margin-top: 24px;">
+
+        <div class="call-card">
+          <div class="call-name">Влад Куклев — AI-система здоровья</div>
+          <div class="call-date">19 февраля 2026</div>
+          <div class="call-desc">Claude Code + Telegram + Whoop API. Персональный тренер который живёт в телефоне, знает твою историю и пишет сам — без волевых усилий 5 недель подряд.</div>
+          <div class="call-links">
+            <a href="https://youtu.be/calHnWdfPjs" class="link-btn" target="_blank" rel="noopener">запись →</a>
+          </div>
+        </div>
+
+        <div class="call-card">
+          <div class="call-name">Маша + Тоня — second brain для здоровья</div>
+          <div class="call-date">26 февраля 2026</div>
+          <div class="call-desc">Swarm of agents + скилл из 18 агентов. Система которая ищет не просто ответы — а interconnections: что работает вместе, с учётом конкретного контекста.</div>
+          <div class="call-links">
+            <a href="https://youtu.be/T13PJgHVDJM" class="link-btn" target="_blank" rel="noopener">запись →</a>
+          </div>
+        </div>
+
+        <div class="call-card">
+          <div class="call-name">Лёша Евдокимов — датчик глюкозы + AI</div>
+          <div class="call-date">5 марта 2026</div>
+          <div class="call-desc">Метаболическая карта + AI-аналитика. Одни и те же продукты у разных людей дают разные реакции — можно затрекать тонкие индивидуальные паттерны.</div>
+          <div class="call-links">
+            <a href="https://youtu.be/t-a13yvLYuM" class="link-btn" target="_blank" rel="noopener">запись →</a>
+          </div>
+        </div>
+
+        <div class="call-card">
+          <div class="call-name">Катя Кирилова — совет директоров из агентов</div>
+          <div class="call-date">12 марта 2026</div>
+          <div class="call-desc">8 агентов-коучей на Claude Code, 3 ловушки оптимизации. Longevity Coordinator оркестрирует остальных. Когда учишься новому — лучше начинать с того что важно для тебя лично.</div>
+          <div class="call-links">
+            <a href="https://youtu.be/x-rWLWm9VVQ" class="link-btn" target="_blank" rel="noopener">запись →</a>
+          </div>
+        </div>
+
+        <div class="call-card">
+          <div class="call-name">Мика Ян — AI sleep coach</div>
+          <div class="call-date">20 марта 2026</div>
+          <div class="call-desc">OpenClaw, spaced repetition для привычек, anti-goggins подход. Не про силу воли — про систему которая работает с твоей биологией, а не против неё.</div>
+          <div class="call-links">
+            <a href="https://www.youtube.com/watch?v=eHM8go3DWFA" class="link-btn" target="_blank" rel="noopener">запись →</a>
+            <a href="https://dimamatskevich.substack.com/p/ai-a21" class="link-btn secondary" target="_blank" rel="noopener">разбор →</a>
+          </div>
+        </div>
+
+      </div>
     </div>
 
     <!-- sprint-ra2 -->
@@ -1033,6 +1146,51 @@
 
   </section>
 
+  <!-- ═══════════════════════════ TOOLBOX ═══════════════════════════ -->
+  <section class="section" id="toolbox">
+    <h2>Инструменты</h2>
+    <p class="section-intro">Практические инструменты которые используются в BLR — для рефлексии, работы со спринтами и построения AI-систем.</p>
+
+    <!-- coach prompt -->
+    <div class="detail-section" id="tool-coach-prompt">
+      <span class="tag">практика</span>
+      <h3>Коуч-промпт</h3>
+      <p class="text-sm mt-20">AI-дневник для утренних и вечерних чекинов. Промпт который помогает структурировать мысли, выловить ловушки и зафиксировать что важно — не в теории, а прямо сейчас.</p>
+      <div class="card mt-20">
+        <h4>Как использовать</h4>
+        <ul class="custom">
+          <li>Утро: что сегодня важно, что беспокоит, на что хочу поставить внимание</li>
+          <li>Вечер: что получилось, где была ловушка, что беру завтра</li>
+          <li>Работает с любой LLM — Claude, GPT, Gemini</li>
+          <li>Встроен в спринт Radical Alignment — можно использовать отдельно</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- claude code + codex -->
+    <div class="detail-section" id="tool-claude-codex">
+      <span class="tag">стек</span>
+      <h3>AI-сетап: Claude Code + Codex</h3>
+      <p class="text-sm mt-20">Основной стек для работы со спринтами BLR. Claude Code — для сборки агентов и автоматизации. Codex — для написания и редактирования кода в связке с Claude.</p>
+      <div class="card mt-20">
+        <h4>Где применяется</h4>
+        <ul class="custom">
+          <li>Влад Куклев — Telegram-бот + Whoop API (Claude Code)</li>
+          <li>Катя Кирилова — 8 агентов-коучей на Claude Code</li>
+          <li>Мика Ян — OpenClaw, sleep coach система</li>
+          <li>Маша + Тоня — скилл из 18 агентов (Claude Extension)</li>
+        </ul>
+      </div>
+      <div class="tools mt-20">
+        <span class="tool-badge">Claude Code</span>
+        <span class="tool-badge">Codex</span>
+        <span class="tool-badge">Telegram API</span>
+        <span class="tool-badge">Whoop API</span>
+      </div>
+    </div>
+
+  </section>
+
 </div>
 </main>
 
@@ -1092,7 +1250,8 @@
     'sprint-ra1': 'sprints', 'sprint-healthos': 'sprints', 'sprint-ra2': 'sprints',
     'masha': 'stories', 'tonya': 'stories', 'vlad': 'stories',
     'katya': 'stories', 'lyosha': 'stories', 'max': 'stories',
-    'enabled': 'methodology', 'capable': 'methodology', 'empowered': 'methodology'
+    'enabled': 'methodology', 'capable': 'methodology', 'empowered': 'methodology',
+    'tool-coach-prompt': 'toolbox', 'tool-claude-codex': 'toolbox'
   };
 
   function setActive(sectionId) {
