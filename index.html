@@ -17,7 +17,6 @@
 
   .container { max-width: 960px; margin: 0 auto; padding: 0 40px; }
 
-  /* nav */
   .nav {
     position: sticky; top: 0; z-index: 20;
     background: #0d0d0d;
@@ -29,380 +28,392 @@
     padding: 16px 0;
   }
   .logo { font-weight: 700; color: #ffdd00; font-size: 15px; letter-spacing: 0.2px; }
-  .nav-links { display: flex; gap: 20px; font-size: 13px; color: #aaaaaa; text-transform: lowercase; }
-  .nav-links a:hover { color: #ffffff; }
+  .nav-links { display: flex; gap: 20px; font-size: 13px; color: #ffffff; text-transform: lowercase; }
+  .nav-links a:hover { color: #ffdd00; }
   .btn {
     display: inline-flex; align-items: center; gap: 8px;
-    padding: 10px 16px; border-radius: 10px; font-size: 13px; font-weight: 600;
-    border: 1px solid transparent; cursor: pointer; transition: opacity 0.15s;
+    padding: 10px 14px; border-radius: 10px; font-size: 13px; font-weight: 600;
+    border: 1px solid #0d0d0d; color: #0d0d0d; background: transparent;
+    transition: opacity 0.15s;
   }
-  .btn:hover { opacity: 0.85; }
+  .btn:hover { opacity: 0.8; }
   .btn.filled { background: #ffdd00; color: #0d0d0d; border-color: #ffdd00; }
-  .btn.outline { border-color: #0d0d0d; color: #0d0d0d; background: transparent; }
-  .btn.outline-light { border-color: rgba(255,255,255,0.3); color: #ffffff; background: transparent; }
-  .btn.dark { background: #0d0d0d; color: #ffffff; border-color: #0d0d0d; }
-  .btn.sm { font-size: 12px; padding: 8px 12px; }
+  .btn.secondary { border-color: #0d0d0d; color: #0d0d0d; }
+  .btn.amber { background: #0d0d0d; color: #ffffff; border-color: #0d0d0d; }
+  .btn.light { border-color: rgba(255,255,255,0.4); color: #ffffff; background: transparent; }
 
-  /* hero */
-  .hero {
-    padding: 72px 0 56px;
-    border-bottom: 1px solid #f0f0f0;
-  }
-  .hero-label {
-    font-size: 12px; font-weight: 700; letter-spacing: 0.6px; text-transform: uppercase;
-    color: #999999; margin-bottom: 20px;
-  }
-  .hero h1 {
-    font-size: 44px; font-weight: 800; line-height: 1.1; letter-spacing: -0.5px;
-    margin-bottom: 20px; max-width: 680px;
-  }
-  .hero h1 span { color: #ffdd00; background: #0d0d0d; padding: 2px 8px; border-radius: 6px; }
-  .hero-desc {
-    font-size: 17px; color: #444444; max-width: 600px; line-height: 1.65;
-    margin-bottom: 32px;
-  }
-  .hero-actions { display: flex; gap: 12px; flex-wrap: wrap; margin-bottom: 32px; }
-  .hero-stats {
-    display: flex; gap: 32px; font-size: 13px; color: #999999;
-  }
-  .hero-stats strong { color: #0d0d0d; font-size: 20px; font-weight: 800; display: block; margin-bottom: 2px; }
+  .hero { padding: 56px 0 32px; }
+  .hero h1 { font-size: 36px; font-weight: 800; line-height: 1.1; letter-spacing: -0.4px; margin-bottom: 12px; }
+  .hero p { font-size: 15px; color: #555555; max-width: 680px; line-height: 1.6; }
+  .hero-actions { display: flex; gap: 12px; margin-top: 20px; flex-wrap: wrap; }
+  .hero-meta { margin-top: 18px; font-size: 12px; color: #999999; }
 
-  /* section */
-  .section { padding: 64px 0; border-bottom: 1px solid #f0f0f0; }
-  .section:last-of-type { border-bottom: none; }
-  .section-label {
-    font-size: 11px; font-weight: 700; letter-spacing: 0.6px; text-transform: uppercase;
-    color: #999999; margin-bottom: 10px;
+  /* для кого */
+  .for-whom { padding: 40px 0; background: #f7f7f7; border-top: 1px solid #e8e8e8; border-bottom: 1px solid #e8e8e8; }
+  .for-whom h2 { font-size: 15px; font-weight: 800; color: #999999; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 20px; }
+  .fwi-grid { display: grid; grid-template-columns: repeat(2,1fr); gap: 12px; }
+  .fwi {
+    display: flex; gap: 14px; align-items: flex-start;
+    background: #ffffff; border: 1px solid #e8e8e8;
+    border-radius: 12px; padding: 16px 18px;
   }
-  .section h2 { font-size: 28px; font-weight: 800; margin-bottom: 10px; letter-spacing: -0.3px; }
-  .section-intro { font-size: 15px; color: #555555; line-height: 1.6; margin-bottom: 36px; max-width: 580px; }
+  .fwi-dot { flex-shrink: 0; width: 8px; height: 8px; border-radius: 50%; background: #ffdd00; margin-top: 6px; }
+  .fwi-text { font-size: 14px; color: #333333; line-height: 1.5; }
+  .fwi-text strong { color: #0d0d0d; display: block; margin-bottom: 2px; }
 
-  /* what-happens — 3 карточки */
-  .pillars { display: grid; grid-template-columns: repeat(3,1fr); gap: 16px; }
-  .pillar {
-    background: #f7f7f7; border: 1px solid #e8e8e8;
-    border-radius: 16px; padding: 24px;
+  .section { padding: 48px 0 24px; }
+  .section h2 { font-size: 18px; font-weight: 800; margin-bottom: 12px; }
+  .section-sub { font-size: 13px; color: #999999; margin-bottom: 18px; }
+
+  .grid-3x2 {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px;
   }
-  .pillar-icon { font-size: 22px; margin-bottom: 14px; }
-  .pillar-title { font-size: 15px; font-weight: 700; margin-bottom: 8px; color: #0d0d0d; }
-  .pillar-text { font-size: 13px; color: #555555; line-height: 1.6; }
+  .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
 
-  /* cases */
-  .cases { display: grid; grid-template-columns: repeat(2,1fr); gap: 16px; }
-  .case-card {
-    background: #f7f7f7; border: 1px solid #e8e8e8;
-    border-radius: 16px; padding: 20px 22px;
+  .card {
+    background: #f7f7f7;
+    border: 1px solid #e8e8e8;
+    border-radius: 14px;
+    padding: 16px;
     transition: transform 0.2s ease, box-shadow 0.2s ease;
   }
-  .case-card:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0,0,0,0.07); }
-  .case-tag {
-    display: inline-block;
-    font-size: 11px; font-weight: 700; letter-spacing: 0.3px; text-transform: lowercase;
-    color: #0d9e4e; margin-bottom: 10px;
-  }
-  .case-title { font-size: 15px; font-weight: 700; color: #0d0d0d; margin-bottom: 8px; line-height: 1.3; }
-  .case-text { font-size: 13px; color: #555555; line-height: 1.6; }
-  .case-result {
-    margin-top: 12px; font-size: 12px; font-weight: 600; color: #0d9e4e;
-    padding-top: 10px; border-top: 1px solid #e8e8e8;
-  }
+  .card:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0,0,0,0.08); }
 
-  /* for-whom */
-  .for-whom-list { display: grid; gap: 12px; }
-  .fwi {
-    display: flex; gap: 16px; align-items: flex-start;
-    background: #f7f7f7; border: 1px solid #e8e8e8;
-    border-radius: 14px; padding: 18px 20px;
-  }
-  .fwi-check {
-    flex-shrink: 0; width: 24px; height: 24px; border-radius: 50%;
-    background: #ffdd00; display: flex; align-items: center; justify-content: center;
-    font-size: 12px; font-weight: 800; color: #0d0d0d; margin-top: 1px;
-  }
-  .fwi-text { font-size: 14px; color: #333333; line-height: 1.55; }
-  .fwi-text strong { color: #0d0d0d; }
+  .tag { font-size: 11px; font-weight: 700; letter-spacing: 0.3px; text-transform: lowercase; }
+  .tag.health { color: #0d9e4e; }
+  .tag.work { color: #2563eb; }
+  .tag.self { color: #7c3aed; }
 
-  /* cta */
-  .cta-block {
-    background: #0d0d0d;
-    border-radius: 20px;
-    padding: 48px;
-    display: grid; gap: 20px;
-  }
-  .cta-title { font-size: 26px; font-weight: 800; color: #ffffff; line-height: 1.2; }
-  .cta-text { font-size: 15px; color: #aaaaaa; line-height: 1.6; max-width: 520px; }
-  .cta-actions { display: flex; gap: 12px; flex-wrap: wrap; }
-  .cta-note { font-size: 12px; color: #555555; }
+  .story-title { font-size: 14px; font-weight: 700; margin: 8px 0 6px; color: #0d0d0d; }
+  .story-text { font-size: 13px; color: #555555; line-height: 1.5; margin-bottom: 8px; }
+  .story-tool { font-size: 12px; color: #999999; margin-bottom: 6px; }
+  .story-result { font-size: 12px; color: #0d9e4e; font-weight: 600; }
 
-  /* sprints strip */
-  .sprints-strip { display: grid; grid-template-columns: repeat(3,1fr); gap: 12px; margin-top: 8px; }
-  .sprint-chip {
-    border: 1px solid #e8e8e8; border-radius: 12px; padding: 14px 16px;
-    background: #ffffff;
-  }
-  .sprint-chip.active { border-color: #ffdd00; background: #fffbe6; }
-  .sprint-name { font-size: 13px; font-weight: 700; color: #0d0d0d; margin-bottom: 4px; }
-  .sprint-date { font-size: 11px; color: #999999; margin-bottom: 6px; }
-  .badge {
-    display: inline-block;
-    font-size: 10px; font-weight: 700; letter-spacing: 0.4px; text-transform: uppercase;
-    padding: 3px 8px; border-radius: 999px;
-  }
-  .badge.active { background: #ffdd00; color: #0d0d0d; }
-  .badge.done { background: #f0f0f0; color: #999999; }
+  .sprint-head { display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px; }
+  .badge { font-size: 10px; font-weight: 700; letter-spacing: 0.4px; text-transform: uppercase; padding: 4px 8px; border-radius: 999px; }
+  .badge.active { background: #ffdd00; color: #0d0d0d; border: 1px solid #ffdd00; }
+  .badge.done { background: #f0f0f0; color: #999; border: 1px solid #e0e0e0; }
+  .sprint-title { font-size: 15px; font-weight: 700; color: #0d0d0d; }
+  .sprint-meta { font-size: 12px; color: #999999; margin-top: 2px; }
+  .sprint-list { margin-top: 10px; display: grid; gap: 8px; font-size: 13px; color: #555555; line-height: 1.5; }
+  .sprint-list span { color: #999999; }
 
-  /* quote */
-  .quote-block {
-    background: #f7f7f7; border-left: 3px solid #ffdd00;
-    border-radius: 0 12px 12px 0; padding: 20px 24px; margin-top: 32px;
+  .pillars { display: grid; grid-template-columns: repeat(3,1fr); gap: 16px; }
+  .pillar-title { font-size: 13px; font-weight: 700; text-transform: lowercase; margin-bottom: 6px; color: #0d0d0d; }
+  .pillar-text { font-size: 13px; color: #555555; line-height: 1.5; }
+
+  .member-block {
+    background: #ffdd00;
+    border: none;
+    border-radius: 14px;
+    padding: 32px;
+    display: grid; gap: 12px;
   }
-  .quote-text { font-size: 15px; color: #333333; line-height: 1.6; font-style: italic; margin-bottom: 8px; }
-  .quote-author { font-size: 12px; font-weight: 700; color: #999999; text-transform: lowercase; }
+  .member-title { font-size: 18px; font-weight: 800; color: #0d0d0d; }
+  .member-text { font-size: 14px; color: #0d0d0d; line-height: 1.6; max-width: 600px; }
+  .member-meta { font-size: 12px; color: #333333; }
 
   footer {
     border-top: 1px solid #e8e8e8;
-    margin-top: 0;
-    padding: 24px 0 32px;
+    margin-top: 40px;
+    padding: 18px 0 28px;
     font-size: 12px; color: #999999;
   }
   .footer-inner { display: flex; justify-content: space-between; align-items: center; gap: 12px; }
-  .footer-links { display: flex; gap: 16px; text-transform: lowercase; color: #999999; }
-  .footer-links a:hover { color: #0d0d0d; }
+  .footer-links { display: flex; gap: 14px; text-transform: lowercase; color: #999999; }
   .footer-right a { color: #0d0d0d; }
 
   @media (max-width: 768px) {
     .container { padding: 0 20px; }
     .nav-inner { flex-direction: column; gap: 12px; align-items: flex-start; }
     .nav-links { flex-wrap: wrap; gap: 12px; }
-    .hero { padding: 48px 0 40px; }
-    .hero h1 { font-size: 30px; }
-    .hero-stats { flex-wrap: wrap; gap: 20px; }
-    .pillars, .cases, .sprints-strip { grid-template-columns: 1fr; }
-    .cta-block { padding: 32px 24px; }
-    .cta-title { font-size: 22px; }
-    .footer-inner { flex-direction: column; align-items: flex-start; gap: 10px; }
+    .hero h1 { font-size: 28px; }
+    .hero-actions { flex-direction: column; align-items: flex-start; }
+    .grid-3x2, .grid-2, .pillars, .fwi-grid { grid-template-columns: 1fr; }
+    .footer-inner { flex-direction: column; align-items: flex-start; }
   }
 </style>
 </head>
 <body>
-
   <nav class="nav">
     <div class="container nav-inner">
       <div class="logo">brain love &amp; robots</div>
       <div class="nav-links">
-        <a href="#for-whom">для кого</a>
-        <a href="#cases">кейсы</a>
-        <a href="#happens">что происходит</a>
-        <a href="kb.html">материалы</a>
+        <a href="#stories">истории</a>
+        <a href="#sprints">спринты</a>
+        <a href="#formats">форматы</a>
+        <a href="kb.html">материалы участников</a>
       </div>
-      <a class="btn outline-light" href="https://t.me/brainloveandrobots" target="_blank">→ telegram</a>
+      <a class="btn light" href="https://t.me/brainloveandrobots" target="_blank">→ telegram</a>
     </div>
   </nav>
 
-  <!-- HERO -->
   <header class="hero">
     <div class="container">
-      <div class="hero-label">AI-комьюнити</div>
-      <h1>среда где перестаёшь тревожиться<br><span>и начинаешь делать</span></h1>
-      <p class="hero-desc">
-        brain love &amp; robots — это место где люди со схожим мышлением находят своё применение AI
-        и перестают тревожиться про изменения, которые уже происходят. не курс — среда.
-        курс заканчивается, среда остаётся.
-      </p>
+      <h1>живые истории применения AI</h1>
+      <p>спринты, протагонисты и артефакты участников brain love &amp; robots — комьюнити где люди находят своё применение AI и перестают тревожиться про изменения, которые уже происходят</p>
       <div class="hero-actions">
-        <a class="btn filled" href="kb.html">посмотреть материалы →</a>
-        <a class="btn outline" href="#for-whom">это для меня?</a>
+        <a class="btn filled" href="#stories">читать истории</a>
+        <a class="btn secondary" href="#for-whom">это для меня?</a>
       </div>
-      <div class="hero-stats">
-        <div><strong>109</strong>участников</div>
-        <div><strong>6+</strong>спринтов</div>
-        <div><strong>2 года</strong>сообщество</div>
-      </div>
+      <div class="hero-meta">109 участников · 6+ спринтов · открытая библиотека</div>
     </div>
   </header>
 
   <!-- ДЛЯ КОГО -->
-  <section id="for-whom" class="section">
+  <section id="for-whom" class="for-whom">
     <div class="container">
-      <div class="section-label">для кого</div>
       <h2>ты здесь если...</h2>
-      <p class="section-intro">не список профессий — ситуации, которые узнаёшь</p>
-      <div class="for-whom-list">
+      <div class="fwi-grid">
         <div class="fwi">
-          <div class="fwi-check">✓</div>
+          <div class="fwi-dot"></div>
           <div class="fwi-text">
-            <strong>«все несутся, а я стою»</strong> — видишь что вокруг что-то происходит,
-            но не понимаешь куда конкретно тебе это приложить и с чего начать
+            <strong>«все несутся, а я стою»</strong>
+            видишь что вокруг что-то происходит, но не понимаешь куда конкретно тебе это приложить
           </div>
         </div>
         <div class="fwi">
-          <div class="fwi-check">✓</div>
+          <div class="fwi-dot"></div>
           <div class="fwi-text">
-            <strong>«мне страшно, что всё меняется»</strong> — хочется не просто не отстать,
-            а найти своё место в этом и перестать угадывать
+            <strong>«мне страшно, что всё меняется»</strong>
+            хочется не просто не отстать, а найти своё место в этом
           </div>
         </div>
         <div class="fwi">
-          <div class="fwi-check">✓</div>
+          <div class="fwi-dot"></div>
           <div class="fwi-text">
-            <strong>«не могу начать, хотя очень хочу»</strong> — пробовал, что-то получилось,
-            но застрял: непонятно как сделать так, чтобы это реально работало в твоей жизни
+            <strong>«не могу начать, хотя очень хочу»</strong>
+            пробовал, что-то получилось, но непонятно как сделать так чтобы это работало в твоей жизни
           </div>
         </div>
         <div class="fwi">
-          <div class="fwi-check">✓</div>
+          <div class="fwi-dot"></div>
           <div class="fwi-text">
-            <strong>«хочу быть там где это нормально»</strong> — устал объяснять окружению
-            зачем тебе это. хочется среду где люди думают похоже и двигаются вместе
+            <strong>«хочу там где это нормально»</strong>
+            устал объяснять окружению зачем тебе это. хочется среду где люди думают похоже
           </div>
         </div>
-      </div>
-
-      <div class="quote-block">
-        <div class="quote-text">«Есть человек, который руководит командой разработчиков, но у него такие же мысли, как у меня. Я подумала: со мной всё хорошо, какое счастье.»</div>
-        <div class="quote-author">Ксения, участница BLR</div>
       </div>
     </div>
   </section>
 
-  <!-- КЕЙСЫ -->
-  <section id="cases" class="section">
+  <!-- ИСТОРИИ -->
+  <section id="stories" class="section">
     <div class="container">
-      <div class="section-label">реальные примеры</div>
-      <h2>что делают участники</h2>
-      <p class="section-intro">живые истории — не теория, не чужие кейсы с конференций</p>
-      <div class="cases">
-
-        <article class="case-card">
-          <div class="case-tag">здоровье · Health OS</div>
-          <div class="case-title">перестал угадывать — начал слышать себя</div>
-          <div class="case-text">
-            Влад хотел понять как тело реагирует на нагрузку. подключил Whoop к AI
-            и настроил ежедневный анализ сна и восстановления. работает автоматически каждое утро.
-          </div>
-          <div class="case-result">→ данные которые раньше нужно было угадывать</div>
+      <h2>истории</h2>
+      <div class="section-sub">кейсы участников: от здоровья до новых языков смысла</div>
+      <div class="grid-3x2">
+        <article class="card">
+          <div class="tag health">здоровье</div>
+          <div class="story-title">медицинская операционная система</div>
+          <div class="story-text">врач собрала систему AI-агентов для работы с меддокументами. когда маме удалили желчный пузырь — подобрала препараты без побочек за вечер вместо недели поисков</div>
+          <div class="story-tool">Claude Code + Claude Extension</div>
+          <div class="story-result">локальная система, данные не покидают устройство</div>
         </article>
 
-        <article class="case-card">
-          <div class="case-tag">здоровье · Health OS</div>
-          <div class="case-title">чувство контроля без тревоги</div>
-          <div class="case-text">
-            Маша запуталась в здоровье — слишком много данных, непонятно что важно.
-            собрала систему из 18 агентов: second brain который думает вместе с ней.
-          </div>
-          <div class="case-result">→ ответ на вопрос который 7 лет не давал покоя</div>
+        <article class="card">
+          <div class="tag health">здоровье</div>
+          <div class="story-title">18 агентов для медицинских исследований</div>
+          <div class="story-text">skill из 18 агентов: скауты, критики, статистики, фактчекеры. 7 лет не могла разобраться с холестерином — за одну сессию нашла Lp(a) как причину</div>
+          <div class="story-tool">Claude skill (Automoy)</div>
+          <div class="story-result">исследование уровня научной статьи за 1-2 часа</div>
         </article>
 
-        <article class="case-card">
-          <div class="case-tag">решения · Health OS</div>
-          <div class="case-title">больше не застревает в одиночку</div>
-          <div class="case-text">
-            Катя принимала решения одна и застревала. создала совет из 8 AI-коучей —
-            задаёт вопрос и получает разные точки зрения. решение принимает сама, но уже не в пустоте.
-          </div>
-          <div class="case-result">→ разные углы на каждое решение без застревания</div>
+        <article class="card">
+          <div class="tag health">здоровье</div>
+          <div class="story-title">telegram-бот: тренер + нутрициолог + коуч</div>
+          <div class="story-text">5 лет итерировал идею — с AI собрал за спринт. бот знает историю, адаптирует план, отвечает в контексте</div>
+          <div class="story-tool">Gemini Studio + Claude Code + Telegram</div>
+          <div class="story-result">персональный AI-помощник работает каждый день</div>
         </article>
 
-        <article class="case-card">
-          <div class="case-tag">здоровье · Health OS</div>
-          <div class="case-title">данные которые раньше были только у врачей</div>
-          <div class="case-text">
-            Лёша хотел понять метаболизм. подключил датчик глюкозы и AI-аналитику —
-            теперь видит как еда и сон влияют на его энергию. конкретно, не в среднем.
-          </div>
-          <div class="case-result">→ видит своё тело, а не общие рекомендации</div>
+        <article class="card">
+          <div class="tag health">здоровье</div>
+          <div class="story-title">совет директоров из 8 агентов</div>
+          <div class="story-text">CEO собрала 8 агентов-коучей: longevity, спорт, красота, питание. автоматизировала тренировки через Garmin API</div>
+          <div class="story-tool">Claude Code + VS Code + Garmin API</div>
+          <div class="story-result">персональная команда экспертов 24/7</div>
         </article>
 
-      </div>
-      <div style="margin-top: 20px;">
-        <a class="btn outline sm" href="kb.html">все кейсы подробно →</a>
+        <article class="card">
+          <div class="tag health">здоровье</div>
+          <div class="story-title">метаболическая карта на CGM + AI</div>
+          <div class="story-text">носил CGM 16 дней, снимал данные каждые 5 минут, написал AI-аналитику поверх. жена — контрольная группа</div>
+          <div class="story-tool">CGM + Claude Code</div>
+          <div class="story-result">визуализация метаболизма которую не даёт ни одна клиника</div>
+        </article>
+
+        <article class="card">
+          <div class="tag self">саморазвитие</div>
+          <div class="story-title">AI и философия: диалог как метод</div>
+          <div class="story-text">исследует AI не как инструмент, а как собеседника. практика присутствия через письмо и рефлексию с AI каждый день</div>
+          <div class="story-tool">Claude</div>
+          <div class="story-result">новый язык для разговора о смысле AI в жизни</div>
+        </article>
       </div>
     </div>
   </section>
 
-  <!-- ЧТО ПРОИСХОДИТ -->
-  <section id="happens" class="section">
+  <!-- СПРИНТЫ: от старого к новому -->
+  <section id="sprints" class="section">
     <div class="container">
-      <div class="section-label">форматы</div>
-      <h2>что здесь происходит</h2>
-      <p class="section-intro">четыре формата которые повторяются — не один раз, а постоянно</p>
-      <div class="pillars" style="grid-template-columns: repeat(2,1fr);">
-        <div class="pillar">
-          <div class="pillar-icon">🎙</div>
-          <div class="pillar-title">протагонист-звонки</div>
-          <div class="pillar-text">
-            разговор с участником у которого есть реальная история. не эксперт —
-            человек «такой же как ты». видно что возможно и как именно это работает на практике.
-          </div>
-        </div>
-        <div class="pillar">
-          <div class="pillar-icon">⚡</div>
-          <div class="pillar-title">анблокинг</div>
-          <div class="pillar-text">
-            живая помощь когда застрял. попробовать прямо на звонке и выйти из фрустрации
-            в любопытство. не лекция — работа с реальной задачей в реальном времени.
-          </div>
-        </div>
-        <div class="pillar">
-          <div class="pillar-icon">🔥</div>
-          <div class="pillar-title">костёр</div>
-          <div class="pillar-text">
-            групповой звонок без повестки. про то, как быть человеком рядом с AI.
-            не про инструменты — про смыслы, страхи, открытия. можно просто прийти и послушать.
-          </div>
-        </div>
-        <div class="pillar">
-          <div class="pillar-icon">🗓</div>
-          <div class="pillar-title">спринты</div>
-          <div class="pillar-text">
-            4–6 недель на одну тему. участники работают с AI в своём контексте —
-            каждый берёт из общей темы то, что нужно ему. Health OS, Radical Alignment и дальше.
-          </div>
-        </div>
-      </div>
+      <h2>спринты</h2>
+      <div class="section-sub">циклы, где рождаются артефакты и общие инсайты</div>
+      <div class="grid-3x2">
 
-      <div style="margin-top: 28px;">
-        <div class="section-label" style="margin-bottom: 12px;">последние спринты</div>
-        <div class="sprints-strip">
-          <div class="sprint-chip active">
-            <div class="sprint-name">Radical Alignment</div>
-            <div class="sprint-date">апрель 2026</div>
-            <span class="badge active">идёт сейчас</span>
+        <article class="card">
+          <div class="sprint-head">
+            <div>
+              <div class="sprint-title">Новогодний марафон</div>
+              <div class="sprint-meta">январь 2026</div>
+            </div>
+            <div class="badge done">завершён</div>
           </div>
-          <div class="sprint-chip">
-            <div class="sprint-name">Health OS</div>
-            <div class="sprint-date">февраль–апрель 2026</div>
-            <span class="badge done">завершён</span>
+          <div class="sprint-list">
+            <div><span>Тема:</span> первые шаги с AI через письмо и уязвимость</div>
+            <div><span>Участники:</span> 30 активных из 80</div>
+            <div><span>Инсайт:</span> уязвимость без живого отклика не работает асинхронно</div>
+            <div><span>Вывод:</span> формат переработан — от уязвимости к артефактам</div>
           </div>
-          <div class="sprint-chip">
-            <div class="sprint-name">Новогодний марафон</div>
-            <div class="sprint-date">декабрь 2025 / январь 2026</div>
-            <span class="badge done">завершён</span>
-          </div>
-        </div>
-      </div>
+        </article>
 
-      <div class="quote-block">
-        <div class="quote-text">«От "я теряюсь и стыжусь, что ничего не понимаю" — к "я могу руками и головой делать вещи вместе с AI".»</div>
-        <div class="quote-author">Юля, участница BLR</div>
+        <article class="card">
+          <div class="sprint-head">
+            <div>
+              <div class="sprint-title">Health OS</div>
+              <div class="sprint-meta">февраль–март 2026</div>
+            </div>
+            <div class="badge done">завершён</div>
+          </div>
+          <div class="sprint-list">
+            <div><span>Тема:</span> персональные системы здоровья на AI</div>
+            <div><span>Протагонисты:</span> Маша, Тоня, Влад, Катя, Лёша</div>
+            <div><span>Инсайт:</span> AI снижает барьер между «хочу понять своё здоровье» и реальным инструментом</div>
+            <div><span>Артефакт:</span> Automoy skill — в открытом доступе</div>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="sprint-head">
+            <div>
+              <div class="sprint-title">Radical Alignment</div>
+              <div class="sprint-meta">апрель 2026</div>
+            </div>
+            <div class="badge active">идёт сейчас</div>
+          </div>
+          <div class="sprint-list">
+            <div><span>Тема:</span> остаться собой и найти своё место рядом с AI</div>
+            <div><span>Формат:</span> джорналинг + AI каждый день, шеринг артефактов в чат</div>
+            <div><span>Протагонист:</span> Макс Янукович — философия субъектности и AI</div>
+            <div><span>Инсайт:</span> AI как зеркало для мышления, а не инструмент автоматизации</div>
+          </div>
+        </article>
+
       </div>
     </div>
   </section>
 
-  <!-- CTA -->
-  <section class="section">
+  <!-- ФОРМАТЫ (без стресс-шеринга) -->
+  <section id="formats" class="section">
     <div class="container">
-      <div class="cta-block">
-        <div class="cta-title">посмотри что внутри</div>
-        <div class="cta-text">
-          в базе знаний — открытые материалы: кейсы участников, артефакты спринтов,
-          промпты и инструменты. без регистрации.
+      <h2>форматы</h2>
+      <div class="section-sub">повторяемые практики комьюнити — основа методологии BLR</div>
+      <div class="grid-3x2">
+
+        <article class="card">
+          <div class="tag self">квартальный</div>
+          <div class="story-title">radical alignment</div>
+          <div class="story-text">практика самоопределения через джорналинг + AI. каждые 3 месяца — сверка: куда ты правда движешься, что уже не служит</div>
+          <div class="story-tool">протокол Пеннебейкера · 10 дней · асинхронно</div>
+          <div class="story-result">выходной артефакт: живой текст о себе</div>
+        </article>
+
+        <article class="card">
+          <div class="tag work">ежемесячный</div>
+          <div class="story-title">анблокинг</div>
+          <div class="story-text">горизонтальный звонок: участники разбирают реальные блоки друг друга. без экспертов сверху — только живой контакт и вопросы</div>
+          <div class="story-tool">живой звонок · 60-90 минут · ведёт фасилитатор</div>
+          <div class="story-result">самый запоминающийся формат по отзывам участников</div>
+        </article>
+
+        <article class="card">
+          <div class="tag health">еженедельный</div>
+          <div class="story-title">звонок с протагонистом</div>
+          <div class="story-text">живой разговор с участником который сделал что-то реальное с AI. не лекция — диалог. после звонка: вопрос в чат «а у тебя есть похожий момент?»</div>
+          <div class="story-tool">zoom · 60 минут · запись доступна участникам</div>
+          <div class="story-result">контент для публичного канала + артефакт для KB</div>
+        </article>
+
+        <article class="card">
+          <div class="tag self">еженедельный</div>
+          <div class="story-title">костёр</div>
+          <div class="story-text">открытый разговор без повестки. место где можно прийти с тем что болит, что радует, что непонятно. ведёт Саша Приставко</div>
+          <div class="story-tool">по пятницам · живой звонок · без записи</div>
+          <div class="story-result">точка контакта для тех кто замолчал</div>
+        </article>
+
+        <article class="card">
+          <div class="tag work">спринтовый</div>
+          <div class="story-title">метанавыки с AI</div>
+          <div class="story-text">практические сессии по конкретным навыкам: deep research, context engineering, personal OS. инструменты которые остаются после спринта</div>
+          <div class="story-tool">воркшоп · 90-120 минут · с артефактом на выходе</div>
+          <div class="story-result">промпты и шаблоны в открытом доступе</div>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ПРОТАГОНИСТЫ -->
+  <section id="protagonists" class="section">
+    <div class="container">
+      <h2>протагонисты</h2>
+      <div class="section-sub">люди и их кейсы в рамках спринтов</div>
+      <div class="grid-3x2">
+        <article class="card">
+          <div class="story-title">Маша Куликовская</div>
+          <div class="story-text">врач · медицинская OS из AI-агентов</div>
+          <div class="tag health">здоровье</div>
+        </article>
+        <article class="card">
+          <div class="story-title">Тоня Жукова</div>
+          <div class="story-text">предприниматель · Automoy: 18 агентов deep research</div>
+          <div class="tag health">здоровье</div>
+        </article>
+        <article class="card">
+          <div class="story-title">Влад Куклев</div>
+          <div class="story-text">telegram health OS: 5 лет идее, 1 спринт реализации</div>
+          <div class="tag health">здоровье</div>
+        </article>
+        <article class="card">
+          <div class="story-title">Катя Кирилова</div>
+          <div class="story-text">CEO · 8 агентов-коучей + Garmin</div>
+          <div class="tag health">здоровье</div>
+        </article>
+        <article class="card">
+          <div class="story-title">Лёша Евдокимов</div>
+          <div class="story-text">CGM 16 дней + AI: метаболическая карта</div>
+          <div class="tag health">здоровье</div>
+        </article>
+        <article class="card">
+          <div class="story-title">Макс Янукович</div>
+          <div class="story-text">философ · AI и субъектность: диалог как метод</div>
+          <div class="tag self">саморазвитие</div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ДЛЯ УЧАСТНИКОВ -->
+  <section id="members" class="section">
+    <div class="container">
+      <div class="member-block">
+        <div class="member-title">для участников комьюнити 🔒</div>
+        <div class="member-text">артефакты со звонков, промпты и шаблоны, детальные гайды — доступны участникам brain love &amp; robots</div>
+        <div>
+          <a class="btn amber" href="kb.html">открыть материалы →</a>
         </div>
-        <div class="cta-actions">
-          <a class="btn filled" href="kb.html">открыть базу знаний →</a>
-          <a class="btn outline-light" href="https://t.me/brainloveandrobots" target="_blank">telegram-канал</a>
-        </div>
-        <div class="cta-note">уже участник? получи ссылку через бота @brainloverobotsbot</div>
+        <div class="member-meta">уже участник? открывай через бота @brainloverobotsbot</div>
       </div>
     </div>
   </section>
@@ -411,14 +422,13 @@
     <div class="container footer-inner">
       <div>brain love &amp; robots © 2026</div>
       <div class="footer-links">
-        <a href="#for-whom">для кого</a>
-        <a href="#cases">кейсы</a>
-        <a href="#happens">форматы</a>
+        <a href="#stories">истории</a>
+        <a href="#sprints">спринты</a>
+        <a href="#formats">форматы</a>
         <a href="kb.html">материалы</a>
       </div>
-      <div class="footer-right"><a href="https://t.me/brainloveandrobots">→ telegram</a></div>
+      <div class="footer-right"><a href="https://t.me/brainloveandrobots" target="_blank">→ telegram</a></div>
     </div>
   </footer>
-
 </body>
 </html>
