@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Маша Куликовская — Медицинская ОС | BLR База знаний</title>
+<title>Тоня Жукова — 18 агентов deep research | BLR</title>
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -371,37 +371,6 @@
     margin-bottom: 20px;
   }
 
-  .artifact-folder {
-    display: grid;
-    gap: 10px;
-    margin: 16px 0;
-  }
-
-  .folder-item {
-    display: flex;
-    gap: 12px;
-    align-items: flex-start;
-    background: #fff;
-    border: 1px solid var(--card-border);
-    border-radius: 10px;
-    padding: 12px 16px;
-  }
-
-  .folder-item .folder-name {
-    font-size: 13px;
-    font-weight: 600;
-    color: var(--text);
-    font-family: monospace;
-    min-width: 160px;
-    flex-shrink: 0;
-  }
-
-  .folder-item .folder-desc {
-    font-size: 13px;
-    color: #666;
-    line-height: 1.5;
-  }
-
   .artifact-insight {
     background: #fff;
     border: 1px solid var(--card-border);
@@ -433,13 +402,12 @@
   }
 
   .links-section h3 {
-    font-size: 15px;
+    font-size: 11px;
     font-weight: 700;
     margin-bottom: 16px;
     color: #555;
     text-transform: uppercase;
     letter-spacing: 0.5px;
-    font-size: 11px;
   }
 
   .link-btn {
@@ -560,8 +528,6 @@
     .burger { display: flex; }
     .main { margin-left: 0; }
     .content { padding: 72px 20px 80px; }
-    .folder-item { flex-direction: column; gap: 4px; }
-    .folder-item .folder-name { min-width: auto; }
   }
 </style>
 </head>
@@ -582,8 +548,7 @@
         <li><a href="#situation">ситуация</a></li>
         <li><a href="#ai">что сделала</a></li>
         <li><a href="#result">результат</a></li>
-        <li><a href="#artifact">артефакт</a></li>
-        <li><a href="#links">материалы</a></li>
+        <li><a href="#artifact">инсайт</a></li>
       </ul>
     </div>
 
@@ -615,18 +580,17 @@
     <span class="sep">/</span>
     <a href="kb.html#cases">кейсы участников</a>
     <span class="sep">/</span>
-    <span class="current">Маша Куликовская</span>
+    <span class="current">Тоня Жукова</span>
   </nav>
 
   <!-- Hero -->
   <div class="hero">
     <div class="hero-meta">
-      <span class="meta-badge">врач</span>
+      <span class="meta-badge">исследователь здоровья</span>
       <span class="meta-badge">спринт: Health OS</span>
-      <span class="tag done">done</span>
     </div>
-    <h1>Маша Куликовская</h1>
-    <p class="lead">Собрала медицинскую историю из разных стран и клиник в одну систему — с командой агентов-врачей и локальным дашбордом.</p>
+    <h1>Тоня Жукова</h1>
+    <p class="lead">Разобралась с 7-летней загадкой холестерина — с помощью 18 агентов которые нашли то, что врачи не искали.</p>
   </div>
 
   <!-- Formula -->
@@ -640,18 +604,15 @@
     <span class="f-step">смысл</span>
   </div>
 
-  <!-- Case blocks -->
-
   <!-- Situation -->
   <div class="case-block mt-32" id="situation">
     <div class="case-block-label">
       <span class="dot"></span>
       ситуация
     </div>
-    <h3>Анализы из разных стран, врачи не видят полную картину</h3>
+    <h3>7 лет повышенного холестерина — и никто не спросил про Lp(a)</h3>
     <div class="body">
-      <p>Медицинские документы — фотографии анализов, рукописные заметки, записи из клиник — были разбросаны по разным системам и странам. Единицы измерения не совпадали. Каждый визит к врачу начинался с 20-минутного восстановления контекста.</p>
-      <p class="mt-12">Задача: собрать всё в одном месте — и для себя, и для мамы — так, чтобы приходить к врачу уже подготовленным.</p>
+      <p>7 лет повышенный холестерин. Ни один врач не направил сдавать Lp(a) — генетический маркер который может объяснять всё. Несколько лет пониженного железа — показатели "в норме" по стандартным референсам, но симптомы есть. Ни один специалист не смотрел на картину целиком.</p>
     </div>
   </div>
 
@@ -661,113 +622,53 @@
       <span class="dot"></span>
       что сделала с AI
     </div>
-    <h3>Команда агентов-врачей + локальный дашборд</h3>
+    <h3>Automoy — 18 агентов: скауты, критики, фактчекеры, action mapper</h3>
     <div class="body">
-      <p>Маша использовала Claude Code и Claude Extension чтобы:</p>
-      <ul class="custom mt-12">
-        <li>Собрать все медицинские документы в единый репозиторий — фото анализов, рукописи, PDF из разных клиник</li>
-        <li>Нормализовать единицы измерения к международным стандартам</li>
-        <li>Выстроить хронологию по датам, странам и типам документов</li>
-        <li>Создать локальный HTML-дашборд (без облака, всё остаётся у тебя)</li>
-      </ul>
-      <p class="mt-12">Ключевое архитектурное решение: <strong>consilium</strong> — команда агентов-врачей с полярными позициями. Консервативный специалист и прогрессивный смотрят на одни и те же данные и спорят. Это ломает ловушку «LLM как зеркало» — когда модель просто соглашается с тобой.</p>
+      <p>Тоня построила систему Automoy — 18 специализированных агентов. Скауты ищут в PubMed и открытых базах. Критики проверяют выборку. Статистики оценивают качество исследований. Фактчекеры перекрёстно проверяют данные. Action mapper переводит находки в конкретные шаги. Время работы: час–несколько часов в фоне. Всё это работает на открытых научных базах данных.</p>
     </div>
 
     <div class="tools">
-      <span class="tool-badge">Claude Extension</span>
-      <span class="tool-badge">Claude Code</span>
-      <span class="tool-badge">VS Code</span>
+      <span class="tool-badge">Claude (Automoy — 18 агентов)</span>
     </div>
   </div>
 
-  <!-- Result + Meaning -->
+  <!-- Result -->
   <div class="case-block mt-32" id="result">
     <div class="case-block-label">
       <span class="dot"></span>
-      результат + смысл
+      результат
     </div>
-    <h3>Врачи говорили «вау». Маме нашли альтернативу статинам.</h3>
+    <h3>Lp(a) нашёлся. Portfolio diet — анализы улучшились.</h3>
     <div class="body">
-      <p>Когда пациент приходит с собранными таблицами и хронологией — врач освобождается от восстановления контекста и сразу переходит к делу. Медики реагировали позитивно: организованные данные меняют качество консультации.</p>
-      <p class="mt-12">Конкретный результат: для мамы нашли альтернативу статинам с меньшим воздействием на ЖКТ — это стало возможным именно потому что вся история была видна целиком.</p>
+      <p>Система нашла Lp(a) как вероятную причину холестерина. Перешла на portfolio diet — анализы улучшились. По железу система указала: сначала генетика и проверка на Helicobacter pylori, а не инвазивные процедуры. Врач это не предлагал.</p>
     </div>
 
     <blockquote class="mt-20">
-      <p>«Лучше всего — прийти к врачу которому давно доверяешь, но подготовленным. AI не заменяет врача — он помогает задать правильные вопросы»</p>
-      <cite>— Маша Куликовская</cite>
+      <p>«Система ищет не просто ответы на вопрос — она ищет interconnections. Что работает вместе, с учётом конкретного контекста»</p>
+      <cite>— Тоня Жукова</cite>
     </blockquote>
-
-    <div class="card mt-20">
-      <h4>Смысл</h4>
-      <p>LLM — отражение твоего мышления. Если не добавлять в систему полярные позиции — она будет только подтверждать то, что ты и так думаешь. Намеренная полярность агентов делает consilium реальным инструментом мышления, а не эхо-камерой.</p>
-    </div>
   </div>
 
-  <!-- Artifact -->
+  <!-- Artifact / Insight -->
   <div class="artifact-section" id="artifact">
-    <h3>Артефакт: Health Dashboard</h3>
-    <div class="artifact-subtitle">Локальная медицинская ОС на Claude Code</div>
-
-    <p class="text-sm">Маша оформила свою систему как плейбук — пошаговую инструкцию с промптами, которую можно развернуть у себя. Вот как она устроена концептуально.</p>
-
-    <div class="artifact-folder mt-20">
-      <div class="folder-item">
-        <span class="folder-name">00_INBOX_RAW/</span>
-        <span class="folder-desc">Все документы как скачались. Фото, PDF, CSV — ничего не трогать и не редактировать.</span>
-      </div>
-      <div class="folder-item">
-        <span class="folder-name">01_SORTED/</span>
-        <span class="folder-desc">Разложенное по правилам: год / страна / клиника / тип документа. Агент делает это сам.</span>
-      </div>
-      <div class="folder-item">
-        <span class="folder-name">02_TABLES/</span>
-        <span class="folder-desc">Сводные таблицы анализов. Мастер-таблица с хронологией и нормализованными единицами.</span>
-      </div>
-      <div class="folder-item">
-        <span class="folder-name">03_AGENT_REPORTS/</span>
-        <span class="folder-desc">Отчёты каждого агента из consilium + круговой peer review — агенты комментируют выводы друг друга.</span>
-      </div>
-      <div class="folder-item">
-        <span class="folder-name">04_ADVISOR_SUMMARY/</span>
-        <span class="folder-desc">Финальная сборка: риски, приоритеты, план действий — одна страница с главным.</span>
-      </div>
-      <div class="folder-item">
-        <span class="folder-name">05_SITE/</span>
-        <span class="folder-desc">Локальный HTML-дашборд. Открывается офлайн. Показывает динамику анализов, таймлайн, рекомендации.</span>
-      </div>
-      <div class="folder-item">
-        <span class="folder-name">CLAUDE/</span>
-        <span class="folder-desc">Персоны агентов consilium + протоколы: правила доказательности, шкала уверенности, лог дискуссий.</span>
-      </div>
-    </div>
+    <h3>Как думать об этом</h3>
 
     <div class="artifact-insight">
-      <div class="insight-label">Как думать об этом</div>
-      <p>Представь папку проекта как живой архив. Добавляешь новый анализ — кладёшь в INBOX, говоришь агентам «обнови систему» — они раскладывают, обновляют таблицы и пересчитывают тренды. Медкарта превращается в обновляемую систему, а не разовый проект.</p>
+      <div class="insight-label">из этого кейса</div>
+      <p>Deep research скилл это не просто "спроси AI". Это архитектура поиска — кто ищет, кто проверяет, кто ставит под сомнение. Когда ты разделяешь роли между агентами — ты встраиваешь в систему несогласие, а не только подтверждение.</p>
     </div>
-
-    <p class="text-sm mt-20" style="color: #999;">Готовые промпты и полный плейбук — в LMS и GitHub-репозитории комьюнити (доступно участникам BLR).</p>
   </div>
 
   <!-- Links -->
   <div class="links-section" id="links">
-    <h3>Материалы</h3>
-
-    <div>
-      <a href="https://dimamatskevich.substack.com/p/18-3-health-os-brain-love-and-robots" class="link-btn" target="_blank" rel="noopener">статья Димы на Substack →</a>
-      <a href="https://youtu.be/T13PJgHVDJM" class="link-btn secondary" target="_blank" rel="noopener">запись звонка (YouTube) →</a>
+    <h3>Другие кейсы из спринта health os</h3>
+    <div class="related-cases">
+      <a href="case-masha.html" class="related-name">Маша</a>
+      <a href="case-vlad.html" class="related-name">Влад</a>
+      <a href="case-katya.html" class="related-name">Катя</a>
+      <a href="case-lyosha.html" class="related-name">Лёша</a>
     </div>
-
-    <div class="mt-20">
-      <h3 style="font-size:13px;font-weight:600;color:#888;text-transform:uppercase;letter-spacing:0.5px;margin-bottom:12px;">другие кейсы из спринта health os</h3>
-      <div class="related-cases">
-        <a href="case-tonya.html" class="related-name">Тоня Жукова</a>
-        <a href="case-vlad.html" class="related-name">Влад Куклев</a>
-        <a href="case-katya.html" class="related-name">Катя Кирилова</a>
-        <a href="case-lyosha.html" class="related-name">Лёша Евдокимов</a>
-      </div>
-      <p class="text-sm mt-12" style="color:#bbb;font-size:12px;"><a href="kb.html#cases" style="color:#bbb;">← смотреть все кейсы в базе знаний</a></p>
-    </div>
+    <p class="text-sm mt-12" style="color:#bbb;font-size:12px;"><a href="kb.html#cases" style="color:#bbb;">← смотреть все кейсы в базе знаний</a></p>
   </div>
 
   <!-- CTA -->

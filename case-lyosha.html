@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Лёша Евдокимов — CGM + AI, метаболическая карта | BLR</title>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg: #ffffff;
+    --text: #0d0d0d;
+    --accent: #ffdd00;
+    --card-bg: #f7f7f7;
+    --card-border: #e8e8e8;
+    --sidebar-bg: #0d0d0d;
+    --sidebar-w: 260px;
+    --radius: 14px;
+    --font: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body { font-family: var(--font); background: var(--bg); color: var(--text); display: flex; min-height: 100vh; }
+
+  .sidebar { width: var(--sidebar-w); min-width: var(--sidebar-w); background: var(--sidebar-bg); color: #fff; position: fixed; top: 0; left: 0; height: 100vh; overflow-y: auto; display: flex; flex-direction: column; padding: 28px 0 32px; z-index: 100; }
+  .sidebar::-webkit-scrollbar { width: 4px; }
+  .sidebar::-webkit-scrollbar-thumb { background: #333; border-radius: 2px; }
+  .sidebar-logo { padding: 0 24px 8px; }
+  .sidebar-logo .brand { font-size: 15px; font-weight: 700; color: #fff; letter-spacing: -0.3px; line-height: 1.3; display: block; text-decoration: none; }
+  .sidebar-logo .brand span { color: var(--accent); }
+  .sidebar-back { display: inline-flex; align-items: center; gap: 6px; font-size: 12px; color: #888; text-decoration: none; padding: 6px 24px 0; transition: color 0.15s; }
+  .sidebar-back:hover { color: #bbb; }
+  .sidebar-divider { height: 1px; background: #1e1e1e; margin: 20px 24px; }
+  .sidebar-nav { flex: 1; padding: 0 12px; }
+  .nav-group { margin-bottom: 4px; }
+  .nav-group-title { display: block; font-size: 11px; font-weight: 600; color: #555; text-transform: uppercase; letter-spacing: 0.8px; padding: 8px 12px 4px; text-decoration: none; cursor: pointer; border-radius: 6px; transition: color 0.15s; }
+  .nav-group-title:hover { color: #aaa; }
+  .nav-sub { list-style: none; padding: 0 0 6px 0; }
+  .nav-sub li a { display: block; font-size: 13px; color: #aaa; text-decoration: none; padding: 5px 12px; border-radius: 6px; transition: color 0.15s, background 0.15s; }
+  .nav-sub li a:hover { color: #fff; background: #1a1a1a; }
+  .nav-sub li a.active { color: var(--accent); }
+
+  .burger { display: none; position: fixed; top: 16px; left: 16px; z-index: 200; background: var(--sidebar-bg); color: #fff; border: none; border-radius: 8px; width: 40px; height: 40px; cursor: pointer; flex-direction: column; align-items: center; justify-content: center; gap: 5px; }
+  .burger span { display: block; width: 20px; height: 2px; background: #fff; border-radius: 2px; transition: transform 0.2s, opacity 0.2s; }
+  .burger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+  .burger.open span:nth-child(2) { opacity: 0; }
+  .burger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+  .overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.5); z-index: 99; }
+  .overlay.visible { display: block; }
+
+  .main { margin-left: var(--sidebar-w); flex: 1; min-width: 0; }
+  .content { max-width: 740px; padding: 56px 48px 96px; }
+
+  h1 { font-size: 32px; font-weight: 800; letter-spacing: -0.8px; margin-bottom: 8px; }
+  h2 { font-size: 26px; font-weight: 700; letter-spacing: -0.5px; margin-bottom: 16px; }
+  h3 { font-size: 18px; font-weight: 700; margin-bottom: 10px; }
+  h4 { font-size: 15px; font-weight: 600; margin-bottom: 8px; }
+
+  p { line-height: 1.65; }
+  .text-sm { font-size: 14px; color: #444; line-height: 1.65; }
+  .mt-8 { margin-top: 8px; }
+  .mt-12 { margin-top: 12px; }
+  .mt-20 { margin-top: 20px; }
+  .mt-32 { margin-top: 32px; }
+
+  .tag { display: inline-block; font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.6px; padding: 3px 9px; border-radius: 20px; background: var(--card-border); color: #666; margin-bottom: 12px; }
+  .tag.done { background: #e8e8e8; color: #999; }
+
+  .breadcrumb { display: flex; align-items: center; gap: 8px; font-size: 13px; color: #999; margin-bottom: 32px; flex-wrap: wrap; }
+  .breadcrumb a { color: #999; text-decoration: none; transition: color 0.15s; }
+  .breadcrumb a:hover { color: #0d0d0d; }
+  .breadcrumb .sep { color: #ddd; }
+  .breadcrumb .current { color: #555; }
+
+  .hero { margin-bottom: 48px; padding-bottom: 40px; border-bottom: 1px solid var(--card-border); }
+  .hero-meta { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 16px; }
+  .hero-meta .meta-badge { font-size: 12px; font-weight: 500; color: #666; background: var(--card-bg); border: 1px solid var(--card-border); border-radius: 6px; padding: 4px 10px; }
+  .hero h1 { margin-bottom: 12px; }
+  .hero .lead { font-size: 18px; color: #333; line-height: 1.5; font-weight: 400; max-width: 580px; }
+
+  .card { background: var(--card-bg); border: 1px solid var(--card-border); border-radius: var(--radius); padding: 24px; margin-bottom: 20px; }
+  .card p { font-size: 14px; line-height: 1.65; color: #444; margin-top: 8px; }
+
+  .case-block { margin-bottom: 32px; }
+  .case-block-label { display: inline-flex; align-items: center; gap: 8px; font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; color: #999; margin-bottom: 12px; }
+  .case-block-label .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--accent); flex-shrink: 0; }
+  .case-block h3 { font-size: 17px; font-weight: 700; margin-bottom: 10px; color: var(--text); }
+  .case-block .body { font-size: 14px; line-height: 1.7; color: #444; }
+
+  blockquote { border-left: 3px solid var(--accent); padding: 12px 20px; margin: 20px 0; background: #fafafa; border-radius: 0 8px 8px 0; }
+  blockquote p { font-size: 14px; font-style: italic; color: #444; line-height: 1.65; margin: 0; }
+  blockquote cite { display: block; font-size: 12px; color: #999; margin-top: 8px; font-style: normal; }
+
+  .tools { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 14px; }
+  .tool-badge { font-size: 12px; font-weight: 500; background: var(--text); color: var(--bg); border-radius: 6px; padding: 4px 10px; }
+
+  .artifact-section { background: var(--card-bg); border: 1px solid var(--card-border); border-radius: var(--radius); padding: 28px; margin: 32px 0; }
+  .artifact-section h3 { font-size: 18px; font-weight: 700; margin-bottom: 4px; }
+  .artifact-insight { background: #fff; border: 1px solid var(--card-border); border-radius: 10px; padding: 16px 20px; margin-top: 16px; }
+  .artifact-insight .insight-label { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.8px; color: #999; margin-bottom: 8px; }
+  .artifact-insight p { font-size: 14px; color: #444; line-height: 1.65; }
+
+  .links-section { margin: 40px 0; padding-top: 32px; border-top: 1px solid var(--card-border); }
+  .links-section h3 { font-size: 11px; font-weight: 700; margin-bottom: 16px; color: #555; text-transform: uppercase; letter-spacing: 0.5px; }
+
+  .link-btn { display: inline-block; font-size: 12px; font-weight: 600; color: var(--text); background: var(--accent); border-radius: 7px; padding: 5px 12px; text-decoration: none; transition: opacity 0.15s; margin-right: 8px; margin-bottom: 8px; }
+  .link-btn:hover { opacity: 0.8; }
+  .link-btn.secondary { background: var(--card-bg); border: 1px solid var(--card-border); color: #555; }
+  .link-btn.secondary:hover { border-color: #aaa; opacity: 1; }
+
+  .related-cases { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 12px; }
+  .related-name { font-size: 13px; color: #666; background: var(--card-bg); border: 1px solid var(--card-border); border-radius: 8px; padding: 5px 12px; text-decoration: none; transition: border-color 0.15s, color 0.15s; }
+  a.related-name:hover { border-color: #c0c0c0; color: var(--text); }
+
+  .cta-block { background: var(--text); border-radius: var(--radius); padding: 32px 28px; margin-top: 48px; text-align: center; }
+  .cta-block p { font-size: 14px; color: #aaa; line-height: 1.6; margin-bottom: 20px; }
+  .cta-block .cta-btn { display: inline-block; background: var(--accent); color: var(--text); font-size: 14px; font-weight: 700; border-radius: 8px; padding: 12px 24px; text-decoration: none; transition: opacity 0.15s; }
+  .cta-block .cta-btn:hover { opacity: 0.85; }
+
+  .formula { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; background: var(--card-bg); border: 1px solid var(--card-border); border-radius: 10px; padding: 14px 20px; margin: 20px 0; font-size: 13px; }
+  .formula .f-step { font-weight: 600; color: var(--text); }
+  .formula .f-arrow { color: #ccc; }
+
+  @media (max-width: 768px) {
+    .sidebar { transform: translateX(-100%); transition: transform 0.25s ease; }
+    .sidebar.open { transform: translateX(0); }
+    .burger { display: flex; }
+    .main { margin-left: 0; }
+    .content { padding: 72px 20px 80px; }
+  }
+</style>
+</head>
+<body>
+
+<aside class="sidebar" id="sidebar">
+  <div class="sidebar-logo">
+    <a href="./" class="brand">brain <span>love</span> & robots</a>
+  </div>
+  <a href="kb.html#cases" class="sidebar-back">← кейсы</a>
+  <div class="sidebar-divider"></div>
+
+  <nav class="sidebar-nav">
+    <div class="nav-group">
+      <span class="nav-group-title">кейс</span>
+      <ul class="nav-sub">
+        <li><a href="#situation">ситуация</a></li>
+        <li><a href="#ai">что сделал</a></li>
+        <li><a href="#result">результат</a></li>
+        <li><a href="#artifact">инсайт</a></li>
+      </ul>
+    </div>
+
+    <div class="nav-group">
+      <span class="nav-group-title">спринт</span>
+      <ul class="nav-sub">
+        <li><a href="sprint-health-os.html">health os</a></li>
+        <li><a href="kb.html#cases">все кейсы</a></li>
+      </ul>
+    </div>
+  </nav>
+</aside>
+
+<button class="burger" id="burger" aria-label="Меню">
+  <span></span><span></span><span></span>
+</button>
+<div class="overlay" id="overlay"></div>
+
+<main class="main">
+<div class="content">
+
+  <nav class="breadcrumb">
+    <a href="kb.html#sprints">спринты</a>
+    <span class="sep">/</span>
+    <a href="sprint-health-os.html">health os</a>
+    <span class="sep">/</span>
+    <a href="kb.html#cases">кейсы участников</a>
+    <span class="sep">/</span>
+    <span class="current">Лёша Евдокимов</span>
+  </nav>
+
+  <div class="hero">
+    <div class="hero-meta">
+      <span class="meta-badge">разработчик</span>
+      <span class="meta-badge">спринт: Health OS</span>
+    </div>
+    <h1>Лёша Евдокимов</h1>
+    <p class="lead">Жена подарила датчик глюкозы. Смотреть на цифры было скучно — пока AI не начал строить из них картину.</p>
+  </div>
+
+  <div class="formula">
+    <span class="f-step">ситуация</span>
+    <span class="f-arrow">→</span>
+    <span class="f-step">AI</span>
+    <span class="f-arrow">→</span>
+    <span class="f-step">результат</span>
+    <span class="f-arrow">→</span>
+    <span class="f-step">смысл</span>
+  </div>
+
+  <div class="case-block mt-32" id="situation">
+    <div class="case-block-label">
+      <span class="dot"></span>
+      ситуация
+    </div>
+    <h3>Цифры есть — понять их без контекста невозможно</h3>
+    <div class="body">
+      <p>Жена подарила CGM-датчик (Freestyle Libre). 16 дней данных — но голые цифры без контекста ничего не говорят. Непонятно почему сахар ведёт себя именно так: что вызывает скачки, что влияет на восстановление, как разные факторы связаны между собой.</p>
+    </div>
+  </div>
+
+  <div class="case-block mt-32" id="ai">
+    <div class="case-block-label">
+      <span class="dot"></span>
+      что сделал с AI
+    </div>
+    <h3>CGM + Apple Watch + фото еды → персональная метаболическая карта</h3>
+    <div class="body">
+      <p>Лёша собрал данные с CGM-датчика и Apple Watch, добавил фото еды и записи о нагрузках. AI строит из этого единую картину: как конкретные вещи — еда, сон, нагрузка, баня — влияют именно на его показатели. Плюс AI-врач который смотрит на анализы за 10 лет.</p>
+    </div>
+
+    <div class="tools">
+      <span class="tool-badge">CGM Libre</span>
+      <span class="tool-badge">Apple Watch</span>
+      <span class="tool-badge">Atlas (генетика)</span>
+    </div>
+  </div>
+
+  <div class="case-block mt-32" id="result">
+    <div class="case-block-label">
+      <span class="dot"></span>
+      результат
+    </div>
+    <h3>Баня в 13 раз сильнее нагружает нервную систему, чем тренировка</h3>
+    <div class="body">
+      <p>Лёша нашёл что термальный стресс бани влияет на нервную систему в 13 раз сильнее, чем тренировка. Организм не успевал восстанавливаться. AI-врач увидел это в данных — живой эндокринолог видел показатели но не сделал вывода. Теперь он убрал баню из расписания после тренировок.</p>
+    </div>
+
+    <blockquote class="mt-20">
+      <p>«Одни и те же продукты у разных людей дают разные реакции. Можно затрекать тонкие индивидуальные паттерны»</p>
+      <cite>— Лёша Евдокимов</cite>
+    </blockquote>
+  </div>
+
+  <div class="artifact-section" id="artifact">
+    <h3>Как думать об этом</h3>
+
+    <div class="artifact-insight">
+      <div class="insight-label">из этого кейса</div>
+      <p>N=1 исследование — это не эксперимент "для науки". Это инструмент персонализации для себя. Когда данных достаточно и AI помогает увидеть паттерны — ты становишься экспертом по своему собственному телу, не по "среднестатистическому человеку".</p>
+    </div>
+  </div>
+
+  <div class="links-section" id="links">
+    <h3>Другие кейсы из спринта health os</h3>
+    <div class="related-cases">
+      <a href="case-masha.html" class="related-name">Маша</a>
+      <a href="case-tonya.html" class="related-name">Тоня</a>
+      <a href="case-vlad.html" class="related-name">Влад</a>
+      <a href="case-katya.html" class="related-name">Катя</a>
+    </div>
+    <p class="text-sm mt-12" style="color:#bbb;font-size:12px;"><a href="kb.html#cases" style="color:#bbb;">← смотреть все кейсы в базе знаний</a></p>
+  </div>
+
+  <div class="cta-block">
+    <p>brain love & robots — подписочное комьюнити где люди применяют AI в реальной жизни: в здоровье, работе, творчестве и личных системах.</p>
+    <a href="https://t.me/brainloveandrobots" class="cta-btn" target="_blank" rel="noopener">присоединиться к BLR →</a>
+  </div>
+
+</div>
+</main>
+
+<script>
+  const burger = document.getElementById('burger');
+  const sidebar = document.getElementById('sidebar');
+  const overlay = document.getElementById('overlay');
+
+  burger.addEventListener('click', () => {
+    burger.classList.toggle('open');
+    sidebar.classList.toggle('open');
+    overlay.classList.toggle('visible');
+  });
+
+  overlay.addEventListener('click', () => {
+    burger.classList.remove('open');
+    sidebar.classList.remove('open');
+    overlay.classList.remove('visible');
+  });
+</script>
+
+</body>
+</html>
