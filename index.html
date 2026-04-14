@@ -44,7 +44,7 @@
 
   .hero { padding: 56px 0 32px; }
   .hero h1 { font-size: 36px; font-weight: 800; line-height: 1.1; letter-spacing: -0.4px; margin-bottom: 12px; }
-  .hero p { font-size: 15px; color: #555555; max-width: 680px; line-height: 1.6; }
+  .hero p { font-size: 15px; color: #555555; max-width: 720px; line-height: 1.6; }
   .hero-actions { display: flex; gap: 12px; margin-top: 20px; flex-wrap: wrap; }
   .hero-meta { margin-top: 18px; font-size: 12px; color: #999999; }
 
@@ -102,6 +102,17 @@
   .pillar-title { font-size: 13px; font-weight: 700; text-transform: lowercase; margin-bottom: 6px; color: #0d0d0d; }
   .pillar-text { font-size: 13px; color: #555555; line-height: 1.5; }
 
+  .radical {
+    margin-top: 16px;
+    background: #f7f7f7;
+    border: 1px solid #e8e8e8;
+    border-radius: 14px;
+    padding: 16px;
+  }
+  .radical-title { font-size: 14px; font-weight: 700; margin-bottom: 6px; color: #0d0d0d; }
+  .radical-text { font-size: 13px; color: #555555; line-height: 1.5; }
+  .radical-meta { margin-top: 8px; font-size: 11px; color: #999999; text-transform: lowercase; }
+
   .member-block {
     background: #ffdd00;
     border: none;
@@ -139,10 +150,10 @@
     <div class="container nav-inner">
       <div class="logo">brain love &amp; robots</div>
       <div class="nav-links">
-        <a href="#stories">истории</a>
+        <a href="#cases">кейсы</a>
         <a href="#sprints">спринты</a>
-        <a href="#formats">форматы</a>
-        <a href="kb.html">материалы участников</a>
+        <a href="#how">методология</a>
+        <a href="#members">для участников</a>
       </div>
       <a class="btn light" href="https://t.me/brainloveandrobots" target="_blank">→ telegram</a>
     </div>
@@ -150,10 +161,10 @@
 
   <header class="hero">
     <div class="container">
-      <h1>живые истории применения AI</h1>
-      <p>спринты, протагонисты и артефакты участников brain love &amp; robots — комьюнити где люди находят своё применение AI и перестают тревожиться про изменения, которые уже происходят</p>
+      <h1>brain love &amp; robots</h1>
+      <p>подписочное комьюнити где люди применяют AI в реальной жизни: в здоровье, работе, творчестве и личных системах. здесь собраны форматы которые работают, истории участников которые прошли путь, спринты которые уже случились — и методология на которой всё держится. не курс и не учебник. живые практики живых людей.</p>
       <div class="hero-actions">
-        <a class="btn filled" href="#stories">читать истории</a>
+        <a class="btn filled" href="#cases">читать кейсы</a>
         <a class="btn secondary" href="#for-whom">это для меня?</a>
       </div>
       <div class="hero-meta">109 участников · 6+ спринтов · открытая библиотека</div>
@@ -197,69 +208,94 @@
     </div>
   </section>
 
-  <!-- ИСТОРИИ -->
-  <section id="stories" class="section">
+  <section id="cases" class="section">
     <div class="container">
-      <h2>истории</h2>
-      <div class="section-sub">кейсы участников: от здоровья до новых языков смысла</div>
+      <h2>кейсы участников</h2>
+      <div class="section-sub">реальные люди, реальные задачи, реальные результаты. каждый кейс — путь от проблемы к работающему решению</div>
       <div class="grid-3x2">
         <article class="card">
           <div class="tag health">здоровье</div>
-          <div class="story-title">медицинская операционная система</div>
-          <div class="story-text">врач собрала систему AI-агентов для работы с меддокументами. когда маме удалили желчный пузырь — подобрала препараты без побочек за вечер вместо недели поисков</div>
-          <div class="story-tool">Claude Code + Claude Extension</div>
-          <div class="story-result">локальная система, данные не покидают устройство</div>
+          <div class="story-title">Маша Куликовская · врач</div>
+          <div class="story-text"><strong>ситуация:</strong> анализы разбросаны по клиникам разных стран, врачи не видят полную картину<br><strong>AI:</strong> команда агентов-врачей с полярными позициями — консервативный vs прогрессивный<br><strong>результат:</strong> полная медицинская история в одном месте. маме нашла альтернативу статинам</div>
+          <div class="story-result">смысл: LLM — отражение твоего мышления. важно добавлять полярные позиции намеренно</div>
         </article>
 
         <article class="card">
           <div class="tag health">здоровье</div>
-          <div class="story-title">18 агентов для медицинских исследований</div>
-          <div class="story-text">skill из 18 агентов: скауты, критики, статистики, фактчекеры. 7 лет не могла разобраться с холестерином — за одну сессию нашла Lp(a) как причину</div>
-          <div class="story-tool">Claude skill (Automoy)</div>
-          <div class="story-result">исследование уровня научной статьи за 1-2 часа</div>
+          <div class="story-title">Тоня Жукова · предприниматель</div>
+          <div class="story-text"><strong>ситуация:</strong> 7 лет повышенного холестерина, ни один врач не спросил про Lp(a)<br><strong>AI:</strong> Automoy — 18 агентов (скауты, критики, статистики, фактчекеры)<br><strong>результат:</strong> нашёлся Lp(a) как причина. Portfolio diet → анализы улучшились</div>
+          <div class="story-result">смысл: система ищет не ответы на вопрос — она ищет interconnections с учётом контекста</div>
         </article>
 
         <article class="card">
           <div class="tag health">здоровье</div>
-          <div class="story-title">telegram-бот: тренер + нутрициолог + коуч</div>
-          <div class="story-text">5 лет итерировал идею — с AI собрал за спринт. бот знает историю, адаптирует план, отвечает в контексте</div>
-          <div class="story-tool">Gemini Studio + Claude Code + Telegram</div>
-          <div class="story-result">персональный AI-помощник работает каждый день</div>
+          <div class="story-title">Влад Куклев</div>
+          <div class="story-text"><strong>ситуация:</strong> 8 лет попыток выстроить систему здоровья, программы рассыпались при первом пропуске<br><strong>AI:</strong> AI-тренер в Telegram — Gemini Studio + Claude Code + Whoop API<br><strong>результат:</strong> 5 недель подряд 5–6 тренировок без пропусков и волевых усилий</div>
+          <div class="story-result">смысл: агент знает твою историю, пишет сам когда нужно. это не чат — это кто-то кто помнит всё</div>
         </article>
 
         <article class="card">
           <div class="tag health">здоровье</div>
-          <div class="story-title">совет директоров из 8 агентов</div>
-          <div class="story-text">CEO собрала 8 агентов-коучей: longevity, спорт, красота, питание. автоматизировала тренировки через Garmin API</div>
-          <div class="story-tool">Claude Code + VS Code + Garmin API</div>
-          <div class="story-result">персональная команда экспертов 24/7</div>
+          <div class="story-title">Катя Кирилова · CEO</div>
+          <div class="story-text"><strong>ситуация:</strong> здоровье как проект — нужен не один эксперт, а команда<br><strong>AI:</strong> 8 агентов-коучей: longevity, спорт, красота, питание + Garmin API<br><strong>результат:</strong> персональная команда экспертов 24/7, автоматизированные тренировки</div>
+          <div class="story-result">смысл: AI позволяет собрать команду под себя — без найма и ожидания</div>
         </article>
 
         <article class="card">
           <div class="tag health">здоровье</div>
-          <div class="story-title">метаболическая карта на CGM + AI</div>
-          <div class="story-text">носил CGM 16 дней, снимал данные каждые 5 минут, написал AI-аналитику поверх. жена — контрольная группа</div>
-          <div class="story-tool">CGM + Claude Code</div>
-          <div class="story-result">визуализация метаболизма которую не даёт ни одна клиника</div>
+          <div class="story-title">Лёша Евдокимов</div>
+          <div class="story-text"><strong>ситуация:</strong> хотел понять свой метаболизм — не абстрактно, а на реальных данных<br><strong>AI:</strong> CGM 16 дней + Claude Code, данные каждые 5 минут, жена — контрольная группа<br><strong>результат:</strong> визуализация метаболизма которую не даёт ни одна клиника</div>
+          <div class="story-result">смысл: AI снижает барьер между «хочу понять» и реальным инструментом исследования</div>
         </article>
 
         <article class="card">
           <div class="tag self">саморазвитие</div>
-          <div class="story-title">AI и философия: диалог как метод</div>
-          <div class="story-text">исследует AI не как инструмент, а как собеседника. практика присутствия через письмо и рефлексию с AI каждый день</div>
-          <div class="story-tool">Claude</div>
-          <div class="story-result">новый язык для разговора о смысле AI в жизни</div>
+          <div class="story-title">Макс Янукович · философ техники</div>
+          <div class="story-text"><strong>ситуация:</strong> вопрос не «как использовать AI», а «как оставаться собой рядом с AI»<br><strong>AI:</strong> Claude как собеседник, не инструмент. диалог как метод исследования<br><strong>результат:</strong> язык для разговора о субъектности и AI — без тревоги и хайпа</div>
+          <div class="story-result">смысл: AI как зеркало для мышления, а не инструмент автоматизации</div>
         </article>
       </div>
     </div>
   </section>
 
-  <!-- СПРИНТЫ: от старого к новому -->
   <section id="sprints" class="section">
     <div class="container">
       <h2>спринты</h2>
-      <div class="section-sub">циклы, где рождаются артефакты и общие инсайты</div>
+      <div class="section-sub">раз в 1–2 месяца комьюнити берёт тему и идёт в неё вместе — звонки, практики, истории участников</div>
       <div class="grid-3x2">
+        <article class="card">
+          <div class="sprint-head">
+            <div>
+              <div class="sprint-title">Radical Alignment</div>
+              <div class="sprint-meta">апрель 2026</div>
+            </div>
+            <div class="badge active">активный</div>
+          </div>
+          <div class="sprint-list">
+            <div style="font-size:12px; color:#555; margin-bottom:6px">10 дней джорналинга: понять где ты сейчас и куда правда хочешь</div>
+            <div><span>Тема:</span> остаться собой и найти своё место рядом с AI</div>
+            <div><span>Формат:</span> протокол Пеннебейкера — джорналинг + AI каждый день, шеринг артефактов в чат</div>
+            <div><span>Протагонист:</span> Макс Янукович — философия субъектности и AI</div>
+            <div><span>Инсайт:</span> AI как зеркало для мышления, а не инструмент автоматизации</div>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="sprint-head">
+            <div>
+              <div class="sprint-title">Health OS</div>
+              <div class="sprint-meta">февраль–апрель 2026</div>
+            </div>
+            <div class="badge done">завершён</div>
+          </div>
+          <div class="sprint-list">
+            <div style="font-size:12px; color:#555; margin-bottom:6px">5 участников показали как выстроить систему здоровья с AI — от Telegram-бота до анализа ДНК</div>
+            <div><span>Тема:</span> персональные системы здоровья на AI</div>
+            <div><span>Протагонисты:</span> Маша Куликовская, Тоня Жукова, Влад Куклев, Катя Кирилова, Лёша Евдокимов</div>
+            <div><span>Инсайт:</span> AI снижает барьер между «хочу понять своё здоровье» и реальным инструментом</div>
+            <div><span>Артефакт:</span> Automoy skill — в открытом доступе</div>
+          </div>
+        </article>
 
         <article class="card">
           <div class="sprint-head">
@@ -276,44 +312,37 @@
             <div><span>Вывод:</span> формат переработан — от уязвимости к артефактам</div>
           </div>
         </article>
-
-        <article class="card">
-          <div class="sprint-head">
-            <div>
-              <div class="sprint-title">Health OS</div>
-              <div class="sprint-meta">февраль–март 2026</div>
-            </div>
-            <div class="badge done">завершён</div>
-          </div>
-          <div class="sprint-list">
-            <div><span>Тема:</span> персональные системы здоровья на AI</div>
-            <div><span>Протагонисты:</span> Маша, Тоня, Влад, Катя, Лёша</div>
-            <div><span>Инсайт:</span> AI снижает барьер между «хочу понять своё здоровье» и реальным инструментом</div>
-            <div><span>Артефакт:</span> Automoy skill — в открытом доступе</div>
-          </div>
-        </article>
-
-        <article class="card">
-          <div class="sprint-head">
-            <div>
-              <div class="sprint-title">Radical Alignment</div>
-              <div class="sprint-meta">апрель 2026</div>
-            </div>
-            <div class="badge active">идёт сейчас</div>
-          </div>
-          <div class="sprint-list">
-            <div><span>Тема:</span> остаться собой и найти своё место рядом с AI</div>
-            <div><span>Формат:</span> джорналинг + AI каждый день, шеринг артефактов в чат</div>
-            <div><span>Протагонист:</span> Макс Янукович — философия субъектности и AI</div>
-            <div><span>Инсайт:</span> AI как зеркало для мышления, а не инструмент автоматизации</div>
-          </div>
-        </article>
-
       </div>
     </div>
   </section>
 
-  <!-- ФОРМАТЫ (без стресс-шеринга) -->
+  <section id="how" class="section">
+    <div class="container">
+      <h2>методология</h2>
+      <div class="section-sub">путь от «возможно» к устойчивому действию</div>
+      <div class="pillars">
+        <article class="card">
+          <div class="pillar-title">enabled</div>
+          <div class="pillar-text">понял что это возможно. барьеры сняты. видит людей которые уже делают</div>
+        </article>
+        <article class="card">
+          <div class="pillar-title">capable</div>
+          <div class="pillar-text">умеет применить AI в своей жизни. прошёл спринт, создал первый артефакт</div>
+        </article>
+        <article class="card">
+          <div class="pillar-title">empowered</div>
+          <div class="pillar-text">знает зачем ему AI. действует из своего контекста, а не из тревоги</div>
+        </article>
+      </div>
+
+      <div class="radical">
+        <div class="radical-title">radical alignment</div>
+        <div class="radical-text">практика самоопределения: зачем мне AI в моей конкретной жизни. повторяется раз в 3 месяца.</div>
+        <div class="radical-meta">не инструмент · не курс · среда</div>
+      </div>
+    </div>
+  </section>
+
   <section id="formats" class="section">
     <div class="container">
       <h2>форматы</h2>
@@ -330,10 +359,10 @@
 
         <article class="card">
           <div class="tag work">ежемесячный</div>
-          <div class="story-title">анблокинг</div>
+          <div class="story-title">unblocking</div>
           <div class="story-text">горизонтальный звонок: участники разбирают реальные блоки друг друга. без экспертов сверху — только живой контакт и вопросы</div>
           <div class="story-tool">живой звонок · 60-90 минут · ведёт фасилитатор</div>
-          <div class="story-result">самый запоминающийся формат по отзывам участников</div>
+          <div class="story-result">рекорд вовлечённости в чате: 35 сообщений за день</div>
         </article>
 
         <article class="card">
@@ -354,6 +383,14 @@
 
         <article class="card">
           <div class="tag work">спринтовый</div>
+          <div class="story-title">стресс-шеринг</div>
+          <div class="story-text">асинхронный формат: вопрос дня в чат → каждый пишет короткий ответ → AI помогает копнуть глубже. рождает артефакты и ощущение «не один»</div>
+          <div class="story-tool">telegram чат · ежедневно в рамках спринта</div>
+          <div class="story-result">106 сообщений за 5 дней на новогоднем марафоне</div>
+        </article>
+
+        <article class="card">
+          <div class="tag health">по запросу</div>
           <div class="story-title">метанавыки с AI</div>
           <div class="story-text">практические сессии по конкретным навыкам: deep research, context engineering, personal OS. инструменты которые остаются после спринта</div>
           <div class="story-tool">воркшоп · 90-120 минут · с артефактом на выходе</div>
@@ -364,47 +401,16 @@
     </div>
   </section>
 
-  <!-- ПРОТАГОНИСТЫ -->
-  <section id="protagonists" class="section">
+  <section id="new-here" class="section">
     <div class="container">
-      <h2>протагонисты</h2>
-      <div class="section-sub">люди и их кейсы в рамках спринтов</div>
-      <div class="grid-3x2">
-        <article class="card">
-          <div class="story-title">Маша Куликовская</div>
-          <div class="story-text">врач · медицинская OS из AI-агентов</div>
-          <div class="tag health">здоровье</div>
-        </article>
-        <article class="card">
-          <div class="story-title">Тоня Жукова</div>
-          <div class="story-text">предприниматель · Automoy: 18 агентов deep research</div>
-          <div class="tag health">здоровье</div>
-        </article>
-        <article class="card">
-          <div class="story-title">Влад Куклев</div>
-          <div class="story-text">telegram health OS: 5 лет идее, 1 спринт реализации</div>
-          <div class="tag health">здоровье</div>
-        </article>
-        <article class="card">
-          <div class="story-title">Катя Кирилова</div>
-          <div class="story-text">CEO · 8 агентов-коучей + Garmin</div>
-          <div class="tag health">здоровье</div>
-        </article>
-        <article class="card">
-          <div class="story-title">Лёша Евдокимов</div>
-          <div class="story-text">CGM 16 дней + AI: метаболическая карта</div>
-          <div class="tag health">здоровье</div>
-        </article>
-        <article class="card">
-          <div class="story-title">Макс Янукович</div>
-          <div class="story-text">философ · AI и субъектность: диалог как метод</div>
-          <div class="tag self">саморазвитие</div>
-        </article>
+      <div class="radical" style="margin-top:0">
+        <div class="radical-title" style="font-size:15px">хочешь узнать больше?</div>
+        <div class="radical-text">следи за анонсами — рассказываем про спринты, звонки и что делают участники. всё здесь: <a href="https://t.me/brainloveandrobots" style="color:#0d0d0d; text-decoration:underline">@brainloveandrobots</a></div>
+        <div style="margin-top:12px"><a href="https://t.me/brainloverobotsbot" style="display:inline-block; padding:8px 20px; background:#3a3a8c; color:#fff; border-radius:6px; text-decoration:none; font-size:13px; font-weight:600">написать боту →</a></div>
       </div>
     </div>
   </section>
 
-  <!-- ДЛЯ УЧАСТНИКОВ -->
   <section id="members" class="section">
     <div class="container">
       <div class="member-block">
@@ -413,7 +419,7 @@
         <div>
           <a class="btn amber" href="kb.html">открыть материалы →</a>
         </div>
-        <div class="member-meta">уже участник? открывай через бота @brainloverobotsbot</div>
+        <div class="member-meta">уже участник? получи ссылку через бота @brainloverobotsbot</div>
       </div>
     </div>
   </section>
@@ -422,9 +428,9 @@
     <div class="container footer-inner">
       <div>brain love &amp; robots © 2026</div>
       <div class="footer-links">
-        <a href="#stories">истории</a>
+        <a href="#cases">кейсы</a>
         <a href="#sprints">спринты</a>
-        <a href="#formats">форматы</a>
+        <a href="#how">методология</a>
         <a href="kb.html">материалы</a>
       </div>
       <div class="footer-right"><a href="https://t.me/brainloveandrobots" target="_blank">→ telegram</a></div>
