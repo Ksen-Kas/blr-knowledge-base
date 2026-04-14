@@ -477,6 +477,12 @@
     border: 1px solid var(--card-border);
     border-radius: 8px;
     padding: 5px 12px;
+    text-decoration: none;
+    transition: border-color 0.15s, color 0.15s;
+  }
+  a.related-name:hover {
+    border-color: #c0c0c0;
+    color: var(--text);
   }
 
   /* ── CTA ── */
@@ -566,7 +572,7 @@
   <div class="sidebar-logo">
     <a href="./" class="brand">brain <span>love</span> & robots</a>
   </div>
-  <a href="kb.html" class="sidebar-back">← база знаний</a>
+  <a href="kb.html#cases" class="sidebar-back">← кейсы</a>
   <div class="sidebar-divider"></div>
 
   <nav class="sidebar-nav">
@@ -584,7 +590,7 @@
     <div class="nav-group">
       <span class="nav-group-title">спринт</span>
       <ul class="nav-sub">
-        <li><a href="kb.html#sprint-healthos">health os</a></li>
+        <li><a href="sprint-health-os.html">health os</a></li>
         <li><a href="kb.html#cases">все кейсы</a></li>
       </ul>
     </div>
@@ -603,7 +609,9 @@
 
   <!-- Breadcrumb -->
   <nav class="breadcrumb">
-    <a href="kb.html#sprint-healthos">спринты / health os</a>
+    <a href="kb.html#sprints">спринты</a>
+    <span class="sep">/</span>
+    <a href="sprint-health-os.html">health os</a>
     <span class="sep">/</span>
     <a href="kb.html#cases">кейсы участников</a>
     <span class="sep">/</span>
@@ -753,10 +761,10 @@
     <div class="mt-20">
       <h3 style="font-size:13px;font-weight:600;color:#888;text-transform:uppercase;letter-spacing:0.5px;margin-bottom:12px;">другие кейсы из спринта health os</h3>
       <div class="related-cases">
-        <span class="related-name">Тоня Жукова</span>
-        <span class="related-name">Влад Куклев</span>
-        <span class="related-name">Катя Кирилова</span>
-        <span class="related-name">Лёша Евдокимов</span>
+        <a href="kb.html#tonya" class="related-name">Тоня Жукова</a>
+        <a href="kb.html#vlad" class="related-name">Влад Куклев</a>
+        <a href="kb.html#katya" class="related-name">Катя Кирилова</a>
+        <a href="kb.html#lyosha" class="related-name">Лёша Евдокимов</a>
       </div>
       <p class="text-sm mt-12" style="color:#bbb;font-size:12px;"><a href="kb.html#cases" style="color:#bbb;">← смотреть все кейсы в базе знаний</a></p>
     </div>
