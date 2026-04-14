@@ -1,0 +1,624 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Health OS — спринт | BLR База знаний</title>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg: #ffffff;
+    --text: #0d0d0d;
+    --accent: #ffdd00;
+    --card-bg: #f7f7f7;
+    --card-border: #e8e8e8;
+    --sidebar-bg: #0d0d0d;
+    --sidebar-w: 260px;
+    --radius: 14px;
+    --font: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: var(--font);
+    background: var(--bg);
+    color: var(--text);
+    display: flex;
+    min-height: 100vh;
+  }
+
+  /* ── SIDEBAR ── */
+  .sidebar {
+    width: var(--sidebar-w);
+    min-width: var(--sidebar-w);
+    background: var(--sidebar-bg);
+    color: #fff;
+    position: fixed;
+    top: 0; left: 0;
+    height: 100vh;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    padding: 28px 0 32px;
+    z-index: 100;
+  }
+
+  .sidebar::-webkit-scrollbar { width: 4px; }
+  .sidebar::-webkit-scrollbar-thumb { background: #333; border-radius: 2px; }
+
+  .sidebar-logo {
+    padding: 0 24px 8px;
+  }
+
+  .sidebar-logo .brand {
+    font-size: 15px;
+    font-weight: 700;
+    color: #fff;
+    letter-spacing: -0.3px;
+    line-height: 1.3;
+    display: block;
+    text-decoration: none;
+  }
+
+  .sidebar-logo .brand span {
+    color: var(--accent);
+  }
+
+  .sidebar-back {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 12px;
+    color: #888;
+    text-decoration: none;
+    padding: 6px 24px 0;
+    transition: color 0.15s;
+  }
+  .sidebar-back:hover { color: #bbb; }
+
+  .sidebar-divider {
+    height: 1px;
+    background: #1e1e1e;
+    margin: 20px 24px;
+  }
+
+  .sidebar-nav {
+    flex: 1;
+    padding: 0 12px;
+  }
+
+  .nav-group {
+    margin-bottom: 4px;
+  }
+
+  .nav-group-title {
+    display: block;
+    font-size: 11px;
+    font-weight: 600;
+    color: #555;
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+    padding: 8px 12px 4px;
+    text-decoration: none;
+    cursor: pointer;
+    border-radius: 6px;
+    transition: color 0.15s;
+  }
+  .nav-group-title:hover { color: #aaa; }
+
+  .nav-sub {
+    list-style: none;
+    padding: 0 0 6px 0;
+  }
+
+  .nav-sub li a {
+    display: block;
+    font-size: 13px;
+    color: #aaa;
+    text-decoration: none;
+    padding: 5px 12px;
+    border-radius: 6px;
+    transition: color 0.15s, background 0.15s;
+  }
+  .nav-sub li a:hover { color: #fff; background: #1a1a1a; }
+  .nav-sub li a.active { color: var(--accent); }
+
+  /* ── BURGER ── */
+  .burger {
+    display: none;
+    position: fixed;
+    top: 16px; left: 16px;
+    z-index: 200;
+    background: var(--sidebar-bg);
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    width: 40px; height: 40px;
+    cursor: pointer;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+  }
+  .burger span {
+    display: block;
+    width: 20px; height: 2px;
+    background: #fff;
+    border-radius: 2px;
+    transition: transform 0.2s, opacity 0.2s;
+  }
+  .burger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+  .burger.open span:nth-child(2) { opacity: 0; }
+  .burger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+  .overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.5);
+    z-index: 99;
+  }
+  .overlay.visible { display: block; }
+
+  /* ── MAIN ── */
+  .main {
+    margin-left: var(--sidebar-w);
+    flex: 1;
+    min-width: 0;
+  }
+
+  .content {
+    max-width: 740px;
+    padding: 56px 48px 96px;
+  }
+
+  /* ── HEADINGS ── */
+  h1 { font-size: 32px; font-weight: 800; letter-spacing: -0.8px; margin-bottom: 8px; }
+  h2 { font-size: 26px; font-weight: 700; letter-spacing: -0.5px; margin-bottom: 16px; }
+  h3 { font-size: 18px; font-weight: 700; margin-bottom: 10px; }
+  h4 { font-size: 15px; font-weight: 600; margin-bottom: 8px; }
+
+  p { line-height: 1.65; }
+  .text-sm { font-size: 14px; color: #444; line-height: 1.65; }
+  .mt-8 { margin-top: 8px; }
+  .mt-12 { margin-top: 12px; }
+  .mt-20 { margin-top: 20px; }
+  .mt-32 { margin-top: 32px; }
+  .mb-8 { margin-bottom: 8px; }
+
+  .tag {
+    display: inline-block;
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.6px;
+    padding: 3px 9px;
+    border-radius: 20px;
+    background: var(--card-border);
+    color: #666;
+    margin-bottom: 12px;
+  }
+  .tag.done { background: #e8e8e8; color: #999; }
+
+  /* ── BREADCRUMB ── */
+  .breadcrumb {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 13px;
+    color: #999;
+    margin-bottom: 32px;
+    flex-wrap: wrap;
+  }
+  .breadcrumb a {
+    color: #999;
+    text-decoration: none;
+    transition: color 0.15s;
+  }
+  .breadcrumb a:hover { color: #0d0d0d; }
+  .breadcrumb .sep { color: #ddd; }
+  .breadcrumb .current { color: #555; }
+
+  /* ── HERO ── */
+  .hero {
+    margin-bottom: 48px;
+    padding-bottom: 40px;
+    border-bottom: 1px solid var(--card-border);
+  }
+
+  .hero-meta {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    margin-bottom: 16px;
+  }
+
+  .hero-meta .meta-badge {
+    font-size: 12px;
+    font-weight: 500;
+    color: #666;
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    border-radius: 6px;
+    padding: 4px 10px;
+  }
+
+  .hero h1 {
+    margin-bottom: 12px;
+  }
+
+  .hero .lead {
+    font-size: 18px;
+    color: #333;
+    line-height: 1.5;
+    font-weight: 400;
+    max-width: 580px;
+  }
+
+  .hero .lead-sub {
+    font-size: 15px;
+    color: #666;
+    line-height: 1.65;
+    max-width: 580px;
+    margin-top: 16px;
+  }
+
+  /* ── CARD ── */
+  .card {
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    border-radius: var(--radius);
+    padding: 24px;
+    margin-bottom: 20px;
+  }
+
+  .card p {
+    font-size: 14px;
+    line-height: 1.65;
+    color: #444;
+    margin-top: 8px;
+  }
+
+  /* ── CALL CARD ── */
+  .call-card {
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    border-radius: var(--radius);
+    padding: 20px 22px;
+    margin-bottom: 14px;
+  }
+  .call-card .call-name {
+    font-size: 15px;
+    font-weight: 700;
+    margin-bottom: 4px;
+  }
+  .call-card .call-date {
+    font-size: 12px;
+    color: #999;
+    margin-bottom: 8px;
+  }
+  .call-card .call-desc {
+    font-size: 13px;
+    color: #555;
+    line-height: 1.55;
+    margin-bottom: 12px;
+  }
+  .call-links {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+  .link-btn {
+    display: inline-block;
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--text);
+    background: var(--accent);
+    border-radius: 7px;
+    padding: 5px 12px;
+    text-decoration: none;
+    transition: opacity 0.15s;
+  }
+  .link-btn:hover { opacity: 0.8; }
+  .link-btn.secondary {
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    color: #555;
+  }
+  .link-btn.secondary:hover { border-color: #aaa; opacity: 1; }
+
+  /* ── QUOTE ── */
+  blockquote {
+    border-left: 3px solid var(--accent);
+    padding: 12px 20px;
+    margin: 20px 0;
+    background: #fafafa;
+    border-radius: 0 8px 8px 0;
+  }
+  blockquote p {
+    font-size: 14px;
+    font-style: italic;
+    color: #444;
+    line-height: 1.65;
+    margin: 0;
+  }
+  blockquote cite {
+    display: block;
+    font-size: 12px;
+    color: #999;
+    margin-top: 8px;
+    font-style: normal;
+  }
+
+  /* ── INSIGHT CARDS ── */
+  .insight-grid {
+    display: grid;
+    gap: 14px;
+    margin-top: 20px;
+  }
+
+  .insight-card {
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    border-radius: var(--radius);
+    padding: 22px 24px;
+    border-left: 3px solid var(--accent);
+  }
+
+  .insight-card .insight-text {
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--text);
+    line-height: 1.45;
+    letter-spacing: -0.2px;
+  }
+
+  /* ── CTA ── */
+  .cta-block {
+    background: var(--text);
+    border-radius: var(--radius);
+    padding: 32px 28px;
+    margin-top: 48px;
+    text-align: center;
+  }
+
+  .cta-block h3 {
+    color: #fff;
+    font-size: 18px;
+    font-weight: 700;
+    margin-bottom: 12px;
+  }
+
+  .cta-block p {
+    font-size: 14px;
+    color: #aaa;
+    line-height: 1.6;
+    margin-bottom: 20px;
+  }
+
+  .cta-block .cta-btn {
+    display: inline-block;
+    background: var(--accent);
+    color: var(--text);
+    font-size: 14px;
+    font-weight: 700;
+    border-radius: 8px;
+    padding: 12px 24px;
+    text-decoration: none;
+    transition: opacity 0.15s;
+  }
+  .cta-block .cta-btn:hover { opacity: 0.85; }
+
+  /* ── SECTION ── */
+  .section {
+    margin-bottom: 64px;
+  }
+
+  .section h2 {
+    margin-bottom: 6px;
+  }
+
+  .section-intro {
+    font-size: 14px;
+    color: #888;
+    margin-bottom: 24px;
+  }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 768px) {
+    .sidebar {
+      transform: translateX(-100%);
+      transition: transform 0.25s ease;
+    }
+    .sidebar.open { transform: translateX(0); }
+    .burger { display: flex; }
+    .main { margin-left: 0; }
+    .content { padding: 72px 20px 80px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- Sidebar -->
+<aside class="sidebar" id="sidebar">
+  <div class="sidebar-logo">
+    <a href="./" class="brand">brain <span>love</span> & robots</a>
+  </div>
+  <a href="kb.html#sprints" class="sidebar-back">← спринты</a>
+  <div class="sidebar-divider"></div>
+
+  <nav class="sidebar-nav">
+    <div class="nav-group">
+      <span class="nav-group-title">спринт</span>
+      <ul class="nav-sub">
+        <li><a href="#calls">звонки</a></li>
+        <li><a href="#insights">из этого спринта</a></li>
+      </ul>
+    </div>
+
+    <div class="nav-group">
+      <span class="nav-group-title">звонки</span>
+      <ul class="nav-sub">
+        <li><a href="#call-open">открывающий</a></li>
+        <li><a href="#call-vlad">Влад Куклев</a></li>
+        <li><a href="#call-masha">Маша + Тоня</a></li>
+        <li><a href="#call-lyosha">Лёша Евдокимов</a></li>
+        <li><a href="#call-katya">Катя Кирилова</a></li>
+        <li><a href="#call-mika">Мика Ян</a></li>
+      </ul>
+    </div>
+
+    <div class="nav-group">
+      <span class="nav-group-title">база знаний</span>
+      <ul class="nav-sub">
+        <li><a href="kb.html#sprints">все спринты</a></li>
+        <li><a href="kb.html#cases">кейсы</a></li>
+      </ul>
+    </div>
+  </nav>
+</aside>
+
+<!-- Burger -->
+<button class="burger" id="burger" aria-label="Меню">
+  <span></span><span></span><span></span>
+</button>
+<div class="overlay" id="overlay"></div>
+
+<!-- Main content -->
+<main class="main">
+<div class="content">
+
+  <!-- Breadcrumb -->
+  <nav class="breadcrumb">
+    <a href="kb.html#sprints">← спринты</a>
+    <span class="sep">/</span>
+    <span class="current">Health OS</span>
+  </nav>
+
+  <!-- Hero -->
+  <div class="hero">
+    <div class="hero-meta">
+      <span class="meta-badge">Health OS · февраль — март 2026</span>
+      <span class="meta-badge tag done">done</span>
+    </div>
+    <h1>Операционная система здоровья</h1>
+    <p class="lead">как использовать AI чтобы лучше управлять своим здоровьем — без продуктивити-порно</p>
+    <p class="lead-sub">Когда начинаешь активно работать с AI — быстро обнаруживаешь что тело не поспевает. Здоровье стало следующей задачей. Каждую неделю — новый протагонист со своим подходом. Не курс, не учебник — живые люди показывают что у них реально работает.</p>
+    <p class="lead-sub mt-12">Идея Димы Мацкевича: каждый должен стать CEO своего здоровья. Папка с личным контекстом + Claude Code + данные со звонков = накопительный эффект.</p>
+  </div>
+
+  <!-- Calls section -->
+  <section class="section" id="calls">
+    <h2>Звонки спринта</h2>
+    <p class="section-intro">хронологически, февраль — март 2026</p>
+
+    <!-- Открывающий звонок -->
+    <div class="call-card" id="call-open">
+      <div class="call-name">Открывающий звонок — как использовать AI для здоровья</div>
+      <div class="call-date">Дима, Слава, Юля · февраль 2026</div>
+      <div class="call-desc">Старт спринта. Дима о концепции "CEO своего здоровья": бесполезно учить AI-тулы ради тулов — надо расширять круг возможного. Участники поделились запросами: кастомизация под себя, сон, трекинг из любопытства, а не из тревоги.</div>
+    </div>
+
+    <!-- Влад -->
+    <div class="call-card" id="call-vlad">
+      <div class="call-name">Влад Куклев — AI-система здоровья</div>
+      <div class="call-date">19 февраля 2026</div>
+      <div class="call-desc">Claude Code + Telegram + Whoop API. Персональный тренер который живёт в телефоне, знает твою историю и пишет сам — без волевых усилий 5 недель подряд.</div>
+      <div class="call-links">
+        <a href="https://youtu.be/calHnWdfPjs" class="link-btn" target="_blank" rel="noopener">запись →</a>
+      </div>
+    </div>
+
+    <!-- Маша + Тоня -->
+    <div class="call-card" id="call-masha">
+      <div class="call-name">Маша + Тоня — second brain для здоровья</div>
+      <div class="call-date">26 февраля 2026</div>
+      <div class="call-desc">Swarm of agents + скилл из 18 агентов. Система которая ищет не просто ответы — а interconnections: что работает вместе, с учётом конкретного контекста.</div>
+      <div class="call-links">
+        <a href="https://youtu.be/T13PJgHVDJM" class="link-btn" target="_blank" rel="noopener">запись →</a>
+        <a href="case-masha.html" class="link-btn secondary" target="_blank" rel="noopener">читать кейс →</a>
+      </div>
+    </div>
+
+    <!-- Лёша -->
+    <div class="call-card" id="call-lyosha">
+      <div class="call-name">Лёша Евдокимов — датчик глюкозы + AI</div>
+      <div class="call-date">5 марта 2026</div>
+      <div class="call-desc">Метаболическая карта + AI-аналитика. Одни и те же продукты у разных людей дают разные реакции — можно затрекать тонкие индивидуальные паттерны.</div>
+      <div class="call-links">
+        <a href="https://youtu.be/t-a13yvLYuM" class="link-btn" target="_blank" rel="noopener">запись →</a>
+      </div>
+    </div>
+
+    <!-- Катя -->
+    <div class="call-card" id="call-katya">
+      <div class="call-name">Катя Кирилова — совет директоров из агентов</div>
+      <div class="call-date">12 марта 2026</div>
+      <div class="call-desc">8 агентов-коучей на Claude Code, 3 ловушки оптимизации. Longevity Coordinator оркестрирует остальных. Когда учишься новому — лучше начинать с того что важно для тебя лично.</div>
+      <div class="call-links">
+        <a href="https://youtu.be/x-rWLWm9VVQ" class="link-btn" target="_blank" rel="noopener">запись →</a>
+      </div>
+    </div>
+
+    <!-- Мика -->
+    <div class="call-card" id="call-mika">
+      <div class="call-name">Мика Ян — AI sleep coach</div>
+      <div class="call-date">20 марта 2026</div>
+      <div class="call-desc">OpenClaw, spaced repetition для привычек, anti-goggins подход. Не про силу воли — про систему которая работает с твоей биологией, а не против неё.</div>
+      <div class="call-links">
+        <a href="https://www.youtube.com/watch?v=eHM8go3DWFA" class="link-btn" target="_blank" rel="noopener">запись →</a>
+        <a href="https://dimamatskevich.substack.com/p/ai-a21" class="link-btn secondary" target="_blank" rel="noopener">разбор →</a>
+      </div>
+    </div>
+
+  </section>
+
+  <!-- Insights section -->
+  <section class="section" id="insights">
+    <h2>Из этого спринта</h2>
+    <p class="section-intro">три идеи которые остаются</p>
+
+    <div class="insight-grid">
+      <div class="insight-card">
+        <div class="insight-text">CEO своего здоровья — не врач, а ты</div>
+      </div>
+      <div class="insight-card">
+        <div class="insight-text">Папка с личным контекстом + Claude Code = персональная медицинская память</div>
+      </div>
+      <div class="insight-card">
+        <div class="insight-text">AI не заменяет врача — помогает прийти подготовленным</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <div class="cta-block">
+    <h3>brain love &amp; robots</h3>
+    <p>подписочное комьюнити где люди применяют AI в реальной жизни — в здоровье, работе, творчестве и личных системах</p>
+    <a href="https://t.me/brainloveandrobots" class="cta-btn" target="_blank" rel="noopener">присоединиться →</a>
+  </div>
+
+</div>
+</main>
+
+<script>
+  const burger = document.getElementById('burger');
+  const sidebar = document.getElementById('sidebar');
+  const overlay = document.getElementById('overlay');
+
+  burger.addEventListener('click', () => {
+    burger.classList.toggle('open');
+    sidebar.classList.toggle('open');
+    overlay.classList.toggle('visible');
+  });
+
+  overlay.addEventListener('click', () => {
+    burger.classList.remove('open');
+    sidebar.classList.remove('open');
+    overlay.classList.remove('visible');
+  });
+</script>
+</body>
+</html>
