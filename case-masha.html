@@ -1,0 +1,793 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Маша Куликовская — Медицинская ОС | BLR База знаний</title>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg: #ffffff;
+    --text: #0d0d0d;
+    --accent: #ffdd00;
+    --card-bg: #f7f7f7;
+    --card-border: #e8e8e8;
+    --sidebar-bg: #0d0d0d;
+    --sidebar-w: 260px;
+    --radius: 14px;
+    --font: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: var(--font);
+    background: var(--bg);
+    color: var(--text);
+    display: flex;
+    min-height: 100vh;
+  }
+
+  /* ── SIDEBAR ── */
+  .sidebar {
+    width: var(--sidebar-w);
+    min-width: var(--sidebar-w);
+    background: var(--sidebar-bg);
+    color: #fff;
+    position: fixed;
+    top: 0; left: 0;
+    height: 100vh;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    padding: 28px 0 32px;
+    z-index: 100;
+  }
+
+  .sidebar::-webkit-scrollbar { width: 4px; }
+  .sidebar::-webkit-scrollbar-thumb { background: #333; border-radius: 2px; }
+
+  .sidebar-logo {
+    padding: 0 24px 8px;
+  }
+
+  .sidebar-logo .brand {
+    font-size: 15px;
+    font-weight: 700;
+    color: #fff;
+    letter-spacing: -0.3px;
+    line-height: 1.3;
+    display: block;
+    text-decoration: none;
+  }
+
+  .sidebar-logo .brand span {
+    color: var(--accent);
+  }
+
+  .sidebar-back {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 12px;
+    color: #888;
+    text-decoration: none;
+    padding: 6px 24px 0;
+    transition: color 0.15s;
+  }
+  .sidebar-back:hover { color: #bbb; }
+
+  .sidebar-divider {
+    height: 1px;
+    background: #1e1e1e;
+    margin: 20px 24px;
+  }
+
+  .sidebar-nav {
+    flex: 1;
+    padding: 0 12px;
+  }
+
+  .nav-group {
+    margin-bottom: 4px;
+  }
+
+  .nav-group-title {
+    display: block;
+    font-size: 11px;
+    font-weight: 600;
+    color: #555;
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+    padding: 8px 12px 4px;
+    text-decoration: none;
+    cursor: pointer;
+    border-radius: 6px;
+    transition: color 0.15s;
+  }
+  .nav-group-title:hover { color: #aaa; }
+
+  .nav-sub {
+    list-style: none;
+    padding: 0 0 6px 0;
+  }
+
+  .nav-sub li a {
+    display: block;
+    font-size: 13px;
+    color: #aaa;
+    text-decoration: none;
+    padding: 5px 12px;
+    border-radius: 6px;
+    transition: color 0.15s, background 0.15s;
+  }
+  .nav-sub li a:hover { color: #fff; background: #1a1a1a; }
+  .nav-sub li a.active { color: var(--accent); }
+
+  /* ── BURGER ── */
+  .burger {
+    display: none;
+    position: fixed;
+    top: 16px; left: 16px;
+    z-index: 200;
+    background: var(--sidebar-bg);
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    width: 40px; height: 40px;
+    cursor: pointer;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+  }
+  .burger span {
+    display: block;
+    width: 20px; height: 2px;
+    background: #fff;
+    border-radius: 2px;
+    transition: transform 0.2s, opacity 0.2s;
+  }
+  .burger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+  .burger.open span:nth-child(2) { opacity: 0; }
+  .burger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+  .overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.5);
+    z-index: 99;
+  }
+  .overlay.visible { display: block; }
+
+  /* ── MAIN ── */
+  .main {
+    margin-left: var(--sidebar-w);
+    flex: 1;
+    min-width: 0;
+  }
+
+  .content {
+    max-width: 740px;
+    padding: 56px 48px 96px;
+  }
+
+  /* ── HEADINGS ── */
+  h1 { font-size: 32px; font-weight: 800; letter-spacing: -0.8px; margin-bottom: 8px; }
+  h2 { font-size: 26px; font-weight: 700; letter-spacing: -0.5px; margin-bottom: 16px; }
+  h3 { font-size: 18px; font-weight: 700; margin-bottom: 10px; }
+  h4 { font-size: 15px; font-weight: 600; margin-bottom: 8px; }
+
+  p { line-height: 1.65; }
+  .text-sm { font-size: 14px; color: #444; line-height: 1.65; }
+  .mt-8 { margin-top: 8px; }
+  .mt-12 { margin-top: 12px; }
+  .mt-20 { margin-top: 20px; }
+  .mt-32 { margin-top: 32px; }
+  .mb-8 { margin-bottom: 8px; }
+
+  .tag {
+    display: inline-block;
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.6px;
+    padding: 3px 9px;
+    border-radius: 20px;
+    background: var(--card-border);
+    color: #666;
+    margin-bottom: 12px;
+  }
+  .tag.done { background: #e8e8e8; color: #999; }
+
+  /* ── BREADCRUMB ── */
+  .breadcrumb {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 13px;
+    color: #999;
+    margin-bottom: 32px;
+    flex-wrap: wrap;
+  }
+  .breadcrumb a {
+    color: #999;
+    text-decoration: none;
+    transition: color 0.15s;
+  }
+  .breadcrumb a:hover { color: #0d0d0d; }
+  .breadcrumb .sep { color: #ddd; }
+  .breadcrumb .current { color: #555; }
+
+  /* ── HERO ── */
+  .hero {
+    margin-bottom: 48px;
+    padding-bottom: 40px;
+    border-bottom: 1px solid var(--card-border);
+  }
+
+  .hero-meta {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    margin-bottom: 16px;
+  }
+
+  .hero-meta .meta-badge {
+    font-size: 12px;
+    font-weight: 500;
+    color: #666;
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    border-radius: 6px;
+    padding: 4px 10px;
+  }
+
+  .hero h1 {
+    margin-bottom: 12px;
+  }
+
+  .hero .lead {
+    font-size: 18px;
+    color: #333;
+    line-height: 1.5;
+    font-weight: 400;
+    max-width: 580px;
+  }
+
+  /* ── CARD ── */
+  .card {
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    border-radius: var(--radius);
+    padding: 24px;
+    margin-bottom: 20px;
+  }
+
+  .card p {
+    font-size: 14px;
+    line-height: 1.65;
+    color: #444;
+    margin-top: 8px;
+  }
+
+  /* ── CASE BLOCKS ── */
+  .case-block {
+    margin-bottom: 32px;
+  }
+
+  .case-block-label {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: #999;
+    margin-bottom: 12px;
+  }
+
+  .case-block-label .dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--accent);
+    flex-shrink: 0;
+  }
+
+  .case-block h3 {
+    font-size: 17px;
+    font-weight: 700;
+    margin-bottom: 10px;
+    color: var(--text);
+  }
+
+  .case-block .body {
+    font-size: 14px;
+    line-height: 1.7;
+    color: #444;
+  }
+
+  /* ── QUOTE ── */
+  blockquote {
+    border-left: 3px solid var(--accent);
+    padding: 12px 20px;
+    margin: 20px 0;
+    background: #fafafa;
+    border-radius: 0 8px 8px 0;
+  }
+  blockquote p {
+    font-size: 14px;
+    font-style: italic;
+    color: #444;
+    line-height: 1.65;
+    margin: 0;
+  }
+  blockquote cite {
+    display: block;
+    font-size: 12px;
+    color: #999;
+    margin-top: 8px;
+    font-style: normal;
+  }
+
+  /* ── TOOL BADGE ── */
+  .tools {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 14px;
+  }
+  .tool-badge {
+    font-size: 12px;
+    font-weight: 500;
+    background: var(--text);
+    color: var(--bg);
+    border-radius: 6px;
+    padding: 4px 10px;
+  }
+
+  /* ── ARTIFACT ── */
+  .artifact-section {
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    border-radius: var(--radius);
+    padding: 28px;
+    margin: 32px 0;
+  }
+
+  .artifact-section h3 {
+    font-size: 18px;
+    font-weight: 700;
+    margin-bottom: 4px;
+  }
+
+  .artifact-section .artifact-subtitle {
+    font-size: 13px;
+    color: #888;
+    margin-bottom: 20px;
+  }
+
+  .artifact-folder {
+    display: grid;
+    gap: 10px;
+    margin: 16px 0;
+  }
+
+  .folder-item {
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+    background: #fff;
+    border: 1px solid var(--card-border);
+    border-radius: 10px;
+    padding: 12px 16px;
+  }
+
+  .folder-item .folder-name {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--text);
+    font-family: monospace;
+    min-width: 160px;
+    flex-shrink: 0;
+  }
+
+  .folder-item .folder-desc {
+    font-size: 13px;
+    color: #666;
+    line-height: 1.5;
+  }
+
+  .artifact-insight {
+    background: #fff;
+    border: 1px solid var(--card-border);
+    border-radius: 10px;
+    padding: 16px 20px;
+    margin-top: 16px;
+  }
+
+  .artifact-insight .insight-label {
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+    color: #999;
+    margin-bottom: 8px;
+  }
+
+  .artifact-insight p {
+    font-size: 14px;
+    color: #444;
+    line-height: 1.65;
+  }
+
+  /* ── LINKS SECTION ── */
+  .links-section {
+    margin: 40px 0;
+    padding-top: 32px;
+    border-top: 1px solid var(--card-border);
+  }
+
+  .links-section h3 {
+    font-size: 15px;
+    font-weight: 700;
+    margin-bottom: 16px;
+    color: #555;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    font-size: 11px;
+  }
+
+  .link-btn {
+    display: inline-block;
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--text);
+    background: var(--accent);
+    border-radius: 7px;
+    padding: 5px 12px;
+    text-decoration: none;
+    transition: opacity 0.15s;
+    margin-right: 8px;
+    margin-bottom: 8px;
+  }
+  .link-btn:hover { opacity: 0.8; }
+  .link-btn.secondary {
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    color: #555;
+  }
+  .link-btn.secondary:hover { border-color: #aaa; opacity: 1; }
+
+  .related-cases {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 12px;
+  }
+
+  .related-name {
+    font-size: 13px;
+    color: #666;
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    border-radius: 8px;
+    padding: 5px 12px;
+  }
+
+  /* ── CTA ── */
+  .cta-block {
+    background: var(--text);
+    border-radius: var(--radius);
+    padding: 32px 28px;
+    margin-top: 48px;
+    text-align: center;
+  }
+
+  .cta-block p {
+    font-size: 14px;
+    color: #aaa;
+    line-height: 1.6;
+    margin-bottom: 20px;
+  }
+
+  .cta-block .cta-btn {
+    display: inline-block;
+    background: var(--accent);
+    color: var(--text);
+    font-size: 14px;
+    font-weight: 700;
+    border-radius: 8px;
+    padding: 12px 24px;
+    text-decoration: none;
+    transition: opacity 0.15s;
+  }
+  .cta-block .cta-btn:hover { opacity: 0.85; }
+
+  /* ── FORMULA ── */
+  .formula {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-wrap: wrap;
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    border-radius: 10px;
+    padding: 14px 20px;
+    margin: 20px 0;
+    font-size: 13px;
+  }
+  .formula .f-step { font-weight: 600; color: var(--text); }
+  .formula .f-arrow { color: #ccc; }
+
+  /* ── LISTS ── */
+  ul.custom {
+    list-style: none;
+    padding: 0;
+    margin: 12px 0;
+  }
+  ul.custom li {
+    font-size: 14px;
+    line-height: 1.65;
+    color: #444;
+    padding: 4px 0 4px 18px;
+    position: relative;
+  }
+  ul.custom li::before {
+    content: '—';
+    position: absolute;
+    left: 0;
+    color: #bbb;
+  }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 768px) {
+    .sidebar {
+      transform: translateX(-100%);
+      transition: transform 0.25s ease;
+    }
+    .sidebar.open { transform: translateX(0); }
+    .burger { display: flex; }
+    .main { margin-left: 0; }
+    .content { padding: 72px 20px 80px; }
+    .folder-item { flex-direction: column; gap: 4px; }
+    .folder-item .folder-name { min-width: auto; }
+  }
+</style>
+</head>
+<body>
+
+<!-- Sidebar -->
+<aside class="sidebar" id="sidebar">
+  <div class="sidebar-logo">
+    <a href="./" class="brand">brain <span>love</span> & robots</a>
+  </div>
+  <a href="kb.html" class="sidebar-back">← база знаний</a>
+  <div class="sidebar-divider"></div>
+
+  <nav class="sidebar-nav">
+    <div class="nav-group">
+      <span class="nav-group-title">кейс</span>
+      <ul class="nav-sub">
+        <li><a href="#situation">ситуация</a></li>
+        <li><a href="#ai">что сделала</a></li>
+        <li><a href="#result">результат</a></li>
+        <li><a href="#artifact">артефакт</a></li>
+        <li><a href="#links">материалы</a></li>
+      </ul>
+    </div>
+
+    <div class="nav-group">
+      <span class="nav-group-title">спринт</span>
+      <ul class="nav-sub">
+        <li><a href="kb.html#sprint-healthos">health os</a></li>
+        <li><a href="kb.html#cases">все кейсы</a></li>
+      </ul>
+    </div>
+  </nav>
+</aside>
+
+<!-- Burger -->
+<button class="burger" id="burger" aria-label="Меню">
+  <span></span><span></span><span></span>
+</button>
+<div class="overlay" id="overlay"></div>
+
+<!-- Main content -->
+<main class="main">
+<div class="content">
+
+  <!-- Breadcrumb -->
+  <nav class="breadcrumb">
+    <a href="kb.html#sprint-healthos">спринты / health os</a>
+    <span class="sep">/</span>
+    <a href="kb.html#cases">кейсы участников</a>
+    <span class="sep">/</span>
+    <span class="current">Маша Куликовская</span>
+  </nav>
+
+  <!-- Hero -->
+  <div class="hero">
+    <div class="hero-meta">
+      <span class="meta-badge">врач</span>
+      <span class="meta-badge">спринт: Health OS</span>
+      <span class="tag done">done</span>
+    </div>
+    <h1>Маша Куликовская</h1>
+    <p class="lead">Собрала медицинскую историю из разных стран и клиник в одну систему — с командой агентов-врачей и локальным дашбордом.</p>
+  </div>
+
+  <!-- Formula -->
+  <div class="formula">
+    <span class="f-step">ситуация</span>
+    <span class="f-arrow">→</span>
+    <span class="f-step">AI</span>
+    <span class="f-arrow">→</span>
+    <span class="f-step">результат</span>
+    <span class="f-arrow">→</span>
+    <span class="f-step">смысл</span>
+  </div>
+
+  <!-- Case blocks -->
+
+  <!-- Situation -->
+  <div class="case-block mt-32" id="situation">
+    <div class="case-block-label">
+      <span class="dot"></span>
+      ситуация
+    </div>
+    <h3>Анализы из разных стран, врачи не видят полную картину</h3>
+    <div class="body">
+      <p>Медицинские документы — фотографии анализов, рукописные заметки, записи из клиник — были разбросаны по разным системам и странам. Единицы измерения не совпадали. Каждый визит к врачу начинался с 20-минутного восстановления контекста.</p>
+      <p class="mt-12">Задача: собрать всё в одном месте — и для себя, и для мамы — так, чтобы приходить к врачу уже подготовленным.</p>
+    </div>
+  </div>
+
+  <!-- AI -->
+  <div class="case-block mt-32" id="ai">
+    <div class="case-block-label">
+      <span class="dot"></span>
+      что сделала с AI
+    </div>
+    <h3>Команда агентов-врачей + локальный дашборд</h3>
+    <div class="body">
+      <p>Маша использовала Claude Code и Claude Extension чтобы:</p>
+      <ul class="custom mt-12">
+        <li>Собрать все медицинские документы в единый репозиторий — фото анализов, рукописи, PDF из разных клиник</li>
+        <li>Нормализовать единицы измерения к международным стандартам</li>
+        <li>Выстроить хронологию по датам, странам и типам документов</li>
+        <li>Создать локальный HTML-дашборд (без облака, всё остаётся у тебя)</li>
+      </ul>
+      <p class="mt-12">Ключевое архитектурное решение: <strong>consilium</strong> — команда агентов-врачей с полярными позициями. Консервативный специалист и прогрессивный смотрят на одни и те же данные и спорят. Это ломает ловушку «LLM как зеркало» — когда модель просто соглашается с тобой.</p>
+    </div>
+
+    <div class="tools">
+      <span class="tool-badge">Claude Extension</span>
+      <span class="tool-badge">Claude Code</span>
+      <span class="tool-badge">VS Code</span>
+    </div>
+  </div>
+
+  <!-- Result + Meaning -->
+  <div class="case-block mt-32" id="result">
+    <div class="case-block-label">
+      <span class="dot"></span>
+      результат + смысл
+    </div>
+    <h3>Врачи говорили «вау». Маме нашли альтернативу статинам.</h3>
+    <div class="body">
+      <p>Когда пациент приходит с собранными таблицами и хронологией — врач освобождается от восстановления контекста и сразу переходит к делу. Медики реагировали позитивно: организованные данные меняют качество консультации.</p>
+      <p class="mt-12">Конкретный результат: для мамы нашли альтернативу статинам с меньшим воздействием на ЖКТ — это стало возможным именно потому что вся история была видна целиком.</p>
+    </div>
+
+    <blockquote class="mt-20">
+      <p>«Лучше всего — прийти к врачу которому давно доверяешь, но подготовленным. AI не заменяет врача — он помогает задать правильные вопросы»</p>
+      <cite>— Маша Куликовская</cite>
+    </blockquote>
+
+    <div class="card mt-20">
+      <h4>Смысл</h4>
+      <p>LLM — отражение твоего мышления. Если не добавлять в систему полярные позиции — она будет только подтверждать то, что ты и так думаешь. Намеренная полярность агентов делает consilium реальным инструментом мышления, а не эхо-камерой.</p>
+    </div>
+  </div>
+
+  <!-- Artifact -->
+  <div class="artifact-section" id="artifact">
+    <h3>Артефакт: Health Dashboard</h3>
+    <div class="artifact-subtitle">Локальная медицинская ОС на Claude Code</div>
+
+    <p class="text-sm">Маша оформила свою систему как плейбук — пошаговую инструкцию с промптами, которую можно развернуть у себя. Вот как она устроена концептуально.</p>
+
+    <div class="artifact-folder mt-20">
+      <div class="folder-item">
+        <span class="folder-name">00_INBOX_RAW/</span>
+        <span class="folder-desc">Все документы как скачались. Фото, PDF, CSV — ничего не трогать и не редактировать.</span>
+      </div>
+      <div class="folder-item">
+        <span class="folder-name">01_SORTED/</span>
+        <span class="folder-desc">Разложенное по правилам: год / страна / клиника / тип документа. Агент делает это сам.</span>
+      </div>
+      <div class="folder-item">
+        <span class="folder-name">02_TABLES/</span>
+        <span class="folder-desc">Сводные таблицы анализов. Мастер-таблица с хронологией и нормализованными единицами.</span>
+      </div>
+      <div class="folder-item">
+        <span class="folder-name">03_AGENT_REPORTS/</span>
+        <span class="folder-desc">Отчёты каждого агента из consilium + круговой peer review — агенты комментируют выводы друг друга.</span>
+      </div>
+      <div class="folder-item">
+        <span class="folder-name">04_ADVISOR_SUMMARY/</span>
+        <span class="folder-desc">Финальная сборка: риски, приоритеты, план действий — одна страница с главным.</span>
+      </div>
+      <div class="folder-item">
+        <span class="folder-name">05_SITE/</span>
+        <span class="folder-desc">Локальный HTML-дашборд. Открывается офлайн. Показывает динамику анализов, таймлайн, рекомендации.</span>
+      </div>
+      <div class="folder-item">
+        <span class="folder-name">CLAUDE/</span>
+        <span class="folder-desc">Персоны агентов consilium + протоколы: правила доказательности, шкала уверенности, лог дискуссий.</span>
+      </div>
+    </div>
+
+    <div class="artifact-insight">
+      <div class="insight-label">Как думать об этом</div>
+      <p>Представь папку проекта как живой архив. Добавляешь новый анализ — кладёшь в INBOX, говоришь агентам «обнови систему» — они раскладывают, обновляют таблицы и пересчитывают тренды. Медкарта превращается в обновляемую систему, а не разовый проект.</p>
+    </div>
+
+    <p class="text-sm mt-20" style="color: #999;">Готовые промпты и полный плейбук — в LMS и GitHub-репозитории комьюнити (доступно участникам BLR).</p>
+  </div>
+
+  <!-- Links -->
+  <div class="links-section" id="links">
+    <h3>Материалы</h3>
+
+    <div>
+      <a href="https://dimamatskevich.substack.com/p/18-3-health-os-brain-love-and-robots" class="link-btn" target="_blank" rel="noopener">статья Димы на Substack →</a>
+      <a href="https://youtu.be/T13PJgHVDJM" class="link-btn secondary" target="_blank" rel="noopener">запись звонка (YouTube) →</a>
+    </div>
+
+    <div class="mt-20">
+      <h3 style="font-size:13px;font-weight:600;color:#888;text-transform:uppercase;letter-spacing:0.5px;margin-bottom:12px;">другие кейсы из спринта health os</h3>
+      <div class="related-cases">
+        <span class="related-name">Тоня Жукова</span>
+        <span class="related-name">Влад Куклев</span>
+        <span class="related-name">Катя Кирилова</span>
+        <span class="related-name">Лёша Евдокимов</span>
+      </div>
+      <p class="text-sm mt-12" style="color:#bbb;font-size:12px;"><a href="kb.html#cases" style="color:#bbb;">← смотреть все кейсы в базе знаний</a></p>
+    </div>
+  </div>
+
+  <!-- CTA -->
+  <div class="cta-block">
+    <p>brain love & robots — подписочное комьюнити где люди применяют AI в реальной жизни: в здоровье, работе, творчестве и личных системах.</p>
+    <a href="https://t.me/brainloveandrobots" class="cta-btn" target="_blank" rel="noopener">присоединиться к BLR →</a>
+  </div>
+
+</div>
+</main>
+
+<script>
+  const burger = document.getElementById('burger');
+  const sidebar = document.getElementById('sidebar');
+  const overlay = document.getElementById('overlay');
+
+  burger.addEventListener('click', () => {
+    burger.classList.toggle('open');
+    sidebar.classList.toggle('open');
+    overlay.classList.toggle('visible');
+  });
+
+  overlay.addEventListener('click', () => {
+    burger.classList.remove('open');
+    sidebar.classList.remove('open');
+    overlay.classList.remove('visible');
+  });
+</script>
+
+</body>
+</html>
