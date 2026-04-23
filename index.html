@@ -165,7 +165,7 @@
     padding: 4px; gap: 2px;
     width: fit-content;
   }
-  .pricing-tabs input[type="radio"] { position: absolute; opacity: 0; pointer-events: none; }
+  .pricing-card input[type="radio"] { position: absolute; opacity: 0; pointer-events: none; width: 0; height: 0; }
   .pricing-tabs label {
     font-size: 13px; font-weight: 600; color: #0d0d0d;
     padding: 8px 18px; border-radius: 999px;
@@ -173,9 +173,7 @@
     opacity: 0.65;
   }
   .pricing-tabs label:hover { opacity: 1; }
-  #p1:checked ~ .pricing-tabs label[for="p1"],
   #p3:checked ~ .pricing-tabs label[for="p3"],
-  #p6:checked ~ .pricing-tabs label[for="p6"],
   #p12:checked ~ .pricing-tabs label[for="p12"] {
     background: #fff; opacity: 1; box-shadow: 0 1px 3px rgba(0,0,0,0.08);
   }
@@ -196,9 +194,7 @@
     padding: 4px 10px; border-radius: 999px;
     text-transform: uppercase; letter-spacing: 0.3px;
   }
-  #p1:checked ~ .pricing-amount .r-1,
   #p3:checked ~ .pricing-amount .r-3,
-  #p6:checked ~ .pricing-amount .r-6,
   #p12:checked ~ .pricing-amount .r-12 { display: flex; flex-direction: column; align-items: flex-start; }
 
   .pricing-cta {
@@ -587,37 +583,23 @@
         </div>
 
         <div class="pricing-card">
-          <input type="radio" name="period" id="p1">
           <input type="radio" name="period" id="p3" checked>
-          <input type="radio" name="period" id="p6">
           <input type="radio" name="period" id="p12">
 
           <div class="pricing-tabs">
-            <label for="p1">1 мес</label>
-            <label for="p3">3 мес</label>
-            <label for="p6">6 мес</label>
-            <label for="p12">12 мес</label>
+            <label for="p3">3 месяца</label>
+            <label for="p12">год</label>
           </div>
 
           <div class="pricing-amount">
-            <div class="price-row r-1">
-              <div class="pm">$79 в месяц</div>
-              <div><span class="total">$79</span><span class="unit">/ всего</span></div>
-            </div>
             <div class="price-row r-3">
-              <span class="save">экономия 13%</span>
-              <div class="pm">$69 в месяц</div>
-              <div><span class="total">$207</span><span class="unit">/ за 3 месяца</span></div>
-            </div>
-            <div class="price-row r-6">
-              <span class="save">экономия 25%</span>
-              <div class="pm">$59 в месяц</div>
-              <div><span class="total">$354</span><span class="unit">/ за 6 месяцев</span></div>
+              <div class="pm">€97 в месяц</div>
+              <div><span class="total">€290</span><span class="unit">/ за 3 месяца</span></div>
             </div>
             <div class="price-row r-12">
-              <span class="save">экономия 38%</span>
-              <div class="pm">$49 в месяц</div>
-              <div><span class="total">$588</span><span class="unit">/ за год</span></div>
+              <span class="save">экономия 48%</span>
+              <div class="pm">€50 в месяц</div>
+              <div><span class="total">€600</span><span class="unit">/ за год</span></div>
             </div>
           </div>
 
