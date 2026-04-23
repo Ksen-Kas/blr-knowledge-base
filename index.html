@@ -65,11 +65,17 @@
   .protag-card:hover { transform: translateY(-2px); box-shadow: 0 8px 20px rgba(0,0,0,0.06); }
   .protag-top { display: flex; align-items: center; gap: 12px; margin-bottom: 12px; }
   .avatar {
-    width: 44px; height: 44px; border-radius: 50%;
+    width: 56px; height: 56px; border-radius: 50%;
     background: #e8e8e8; color: #0d0d0d;
     display: grid; place-items: center;
     font-size: 14px; font-weight: 700;
     flex-shrink: 0;
+    overflow: hidden;
+  }
+  .avatar img {
+    width: 100%; height: 100%;
+    object-fit: cover; object-position: center;
+    display: block;
   }
   .avatar.a1 { background: #ffdd00; }
   .avatar.a2 { background: #f3eeff; }
@@ -93,9 +99,15 @@
   .founders-talk {
     margin-top: 14px;
     background: #0d0d0d; color: #fff;
-    border-radius: 14px; padding: 22px 24px;
-    display: grid; grid-template-columns: 1fr auto; gap: 16px; align-items: center;
+    border-radius: 14px; padding: 18px 24px 18px 18px;
+    display: grid; grid-template-columns: 128px 1fr auto; gap: 18px; align-items: center;
   }
+  .founders-talk .ft-thumb {
+    width: 128px; height: 72px; border-radius: 8px;
+    overflow: hidden; flex-shrink: 0;
+    border: 1px solid #222;
+  }
+  .founders-talk .ft-thumb img { width: 100%; height: 100%; object-fit: cover; display: block; }
   .ft-text strong { display: block; font-size: 11px; color: #ffdd00; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 4px; }
   .ft-text .ft-title { font-size: 16px; font-weight: 700; line-height: 1.3; margin-bottom: 4px; }
   .ft-text .ft-quote { font-size: 13px; color: #aaa; line-height: 1.5; }
@@ -198,7 +210,9 @@
     .hero h1 { font-size: 28px; }
     .hero-actions { flex-direction: column; align-items: flex-start; }
     .grid-3x2, .grid-2, .pillars, .protag-grid { grid-template-columns: 1fr; }
-    .founders-talk, .protag-bottom-cta { grid-template-columns: 1fr; gap: 12px; }
+    .founders-talk { grid-template-columns: 1fr; gap: 12px; padding: 18px; }
+    .founders-talk .ft-thumb { width: 100%; height: 180px; }
+    .protag-bottom-cta { grid-template-columns: 1fr; gap: 12px; }
     .footer-inner { flex-direction: column; align-items: flex-start; }
   }
 </style>
@@ -241,7 +255,7 @@
 
         <article class="protag-card">
           <div class="protag-top">
-            <div class="avatar a4">ВК</div>
+            <div class="avatar a4"><img src="https://img.youtube.com/vi/calHnWdfPjs/maxresdefault.jpg" alt="Влад Куклев" loading="lazy"></div>
             <div>
               <div class="protag-name">Влад Куклев</div>
               <div class="protag-role">AI-тренер в Telegram</div>
@@ -253,7 +267,7 @@
 
         <article class="protag-card">
           <div class="protag-top">
-            <div class="avatar a2">ТЖ</div>
+            <div class="avatar a2"><img src="https://img.youtube.com/vi/jb2vEdBIGks/maxresdefault.jpg" alt="Тоня Жукова" loading="lazy"></div>
             <div>
               <div class="protag-name">Тоня Жукова</div>
               <div class="protag-role">18 агентов, Lp(a)</div>
@@ -265,7 +279,7 @@
 
         <article class="protag-card">
           <div class="protag-top">
-            <div class="avatar a3">МК</div>
+            <div class="avatar a3"><img src="https://img.youtube.com/vi/jb2vEdBIGks/maxresdefault.jpg" alt="Маша Куликовская" loading="lazy" style="object-position: right center;"></div>
             <div>
               <div class="protag-name">Маша Куликовская</div>
               <div class="protag-role">swarm-клиника для мамы</div>
@@ -277,7 +291,7 @@
 
         <article class="protag-card">
           <div class="protag-top">
-            <div class="avatar a1">КК</div>
+            <div class="avatar a1"><img src="https://img.youtube.com/vi/lnFgG0-zpp8/maxresdefault.jpg" alt="Катя Кирилова" loading="lazy"></div>
             <div>
               <div class="protag-name">Катя Кирилова</div>
               <div class="protag-role">8 агентов · Oura + WHOOP</div>
@@ -289,7 +303,7 @@
 
         <article class="protag-card">
           <div class="protag-top">
-            <div class="avatar a5">ЛЕ</div>
+            <div class="avatar a5"><img src="https://img.youtube.com/vi/tR3S7c-pU9c/maxresdefault.jpg" alt="Лёша Евдокимов" loading="lazy"></div>
             <div>
               <div class="protag-name">Лёша Евдокимов</div>
               <div class="protag-role">CGM · 16 дней</div>
@@ -301,7 +315,7 @@
 
         <article class="protag-card">
           <div class="protag-top">
-            <div class="avatar a6">МЯ</div>
+            <div class="avatar a6"><img src="https://img.youtube.com/vi/eHM8go3DWFA/maxresdefault.jpg" alt="Мика Ян" loading="lazy"></div>
             <div>
               <div class="protag-name">Мика Ян</div>
               <div class="protag-role">sleep coach · founder ManyChat</div>
@@ -314,6 +328,7 @@
       </div>
 
       <div class="founders-talk">
+        <div class="ft-thumb"><img src="https://img.youtube.com/vi/J9cvaJ5enIw/maxresdefault.jpg" alt="Дима × Лёша Хахунов" loading="lazy"></div>
         <div class="ft-text">
           <strong>разговор основателей</strong>
           <div class="ft-title">Дима Мацкевич × Лёша Хахунов — вайбкодинг мёртв</div>
