@@ -1,0 +1,589 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>комьюнити — что происходит в BLR · апрель — июнь 2026</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    background: #ffffff;
+    color: #0d0d0d;
+    min-height: 100vh;
+  }
+  a { color: inherit; text-decoration: none; }
+  .container { max-width: 960px; margin: 0 auto; padding: 0 40px; }
+
+  .nav {
+    position: sticky; top: 0; z-index: 20;
+    background: #0d0d0d;
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid #222;
+  }
+
+  /* бегущая строка */
+  .ticker {
+    background: #ffdd00;
+    color: #0d0d0d;
+    overflow: hidden;
+    position: relative;
+    border-bottom: 1px solid #0d0d0d;
+  }
+  .ticker-track {
+    display: flex;
+    gap: 48px;
+    white-space: nowrap;
+    animation: ticker-scroll 38s linear infinite;
+    padding: 8px 0;
+    width: max-content;
+  }
+  .ticker-item {
+    font-size: 12px;
+    font-weight: 700;
+    text-transform: lowercase;
+    letter-spacing: 0.3px;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .ticker-item::after {
+    content: "●";
+    font-size: 6px;
+    opacity: 0.5;
+    margin-left: 38px;
+  }
+  .ticker-item:last-child::after { content: ""; margin: 0; }
+  .ticker-item .hot {
+    background: #0d0d0d;
+    color: #ffdd00;
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-size: 10px;
+  }
+  .ticker:hover .ticker-track { animation-play-state: paused; }
+  @keyframes ticker-scroll {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+  }
+  .nav-inner {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 16px 0;
+  }
+  .logo { font-weight: 700; color: #ffdd00; font-size: 15px; letter-spacing: 0.2px; }
+  .nav-links { display: flex; gap: 20px; font-size: 13px; color: #ffffff; text-transform: lowercase; }
+  .nav-links a:hover { color: #ffdd00; }
+  .btn {
+    display: inline-flex; align-items: center; gap: 8px;
+    padding: 10px 14px; border-radius: 10px; font-size: 13px; font-weight: 600;
+    border: 1px solid #0d0d0d; color: #0d0d0d; background: transparent;
+    transition: opacity 0.15s;
+  }
+  .btn:hover { opacity: 0.8; }
+  .btn.filled { background: #ffdd00; color: #0d0d0d; border-color: #ffdd00; }
+  .btn.light { border-color: rgba(255,255,255,0.4); color: #ffffff; background: transparent; }
+
+  .hero { padding: 56px 0 24px; }
+  .hero h1 { font-size: 36px; font-weight: 800; line-height: 1.1; letter-spacing: -0.4px; margin-bottom: 12px; }
+  .hero p { font-size: 15px; color: #555555; max-width: 720px; line-height: 1.6; }
+  .hero-meta { margin-top: 14px; font-size: 12px; color: #999999; }
+
+  .intro {
+    background: #f7f7f7;
+    border-top: 1px solid #e8e8e8;
+    border-bottom: 1px solid #e8e8e8;
+    padding: 32px 0;
+  }
+  .intro p { font-size: 14px; color: #333; line-height: 1.6; max-width: 720px; }
+  .intro p + p { margin-top: 10px; }
+
+  .section { padding: 40px 0 24px; }
+  .section h2 { font-size: 18px; font-weight: 800; margin-bottom: 8px; }
+  .section-sub { font-size: 13px; color: #999999; margin-bottom: 24px; max-width: 640px; line-height: 1.5; }
+
+  /* легенда */
+  .legend {
+    background: #f7f7f7;
+    border: 1px solid #e8e8e8;
+    border-radius: 14px;
+    padding: 20px 22px;
+    margin-bottom: 28px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+  }
+  .legend-block h4 { font-size: 11px; font-weight: 700; color: #999; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 10px; }
+  .legend-row { display: flex; align-items: center; gap: 8px; font-size: 13px; color: #333; padding: 3px 0; }
+  .dot { width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0; }
+  .dot.creative { background: #ffdd00; }
+  .dot.parents { background: #7c3aed; }
+  .dot.ra2 { background: #2563eb; }
+  .dot.evergreen { background: #999; }
+  .legend-row .ev-label {
+    font-size: 11px; font-weight: 700; text-transform: lowercase;
+    padding: 2px 8px; border-radius: 6px; flex-shrink: 0;
+    background: #fff; border: 1px solid #e0e0e0;
+  }
+
+  /* календарь-сетка */
+  .calendar { display: grid; gap: 16px; }
+
+  .day-header-row {
+    display: grid;
+    grid-template-columns: 110px repeat(7, 1fr);
+    gap: 4px;
+    position: sticky; top: 56px; z-index: 10;
+    background: #fff;
+    padding: 6px 0;
+    border-bottom: 1px solid #e8e8e8;
+  }
+  .day-header-row .corner { /* пусто над колонкой "недели" */ }
+  .day-header-row .dh {
+    font-size: 11px; font-weight: 700; color: #999;
+    text-transform: lowercase; text-align: center;
+    padding: 4px 0;
+  }
+  .day-header-row .dh.weekend { color: #ccc; }
+
+  .week-row {
+    display: grid;
+    grid-template-columns: 110px repeat(7, 1fr);
+    gap: 4px;
+    align-items: stretch;
+  }
+  .week-meta {
+    padding: 8px 10px 8px 0;
+    border-right: 3px solid #e8e8e8;
+    display: flex; flex-direction: column; gap: 4px; justify-content: flex-start;
+  }
+  .week-meta.creative { border-right-color: #ffdd00; }
+  .week-meta.parents { border-right-color: #7c3aed; }
+  .week-meta.ra2 { border-right-color: #2563eb; }
+  .week-meta.evergreen { border-right-color: #ccc; }
+  .week-meta .dates { font-size: 12px; font-weight: 700; color: #0d0d0d; line-height: 1.2; }
+  .week-meta .ctx { font-size: 10px; color: #999; line-height: 1.3; text-transform: lowercase; }
+  .week-meta .ctx strong { color: #555; font-weight: 600; }
+
+  .day-cell {
+    background: #fafafa;
+    border-radius: 6px;
+    padding: 6px 6px 8px;
+    min-height: 64px;
+    display: flex; flex-direction: column; gap: 4px;
+    position: relative;
+  }
+  .day-cell.weekend { background: #fcfcfc; }
+  .day-cell.empty { background: transparent; }
+  .day-num {
+    font-size: 10px; font-weight: 600; color: #999;
+    font-variant-numeric: tabular-nums;
+    margin-bottom: 2px;
+  }
+
+  .pill {
+    display: block;
+    font-size: 10px; font-weight: 600;
+    padding: 4px 6px; border-radius: 4px;
+    line-height: 1.25;
+    border-left: 3px solid #ccc;
+    background: #fff;
+    color: #333;
+    text-decoration: none;
+    transition: transform 0.1s;
+  }
+  .pill:hover { transform: translateY(-1px); }
+  .pill .pt { font-size: 9px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.4px; opacity: 0.7; display: block; margin-bottom: 2px; }
+  .pill.kostёr { border-left-color: #ffb84d; background: #fff5e6; }
+  .pill.kostёr .pt { color: #b8731a; }
+  .pill.protag { border-left-color: #a78bfa; background: #f3eeff; }
+  .pill.protag .pt { color: #5b21b6; }
+  .pill.unblock { border-left-color: #34d399; background: #e6f7ee; }
+  .pill.unblock .pt { color: #047857; }
+  .pill.lab { border-left-color: #f87171; background: #ffeaea; }
+  .pill.lab .pt { color: #b8341a; }
+  .pill.sprint { border-left-color: #0d0d0d; background: #ffdd00; color: #0d0d0d; font-weight: 700; }
+  .pill.sprint .pt { color: #0d0d0d; opacity: 0.6; }
+  .pill.daily { border-left-color: #999; background: #fff; color: #777; font-style: italic; }
+
+  /* spans for events that go through whole week (e.g. sprint, lab) */
+  .week-span {
+    display: grid;
+    grid-template-columns: 110px repeat(7, 1fr);
+    gap: 4px;
+    margin-top: -12px; margin-bottom: 4px;
+  }
+  .week-span .span-bar {
+    grid-column: 2 / span 7;
+    background: #ffdd00;
+    color: #0d0d0d;
+    font-size: 10px; font-weight: 700; text-transform: lowercase;
+    padding: 3px 10px;
+    border-radius: 4px;
+    letter-spacing: 0.2px;
+  }
+  .week-span .span-bar.lab { background: #ffeaea; color: #b8341a; border-left: 3px solid #f87171; }
+  .week-span .span-bar.parents-bar { background: #7c3aed; color: #fff; }
+  .week-span .span-bar.ra2-bar { background: #2563eb; color: #fff; }
+
+  /* CTA */
+  .cta-block {
+    margin-top: 40px;
+    background: #ffdd00;
+    border-radius: 14px;
+    padding: 32px;
+    display: grid; gap: 12px;
+  }
+  .cta-block h3 { font-size: 20px; font-weight: 800; color: #0d0d0d; }
+  .cta-block p { font-size: 14px; color: #0d0d0d; line-height: 1.6; max-width: 600px; }
+  .cta-actions { display: flex; gap: 10px; margin-top: 8px; flex-wrap: wrap; }
+  .cta-actions a {
+    display: inline-block; padding: 10px 18px; border-radius: 8px;
+    font-size: 13px; font-weight: 600;
+  }
+  .cta-actions .primary { background: #0d0d0d; color: #fff; }
+  .cta-actions .secondary { background: transparent; color: #0d0d0d; border: 1px solid #0d0d0d; }
+
+  footer {
+    border-top: 1px solid #e8e8e8;
+    margin-top: 40px;
+    padding: 18px 0 28px;
+    font-size: 12px; color: #999999;
+  }
+  .footer-inner { display: flex; justify-content: space-between; align-items: center; gap: 12px; }
+  .footer-links { display: flex; gap: 14px; text-transform: lowercase; color: #999999; }
+
+  @media (max-width: 900px) {
+    .container { padding: 0 20px; }
+    .nav-inner { flex-direction: column; gap: 12px; align-items: flex-start; }
+    .nav-links { flex-wrap: wrap; gap: 12px; }
+    .hero h1 { font-size: 28px; }
+    .legend { grid-template-columns: 1fr; gap: 16px; }
+    .day-header-row { display: none; }
+    .week-row {
+      grid-template-columns: 1fr;
+      gap: 6px;
+      padding: 12px;
+      border: 1px solid #e8e8e8;
+      border-radius: 10px;
+    }
+    .week-meta { border-right: none; border-left: 3px solid #ccc; padding: 4px 0 4px 10px; }
+    .week-meta.creative { border-left-color: #ffdd00; }
+    .week-meta.parents { border-left-color: #7c3aed; }
+    .week-meta.ra2 { border-left-color: #2563eb; }
+    .day-cell { min-height: auto; }
+    .day-cell.empty { display: none; }
+    .day-cell .day-num::after { content: " · " attr(data-dow); color: #ccc; }
+    .week-span { display: none; }
+    .footer-inner { flex-direction: column; align-items: flex-start; }
+  }
+</style>
+</head>
+<body>
+  <nav class="nav">
+    <div class="container nav-inner">
+      <div class="logo"><a href="index.html">brain love &amp; robots</a></div>
+      <div class="nav-links">
+        <a href="index.html#cases">кейсы</a>
+        <a href="community.html" style="color:#ffdd00">комьюнити</a>
+        <a href="kb.html">база знаний</a>
+      </div>
+      <a class="btn light" href="https://t.me/brainloveandrobots" target="_blank">→ telegram</a>
+    </div>
+  </nav>
+
+  <header class="hero">
+    <div class="container">
+      <h1>что происходит в комьюнити</h1>
+      <p>живая карта ближайших двух месяцев — что мы делаем вместе, кого слушаем, куда садимся в круг. часть событий привязана к спринту (тема, в которую погружаемся вместе), часть — вечнозелёная регулярка, которая идёт всегда.</p>
+      <div class="hero-meta">апрель — июнь 2026 · обновляется по мере того как живёт</div>
+    </div>
+  </header>
+
+  <section class="intro">
+    <div class="container">
+      <p><strong>что такое BLR.</strong> подписочное комьюнити, где люди применяют AI в реальной жизни — в здоровье, творчестве, отношениях, личных системах. не курс и не учебник — живые форматы, в которых каждый ищет своё место рядом с AI.</p>
+      <p><strong>как устроено время.</strong> идём спринтами по 4–6 недель — каждый про одну тему. между и внутри спринтов идёт регулярка: протагонисты, костры, unblocking-сессии. ты не обязан(а) приходить на всё — выбираешь что отзывается.</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <h2>легенда</h2>
+      <div class="section-sub">цвет — какому спринту событие принадлежит. лейбл — что за формат.</div>
+
+      <div class="legend">
+        <div class="legend-block">
+          <h4>спринты (тема, в которую погружаемся)</h4>
+          <div class="legend-row"><span class="dot ra2"></span> radical alignment #2 <span style="color:#999;font-size:12px;margin-left:auto">апр · идёт</span></div>
+          <div class="legend-row"><span class="dot creative"></span> creative os <span style="color:#999;font-size:12px;margin-left:auto">май — нач. июня</span></div>
+          <div class="legend-row"><span class="dot parents"></span> родительство <span style="color:#999;font-size:12px;margin-left:auto">июнь</span></div>
+          <div class="legend-row"><span class="dot evergreen"></span> без привязки к спринту</div>
+        </div>
+        <div class="legend-block">
+          <h4>форматы</h4>
+          <div class="legend-row"><span class="ev-label kostёr">костёр</span> круг, шеринг, без советов</div>
+          <div class="legend-row"><span class="ev-label protag">протагонист</span> человек, прошедший путь, рассказывает как</div>
+          <div class="legend-row"><span class="ev-label unblock">unblocking</span> 1 час, ловишь свой unblock и уходишь</div>
+          <div class="legend-row"><span class="ev-label lab">лаба</span> отдельный продукт — фокусное погружение</div>
+          <div class="legend-row"><span class="ev-label sprint">спринт</span> старт / закрытие тематического захода</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <h2>расписание</h2>
+      <div class="section-sub">9 недель вперёд. цвет слева у недели — какому спринту она принадлежит. время каждого звонка — в чате комьюнити за день до. <strong>(tbd)</strong> = слот зарезервирован, протагонист подтверждается.</div>
+
+      <div class="calendar">
+
+        <div class="day-header-row">
+          <div class="corner"></div>
+          <div class="dh">пн</div>
+          <div class="dh">вт</div>
+          <div class="dh">ср</div>
+          <div class="dh">чт</div>
+          <div class="dh">пт</div>
+          <div class="dh weekend">сб</div>
+          <div class="dh weekend">вс</div>
+        </div>
+
+        <!-- неделя 21–27 апреля -->
+        <div class="week-row">
+          <div class="week-meta ra2">
+            <div class="dates">21 — 27 апр</div>
+            <div class="ctx"><strong>RA2</strong> · идёт</div>
+          </div>
+          <div class="day-cell"><div class="day-num" data-dow="пн">21</div></div>
+          <div class="day-cell"><div class="day-num" data-dow="вт">22</div></div>
+          <div class="day-cell"><div class="day-num" data-dow="ср">23</div></div>
+          <div class="day-cell"><div class="day-num" data-dow="чт">24</div></div>
+          <div class="day-cell">
+            <div class="day-num" data-dow="пт">25</div>
+            <span class="pill kostёr"><span class="pt">костёр</span>мужской круг · application</span>
+          </div>
+          <div class="day-cell weekend"><div class="day-num" data-dow="сб">26</div></div>
+          <div class="day-cell weekend"><div class="day-num" data-dow="вс">27</div></div>
+        </div>
+        <div class="week-span"><div class="span-bar ra2-bar">RA2 · 10 дней джорналинга — протагонист Макс Янукович</div></div>
+
+        <!-- неделя 28.04–04.05 -->
+        <div class="week-row">
+          <div class="week-meta ra2">
+            <div class="dates">28 апр — 4 мая</div>
+            <div class="ctx"><strong>RA2 финиш</strong> · переход</div>
+          </div>
+          <div class="day-cell"><div class="day-num" data-dow="пн">28</div></div>
+          <div class="day-cell"><div class="day-num" data-dow="вт">29</div></div>
+          <div class="day-cell"><div class="day-num" data-dow="ср">30</div></div>
+          <div class="day-cell">
+            <div class="day-num" data-dow="чт">01.05</div>
+            <span class="pill kostёr"><span class="pt">костёр</span>ретро Health OS</span>
+          </div>
+          <div class="day-cell">
+            <div class="day-num" data-dow="пт">02</div>
+            <span class="pill sprint"><span class="pt">спринт</span>закрытие RA2</span>
+          </div>
+          <div class="day-cell weekend"><div class="day-num" data-dow="сб">03</div></div>
+          <div class="day-cell weekend"><div class="day-num" data-dow="вс">04</div></div>
+        </div>
+
+        <!-- неделя 05.05–11.05 — Creative OS week 1 -->
+        <div class="week-row">
+          <div class="week-meta creative">
+            <div class="dates">5 — 11 мая</div>
+            <div class="ctx"><strong>creative os</strong> · w1 — оптика</div>
+          </div>
+          <div class="day-cell">
+            <div class="day-num" data-dow="пн">05</div>
+            <span class="pill sprint"><span class="pt">спринт</span>открытие creative os</span>
+          </div>
+          <div class="day-cell">
+            <div class="day-num" data-dow="вт">06</div>
+            <span class="pill protag"><span class="pt">протагонист</span>Вадим</span>
+          </div>
+          <div class="day-cell"><div class="day-num" data-dow="ср">07</div></div>
+          <div class="day-cell">
+            <div class="day-num" data-dow="чт">08</div>
+            <span class="pill unblock"><span class="pt">unblocking</span>с Леной</span>
+          </div>
+          <div class="day-cell">
+            <div class="day-num" data-dow="пт">09</div>
+            <span class="pill kostёr"><span class="pt">костёр</span>разрешить играть</span>
+          </div>
+          <div class="day-cell weekend"><div class="day-num" data-dow="сб">10</div></div>
+          <div class="day-cell weekend"><div class="day-num" data-dow="вс">11</div></div>
+        </div>
+
+        <!-- неделя 12.05–18.05 — Creative OS week 2 -->
+        <div class="week-row">
+          <div class="week-meta creative">
+            <div class="dates">12 — 18 мая</div>
+            <div class="ctx"><strong>creative os</strong> · w2 — вкус</div>
+          </div>
+          <div class="day-cell"><div class="day-num" data-dow="пн">12</div></div>
+          <div class="day-cell">
+            <div class="day-num" data-dow="вт">13</div>
+            <span class="pill protag"><span class="pt">протагонист</span>(tbd)</span>
+          </div>
+          <div class="day-cell"><div class="day-num" data-dow="ср">14</div></div>
+          <div class="day-cell"><div class="day-num" data-dow="чт">15</div></div>
+          <div class="day-cell">
+            <div class="day-num" data-dow="пт">16</div>
+            <span class="pill kostёr"><span class="pt">костёр</span>это моё / это не моё</span>
+          </div>
+          <div class="day-cell weekend"><div class="day-num" data-dow="сб">17</div></div>
+          <div class="day-cell weekend"><div class="day-num" data-dow="вс">18</div></div>
+        </div>
+
+        <!-- неделя 19.05–25.05 — Creative OS week 3 + Lab старт -->
+        <div class="week-row">
+          <div class="week-meta creative">
+            <div class="dates">19 — 25 мая</div>
+            <div class="ctx"><strong>creative os</strong> · w3 + старт лабы</div>
+          </div>
+          <div class="day-cell">
+            <div class="day-num" data-dow="пн">19</div>
+            <a href="health-lab.html" class="pill lab"><span class="pt">лаба</span>health lab #2 — открытие</a>
+          </div>
+          <div class="day-cell">
+            <div class="day-num" data-dow="вт">20</div>
+            <span class="pill protag"><span class="pt">протагонист</span>(tbd)</span>
+          </div>
+          <div class="day-cell"><div class="day-num" data-dow="ср">21</div></div>
+          <div class="day-cell"><div class="day-num" data-dow="чт">22</div></div>
+          <div class="day-cell">
+            <div class="day-num" data-dow="пт">23</div>
+            <span class="pill kostёr"><span class="pt">костёр</span>моя версия</span>
+          </div>
+          <div class="day-cell weekend"><div class="day-num" data-dow="сб">24</div></div>
+          <div class="day-cell weekend"><div class="day-num" data-dow="вс">25</div></div>
+        </div>
+        <div class="week-span"><div class="span-bar lab">health lab #2 идёт · 2 недели · отдельный продукт</div></div>
+
+        <!-- неделя 26.05–01.06 — Creative OS week 4 + Lab week 2 -->
+        <div class="week-row">
+          <div class="week-meta creative">
+            <div class="dates">26 мая — 1 июня</div>
+            <div class="ctx"><strong>creative os</strong> · финиш + лаба</div>
+          </div>
+          <div class="day-cell"><div class="day-num" data-dow="пн">26</div></div>
+          <div class="day-cell">
+            <div class="day-num" data-dow="вт">27</div>
+            <span class="pill protag"><span class="pt">протагонист</span>(tbd)</span>
+          </div>
+          <div class="day-cell"><div class="day-num" data-dow="ср">28</div></div>
+          <div class="day-cell">
+            <div class="day-num" data-dow="чт">29</div>
+            <span class="pill unblock"><span class="pt">unblocking</span>с Леной</span>
+          </div>
+          <div class="day-cell">
+            <div class="day-num" data-dow="пт">30</div>
+            <span class="pill kostёr"><span class="pt">костёр</span>что унёс</span>
+          </div>
+          <div class="day-cell weekend"><div class="day-num" data-dow="сб">31</div></div>
+          <div class="day-cell weekend">
+            <div class="day-num" data-dow="вс">01.06</div>
+            <a href="health-lab.html" class="pill lab"><span class="pt">лаба</span>закрытие · костёр</a>
+          </div>
+        </div>
+
+        <!-- неделя 02.06–08.06 — переход -->
+        <div class="week-row">
+          <div class="week-meta evergreen">
+            <div class="dates">2 — 8 июня</div>
+            <div class="ctx">переход → родительство</div>
+          </div>
+          <div class="day-cell"><div class="day-num" data-dow="пн">02</div></div>
+          <div class="day-cell"><div class="day-num" data-dow="вт">03</div></div>
+          <div class="day-cell"><div class="day-num" data-dow="ср">04</div></div>
+          <div class="day-cell"><div class="day-num" data-dow="чт">05</div></div>
+          <div class="day-cell">
+            <div class="day-num" data-dow="пт">06</div>
+            <span class="pill kostёr"><span class="pt">костёр</span>родители знакомятся</span>
+          </div>
+          <div class="day-cell weekend"><div class="day-num" data-dow="сб">07</div></div>
+          <div class="day-cell weekend"><div class="day-num" data-dow="вс">08</div></div>
+        </div>
+
+        <!-- неделя 09.06–15.06 — Родительство week 1 -->
+        <div class="week-row">
+          <div class="week-meta parents">
+            <div class="dates">9 — 15 июня</div>
+            <div class="ctx"><strong>родительство</strong> · w1</div>
+          </div>
+          <div class="day-cell">
+            <div class="day-num" data-dow="пн">09</div>
+            <span class="pill sprint"><span class="pt">спринт</span>открытие</span>
+          </div>
+          <div class="day-cell">
+            <div class="day-num" data-dow="вт">10</div>
+            <span class="pill protag"><span class="pt">протагонист</span>(tbd) родитель</span>
+          </div>
+          <div class="day-cell"><div class="day-num" data-dow="ср">11</div></div>
+          <div class="day-cell">
+            <div class="day-num" data-dow="чт">12</div>
+            <span class="pill unblock"><span class="pt">unblocking</span>с Леной</span>
+          </div>
+          <div class="day-cell">
+            <div class="day-num" data-dow="пт">13</div>
+            <span class="pill kostёr"><span class="pt">костёр</span>страх и спокойствие</span>
+          </div>
+          <div class="day-cell weekend"><div class="day-num" data-dow="сб">14</div></div>
+          <div class="day-cell weekend"><div class="day-num" data-dow="вс">15</div></div>
+        </div>
+
+        <!-- неделя 16.06–22.06 — Родительство week 2 -->
+        <div class="week-row">
+          <div class="week-meta parents">
+            <div class="dates">16 — 22 июня</div>
+            <div class="ctx"><strong>родительство</strong> · w2</div>
+          </div>
+          <div class="day-cell"><div class="day-num" data-dow="пн">16</div></div>
+          <div class="day-cell">
+            <div class="day-num" data-dow="вт">17</div>
+            <span class="pill protag"><span class="pt">протагонист</span>(tbd)</span>
+          </div>
+          <div class="day-cell"><div class="day-num" data-dow="ср">18</div></div>
+          <div class="day-cell"><div class="day-num" data-dow="чт">19</div></div>
+          <div class="day-cell">
+            <div class="day-num" data-dow="пт">20</div>
+            <span class="pill kostёr"><span class="pt">костёр</span>что забирает ребёнок</span>
+          </div>
+          <div class="day-cell weekend"><div class="day-num" data-dow="сб">21</div></div>
+          <div class="day-cell weekend"><div class="day-num" data-dow="вс">22</div></div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="cta-block">
+        <h3>зайти в комьюнити</h3>
+        <p>если что-то отозвалось — приходи. подписка даёт доступ ко всем форматам выше, чату комьюнити и библиотеке прошлых спринтов. churn честный — половина пробует и уходит, потому что не подошло. это нормально.</p>
+        <div class="cta-actions">
+          <a class="primary" href="https://t.me/brainloverobotsbot" target="_blank">написать боту →</a>
+          <a class="secondary" href="https://t.me/brainloveandrobots" target="_blank">канал в telegram</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container footer-inner">
+      <div>brain love &amp; robots © 2026</div>
+      <div class="footer-links">
+        <a href="index.html">главная</a>
+        <a href="kb.html">база знаний</a>
+        <a href="community.html">комьюнити</a>
+      </div>
+      <div><a href="https://t.me/brainloveandrobots" target="_blank">→ telegram</a></div>
+    </div>
+  </footer>
+<script src="ticker.js"></script>
+</body>
+</html>

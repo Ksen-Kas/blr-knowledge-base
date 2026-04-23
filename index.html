@@ -48,18 +48,75 @@
   .hero-actions { display: flex; gap: 12px; margin-top: 20px; flex-wrap: wrap; }
   .hero-meta { margin-top: 18px; font-size: 12px; color: #999999; }
 
-  /* для кого */
-  .for-whom { padding: 40px 0; background: #f7f7f7; border-top: 1px solid #e8e8e8; border-bottom: 1px solid #e8e8e8; }
-  .for-whom h2 { font-size: 15px; font-weight: 800; color: #999999; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 20px; }
-  .fwi-grid { display: grid; grid-template-columns: repeat(2,1fr); gap: 12px; }
-  .fwi {
-    display: flex; gap: 14px; align-items: flex-start;
-    background: #ffffff; border: 1px solid #e8e8e8;
-    border-radius: 12px; padding: 16px 18px;
+  /* протагонисты */
+  .protagonists { padding: 48px 0; background: #f7f7f7; border-top: 1px solid #e8e8e8; border-bottom: 1px solid #e8e8e8; }
+  .protag-head { display: flex; align-items: baseline; justify-content: space-between; margin-bottom: 6px; flex-wrap: wrap; gap: 8px; }
+  .protag-head h2 { font-size: 15px; font-weight: 800; color: #999999; text-transform: uppercase; letter-spacing: 0.5px; }
+  .protag-head .meta { font-size: 12px; color: #999; }
+  .protag-sub { font-size: 13px; color: #555; max-width: 640px; line-height: 1.5; margin-bottom: 24px; }
+
+  .protag-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 14px; }
+  .protag-card {
+    display: flex; flex-direction: column;
+    background: #fff; border: 1px solid #e8e8e8;
+    border-radius: 14px; padding: 18px;
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
   }
-  .fwi-dot { flex-shrink: 0; width: 8px; height: 8px; border-radius: 50%; background: #ffdd00; margin-top: 6px; }
-  .fwi-text { font-size: 14px; color: #333333; line-height: 1.5; }
-  .fwi-text strong { color: #0d0d0d; display: block; margin-bottom: 2px; }
+  .protag-card:hover { transform: translateY(-2px); box-shadow: 0 8px 20px rgba(0,0,0,0.06); }
+  .protag-top { display: flex; align-items: center; gap: 12px; margin-bottom: 12px; }
+  .avatar {
+    width: 44px; height: 44px; border-radius: 50%;
+    background: #e8e8e8; color: #0d0d0d;
+    display: grid; place-items: center;
+    font-size: 14px; font-weight: 700;
+    flex-shrink: 0;
+  }
+  .avatar.a1 { background: #ffdd00; }
+  .avatar.a2 { background: #f3eeff; }
+  .avatar.a3 { background: #ffeaea; }
+  .avatar.a4 { background: #e6f7ee; }
+  .avatar.a5 { background: #fff5e6; }
+  .avatar.a6 { background: #e8e8e8; }
+  .protag-name { font-size: 14px; font-weight: 700; color: #0d0d0d; line-height: 1.2; }
+  .protag-role { font-size: 12px; color: #999; margin-top: 2px; line-height: 1.3; }
+  .protag-quote { font-size: 13px; color: #555; line-height: 1.5; margin-bottom: 14px; flex: 1; }
+  .protag-cta {
+    display: inline-flex; align-items: center; gap: 6px;
+    font-size: 12px; font-weight: 600; color: #0d0d0d;
+    text-decoration: none; padding: 8px 12px;
+    border: 1px solid #0d0d0d; border-radius: 8px;
+    background: transparent; transition: background 0.15s, color 0.15s;
+    align-self: flex-start;
+  }
+  .protag-cta:hover { background: #0d0d0d; color: #ffdd00; }
+
+  .founders-talk {
+    margin-top: 14px;
+    background: #0d0d0d; color: #fff;
+    border-radius: 14px; padding: 22px 24px;
+    display: grid; grid-template-columns: 1fr auto; gap: 16px; align-items: center;
+  }
+  .ft-text strong { display: block; font-size: 11px; color: #ffdd00; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 4px; }
+  .ft-text .ft-title { font-size: 16px; font-weight: 700; line-height: 1.3; margin-bottom: 4px; }
+  .ft-text .ft-quote { font-size: 13px; color: #aaa; line-height: 1.5; }
+  .founders-talk a {
+    background: #ffdd00; color: #0d0d0d; padding: 10px 16px;
+    border-radius: 8px; font-size: 13px; font-weight: 600;
+    text-decoration: none; white-space: nowrap;
+  }
+
+  .protag-bottom-cta {
+    margin-top: 18px;
+    background: #ffdd00; border-radius: 14px; padding: 22px 24px;
+    display: grid; grid-template-columns: 1fr auto; gap: 16px; align-items: center;
+  }
+  .pbc-text strong { display: block; font-size: 16px; font-weight: 700; color: #0d0d0d; margin-bottom: 4px; }
+  .pbc-text span { font-size: 13px; color: #0d0d0d; line-height: 1.5; opacity: 0.85; }
+  .protag-bottom-cta a {
+    background: #0d0d0d; color: #fff; padding: 12px 18px;
+    border-radius: 8px; font-size: 13px; font-weight: 600;
+    text-decoration: none; white-space: nowrap;
+  }
 
   .section { padding: 48px 0 24px; }
   .section h2 { font-size: 18px; font-weight: 800; margin-bottom: 12px; }
@@ -140,7 +197,8 @@
     .nav-links { flex-wrap: wrap; gap: 12px; }
     .hero h1 { font-size: 28px; }
     .hero-actions { flex-direction: column; align-items: flex-start; }
-    .grid-3x2, .grid-2, .pillars, .fwi-grid { grid-template-columns: 1fr; }
+    .grid-3x2, .grid-2, .pillars, .protag-grid { grid-template-columns: 1fr; }
+    .founders-talk, .protag-bottom-cta { grid-template-columns: 1fr; gap: 12px; }
     .footer-inner { flex-direction: column; align-items: flex-start; }
   }
 </style>
@@ -170,25 +228,106 @@
     </div>
   </header>
 
-  <!-- ДЛЯ КОГО -->
-  <section id="for-whom" class="for-whom">
+  <!-- ПРОТАГОНИСТЫ -->
+  <section id="protagonists" class="protagonists">
     <div class="container">
-      <h2>ты здесь если...</h2>
-      <div class="fwi-grid">
-        <div class="fwi">
-          <div class="fwi-dot"></div>
-          <div class="fwi-text">
-            <strong>«не могу начать, хотя очень хочу»</strong>
-            пробовал, что-то получилось, но непонятно как сделать так чтобы это работало в твоей жизни
+      <div class="protag-head">
+        <h2>протагонисты</h2>
+        <div class="meta">записи звонков · youtube</div>
+      </div>
+      <div class="protag-sub">люди из комьюнити, прошедшие свой путь с AI, рассказывают как. все артефакты — сетапы, промпты, транскрипты — доступны внутри.</div>
+
+      <div class="protag-grid">
+
+        <article class="protag-card">
+          <div class="protag-top">
+            <div class="avatar a4">ВК</div>
+            <div>
+              <div class="protag-name">Влад Куклев</div>
+              <div class="protag-role">AI-тренер в Telegram</div>
+            </div>
           </div>
-        </div>
-        <div class="fwi">
-          <div class="fwi-dot"></div>
-          <div class="fwi-text">
-            <strong>«хочу там где это нормально»</strong>
-            устал объяснять окружению зачем тебе это. хочется среду где люди думают похоже
+          <div class="protag-quote">«5 недель. 5–6 тренировок в неделю. без волевых усилий.» — агент сам пишет, помнит историю, не даёт сорваться.</div>
+          <a class="protag-cta" href="https://youtube.com/watch?v=calHnWdfPjs" target="_blank">смотреть запись →</a>
+        </article>
+
+        <article class="protag-card">
+          <div class="protag-top">
+            <div class="avatar a2">ТЖ</div>
+            <div>
+              <div class="protag-name">Тоня Жукова</div>
+              <div class="protag-role">18 агентов, Lp(a)</div>
+            </div>
           </div>
+          <div class="protag-quote">система нашла связь между витамином D, железом и генетическим Lp(a), которую 7 лет не видели врачи.</div>
+          <a class="protag-cta" href="https://youtu.be/jb2vEdBIGks" target="_blank">смотреть запись →</a>
+        </article>
+
+        <article class="protag-card">
+          <div class="protag-top">
+            <div class="avatar a3">МК</div>
+            <div>
+              <div class="protag-name">Маша Куликовская</div>
+              <div class="protag-role">swarm-клиника для мамы</div>
+            </div>
+          </div>
+          <div class="protag-quote">персональная клиника для мамы: дашборд, таблицы рисков, полярные мнения AI-врачей на одном экране.</div>
+          <a class="protag-cta" href="https://youtu.be/jb2vEdBIGks" target="_blank">смотреть запись →</a>
+        </article>
+
+        <article class="protag-card">
+          <div class="protag-top">
+            <div class="avatar a1">КК</div>
+            <div>
+              <div class="protag-name">Катя Кирилова</div>
+              <div class="protag-role">8 агентов · Oura + WHOOP</div>
+            </div>
+          </div>
+          <div class="protag-quote">команда из 8 AI-коучей + Garmin Watch: longevity, спорт, красота, питание — тренировка каждое утро автоматически.</div>
+          <a class="protag-cta" href="https://youtu.be/lnFgG0-zpp8" target="_blank">смотреть запись →</a>
+        </article>
+
+        <article class="protag-card">
+          <div class="protag-top">
+            <div class="avatar a5">ЛЕ</div>
+            <div>
+              <div class="protag-name">Лёша Евдокимов</div>
+              <div class="protag-role">CGM · 16 дней</div>
+            </div>
+          </div>
+          <div class="protag-quote">не цифра «6.2», а картинка: как блюдо повлияло, как прогулка сбила пик. живой эндокринолог удивился заключению.</div>
+          <a class="protag-cta" href="https://youtube.com/watch?v=tR3S7c-pU9c" target="_blank">смотреть запись →</a>
+        </article>
+
+        <article class="protag-card">
+          <div class="protag-top">
+            <div class="avatar a6">МЯ</div>
+            <div>
+              <div class="protag-name">Мика Ян</div>
+              <div class="protag-role">sleep coach · founder ManyChat</div>
+            </div>
+          </div>
+          <div class="protag-quote">один рычаг вместо десяти. если не лёг спать — агент пишет, игноришь → фоллоап → звонок на телефон. работает.</div>
+          <a class="protag-cta" href="https://youtube.com/watch?v=eHM8go3DWFA" target="_blank">смотреть запись →</a>
+        </article>
+
+      </div>
+
+      <div class="founders-talk">
+        <div class="ft-text">
+          <strong>разговор основателей</strong>
+          <div class="ft-title">Дима Мацкевич × Лёша Хахунов — вайбкодинг мёртв</div>
+          <div class="ft-quote">«кодинг-агенты — это офигенная возможность делать гиперперсонализированные вещи»</div>
         </div>
+        <a href="https://youtube.com/watch?v=J9cvaJ5enIw" target="_blank">смотреть →</a>
+      </div>
+
+      <div class="protag-bottom-cta">
+        <div class="pbc-text">
+          <strong>в комьюнити — все артефакты</strong>
+          <span>сетапы, промпты, транскрипты, код. не просто посмотреть — раскатить у себя такое же.</span>
+        </div>
+        <a href="https://t.me/brainloverobotsbot" target="_blank">зайти в комьюнити →</a>
       </div>
     </div>
   </section>
@@ -334,5 +473,6 @@
       <div class="footer-right"><a href="https://t.me/brainloveandrobots" target="_blank">→ telegram</a></div>
     </div>
   </footer>
+<script src="ticker.js"></script>
 </body>
 </html>
