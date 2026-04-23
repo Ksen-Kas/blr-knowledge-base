@@ -134,6 +134,36 @@
   .section h2 { font-size: 18px; font-weight: 800; margin-bottom: 12px; }
   .section-sub { font-size: 13px; color: #999999; margin-bottom: 18px; }
 
+  /* форматы */
+  .formats-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
+  .format-card {
+    background: #ffffff;
+    border: 1px solid #e8e8e8;
+    border-left: 4px solid #ccc;
+    border-radius: 12px;
+    padding: 18px 20px;
+    display: flex; flex-direction: column; gap: 6px;
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+  }
+  .format-card:hover { transform: translateY(-2px); box-shadow: 0 8px 20px rgba(0,0,0,0.06); }
+  .format-card.kostёr { border-left-color: #ffb84d; }
+  .format-card.protag { border-left-color: #a78bfa; }
+  .format-card.unblock { border-left-color: #34d399; }
+  .format-card.align { border-left-color: #2563eb; }
+  .format-card.meta { border-left-color: #0d0d0d; }
+  .format-head { display: flex; align-items: baseline; justify-content: space-between; gap: 10px; }
+  .format-name { font-size: 16px; font-weight: 800; color: #0d0d0d; text-transform: lowercase; letter-spacing: -0.2px; }
+  .format-freq {
+    font-size: 10px; font-weight: 700; color: #999;
+    text-transform: uppercase; letter-spacing: 0.4px;
+    padding: 3px 8px; border-radius: 999px;
+    background: #f7f7f7; border: 1px solid #e8e8e8;
+    white-space: nowrap;
+  }
+  .format-text { font-size: 13px; color: #555; line-height: 1.5; }
+  .format-meta { font-size: 11px; color: #999; margin-top: 2px; }
+  .format-meta strong { color: #555; font-weight: 600; }
+
   .grid-3x2 {
     display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px;
   }
@@ -209,7 +239,7 @@
     .nav-links { flex-wrap: wrap; gap: 12px; }
     .hero h1 { font-size: 28px; }
     .hero-actions { flex-direction: column; align-items: flex-start; }
-    .grid-3x2, .grid-2, .pillars, .protag-grid { grid-template-columns: 1fr; }
+    .grid-3x2, .grid-2, .pillars, .protag-grid, .formats-grid { grid-template-columns: 1fr; }
     .founders-talk { grid-template-columns: 1fr; gap: 12px; padding: 18px; }
     .founders-talk .ft-thumb { width: 100%; height: 180px; }
     .protag-bottom-cta { grid-template-columns: 1fr; gap: 12px; }
@@ -347,51 +377,109 @@
     </div>
   </section>
 
+  <section id="formats" class="section">
+    <div class="container">
+      <h2>форматы</h2>
+      <div class="section-sub">регулярка, на которой держится комьюнити между спринтами. приходишь на то, что отзывается — не обязан на всё</div>
+      <div class="formats-grid">
+
+        <article class="format-card kostёr">
+          <div class="format-head">
+            <div class="format-name">костёр</div>
+            <div class="format-freq">пт · еженед.</div>
+          </div>
+          <div class="format-text">круг, шеринг без непрошеных советов. всё что родилось — в общее пространство. social glue, не контент.</div>
+        </article>
+
+        <article class="format-card protag">
+          <div class="format-head">
+            <div class="format-name">протагонист</div>
+            <div class="format-freq">1–2 в неделю</div>
+          </div>
+          <div class="format-text">человек из комьюнити, прошедший свой путь с AI, рассказывает как. не теория — конкретика: что сделал, что не получилось, где застрял.</div>
+        </article>
+
+        <article class="format-card unblock">
+          <div class="format-head">
+            <div class="format-name">unblocking</div>
+            <div class="format-freq">1 раз в месяц</div>
+          </div>
+          <div class="format-text">час на один твой затык. приходишь со своим зависанием — уходишь с движением. фасилитатор ведёт, ты работаешь.</div>
+        </article>
+
+        <article class="format-card align">
+          <div class="format-head">
+            <div class="format-name">alignment</div>
+            <div class="format-freq">раз в 3 мес</div>
+          </div>
+          <div class="format-text">кто я сейчас, куда двигаюсь, что приоритет, что отвлечение. артефакт-контракт + AI коуч. якорный формат, к которому возвращаешься.</div>
+        </article>
+
+        <article class="format-card meta">
+          <div class="format-head">
+            <div class="format-name">метанавыки</div>
+            <div class="format-freq">постоянно фоном</div>
+          </div>
+          <div class="format-text">философия использования AI — что остаётся когда инструменты сменятся. «расширяй до сужения», антипаттерны, ритуалы.</div>
+        </article>
+
+        <article class="format-card" style="border-left-color: #ffdd00; background: #fffef5;">
+          <div class="format-head">
+            <div class="format-name">спринты</div>
+            <div class="format-freq">4–6 недель</div>
+          </div>
+          <div class="format-text">раз в 1–2 месяца комьюнити берёт тему и идёт в неё вместе. сейчас — <a href="community.html" style="color:#0d0d0d;border-bottom:1px solid #ffdd00">creative os → родительство →  alignment</a></div>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
   <section id="cases" class="section">
     <div class="container">
-      <h2>кейсы участников</h2>
-      <div class="section-sub">реальные люди, реальные задачи, реальные результаты. каждый кейс — путь от проблемы к работающему решению</div>
+      <h2>что делают внутри</h2>
+      <div class="section-sub">живые кейсы участников. без имён — приватный чат остаётся приватным. то, что там родилось, участники сами выносят наружу когда готовы</div>
       <div class="grid-3x2">
         <article class="card">
           <div class="tag health">здоровье</div>
-          <div class="story-title">Маша Куликовская · врач</div>
-          <div class="story-text"><strong>ситуация:</strong> анализы разбросаны по клиникам разных стран, врачи не видят полную картину<br><strong>AI:</strong> команда агентов-врачей с полярными позициями — консервативный vs прогрессивный<br><strong>результат:</strong> полная медицинская история в одном месте. маме нашла альтернативу статинам</div>
-          <div class="story-result">смысл: LLM — отражение твоего мышления. важно добавлять полярные позиции намеренно</div>
+          <div class="story-title">медицинская ОС для себя и мамы</div>
+          <div class="story-text"><strong>ситуация:</strong> анамнез + генетика + лабы + заключения — везде по отдельности, собрать невозможно<br><strong>AI:</strong> Claude + GitHub, консилиум врача и нутрициолога, все данные в одной среде<br><strong>результат:</strong> дашборд с рисками, упакован в open-source — кто хочет, раскатывает у себя</div>
+          <div class="story-result">смысл: можно не ждать системы здравоохранения — собрать свою</div>
         </article>
 
         <article class="card">
           <div class="tag health">здоровье</div>
-          <div class="story-title">Тоня Жукова · предприниматель</div>
-          <div class="story-text"><strong>ситуация:</strong> 7 лет повышенного холестерина, ни один врач не спросил про Lp(a)<br><strong>AI:</strong> Automoy — 18 агентов (скауты, критики, статистики, фактчекеры)<br><strong>результат:</strong> нашёлся Lp(a) как причина. Portfolio diet → анализы улучшились</div>
-          <div class="story-result">смысл: система ищет не ответы на вопрос — она ищет interconnections с учётом контекста</div>
-        </article>
-
-        <article class="card">
-          <div class="tag health">здоровье</div>
-          <div class="story-title">Влад Куклев</div>
-          <div class="story-text"><strong>ситуация:</strong> 8 лет попыток выстроить систему здоровья, программы рассыпались при первом пропуске<br><strong>AI:</strong> AI-тренер в Telegram — Gemini Studio + Claude Code + Whoop API<br><strong>результат:</strong> 5 недель подряд 5–6 тренировок без пропусков и волевых усилий</div>
-          <div class="story-result">смысл: агент знает твою историю, пишет сам когда нужно. это не чат — это кто-то кто помнит всё</div>
-        </article>
-
-        <article class="card">
-          <div class="tag health">здоровье</div>
-          <div class="story-title">Катя Кирилова · CEO</div>
-          <div class="story-text"><strong>ситуация:</strong> здоровье как проект — нужен не один эксперт, а команда<br><strong>AI:</strong> 8 агентов-коучей: longevity, спорт, красота, питание + Garmin API<br><strong>результат:</strong> персональная команда экспертов 24/7, автоматизированные тренировки</div>
-          <div class="story-result">смысл: AI позволяет собрать команду под себя — без найма и ожидания</div>
-        </article>
-
-        <article class="card">
-          <div class="tag health">здоровье</div>
-          <div class="story-title">Лёша Евдокимов</div>
-          <div class="story-text"><strong>ситуация:</strong> хотел понять свой метаболизм — не абстрактно, а на реальных данных<br><strong>AI:</strong> CGM 16 дней + Claude Code, данные каждые 5 минут, жена — контрольная группа<br><strong>результат:</strong> визуализация метаболизма которую не даёт ни одна клиника</div>
-          <div class="story-result">смысл: AI снижает барьер между «хочу понять» и реальным инструментом исследования</div>
+          <div class="story-title">интеграция сенсоров и генетики</div>
+          <div class="story-text"><strong>ситуация:</strong> Oura + CGM + 23andMe лежат по отдельности, никто не видит картину целиком<br><strong>AI:</strong> Claude + Codex, morning summary в telegram-бот, данные по еде и активности<br><strong>результат:</strong> нашёлся lactose intolerance со ссылками на статьи — GPT до этого говорил обратное</div>
+          <div class="story-result">смысл: AI не просто читает данные — ищет противоречия и сверяется сам</div>
         </article>
 
         <article class="card">
           <div class="tag self">саморазвитие</div>
-          <div class="story-title">Макс Янукович · философ техники</div>
-          <div class="story-text"><strong>ситуация:</strong> вопрос не «как использовать AI», а «как оставаться собой рядом с AI»<br><strong>AI:</strong> Claude как собеседник, не инструмент. диалог как метод исследования<br><strong>результат:</strong> язык для разговора о субъектности и AI — без тревоги и хайпа</div>
-          <div class="story-result">смысл: AI как зеркало для мышления, а не инструмент автоматизации</div>
+          <div class="story-title">коуч-промпт для внутренней работы</div>
+          <div class="story-text"><strong>ситуация:</strong> сложный момент 2-летней давности, до сих пор триггерит, тело держит<br><strong>AI:</strong> коуч-промпт в Claude — выгрузил ситуацию, мысли, чувства<br><strong>результат:</strong> «в моменте стало легко» — появилось взрослое место, не вина. пошла настоящая работа</div>
+          <div class="story-result">смысл: AI как отражение, которое подсвечивает то что сам не видишь</div>
+        </article>
+
+        <article class="card">
+          <div class="tag self">саморазвитие</div>
+          <div class="story-title">личный коуч на ценностях и паттернах</div>
+          <div class="story-text"><strong>ситуация:</strong> 20+ недель записей, видны паттерны саботажа, нужна система сверки с собой<br><strong>AI:</strong> кастомный коуч-промпт — встроены ценности, IFS, схема-терапия<br><strong>результат:</strong> Claude задаёт уточняющие вопросы, берёт в джорналинг, выдаёт гипотезы на неделю</div>
+          <div class="story-result">смысл: «очень кайфую, какой приятный и любопытный может быть процесс»</div>
+        </article>
+
+        <article class="card">
+          <div class="tag work">работа</div>
+          <div class="story-title">unified os для проектов</div>
+          <div class="story-text"><strong>ситуация:</strong> операционка комьюнити + 5 личных проектов = хаос окон и вкладок<br><strong>AI:</strong> Claude OS + VSCodium — KB, задачи, терминал в одном экране. Codex берёт задачи сам<br><strong>результат:</strong> 11-часовая сессия co-thinking с моделью, оркестрация без ручного контроля</div>
+          <div class="story-result">смысл: AI — не «помощник», а соавтор, с которым вместе думаешь и строишь</div>
+        </article>
+
+        <article class="card">
+          <div class="tag work">работа</div>
+          <div class="story-title">open-source voice kit на Rust</div>
+          <div class="story-text"><strong>ситуация:</strong> нужна быстрая транскрипция локально, на маке, без облака и токенов<br><strong>AI:</strong> переписал inference с Node на Rust, интеграция через Claude Code<br><strong>результат:</strong> 18× быстрее Whisper на Apple Silicon, один бинарник 20 MB, open-source для всех</div>
+          <div class="story-result">смысл: инструмент, сделанный для себя, работает и для других — это и есть комьюнити</div>
         </article>
       </div>
     </div>
