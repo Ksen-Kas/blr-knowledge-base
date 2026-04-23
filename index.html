@@ -134,6 +134,85 @@
   .section h2 { font-size: 18px; font-weight: 800; margin-bottom: 12px; }
   .section-sub { font-size: 13px; color: #999999; margin-bottom: 18px; }
 
+  /* подписка */
+  .pricing { background: #0d0d0d; padding: 56px 0; color: #fff; }
+  .pricing-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+  .pricing-whats {
+    background: #fff; color: #0d0d0d;
+    border-radius: 18px; padding: 36px 36px 40px;
+  }
+  .pricing-whats h2 { font-size: 24px; font-weight: 800; text-transform: uppercase; letter-spacing: -0.3px; line-height: 1.1; margin-bottom: 24px; }
+  .pricing-list { list-style: none; display: grid; gap: 14px; }
+  .pricing-list li {
+    font-size: 14px; color: #333; line-height: 1.5;
+    padding-left: 22px; position: relative;
+  }
+  .pricing-list li::before {
+    content: "●"; color: #ffdd00; font-size: 14px;
+    position: absolute; left: 0; top: 2px;
+  }
+  .pricing-list li strong { color: #0d0d0d; font-weight: 700; }
+
+  .pricing-card {
+    background: #ffdd00; color: #0d0d0d;
+    border-radius: 18px; padding: 32px 36px 36px;
+    display: flex; flex-direction: column; gap: 20px;
+    position: relative;
+  }
+  .pricing-tabs {
+    display: inline-flex; align-items: center;
+    background: rgba(13,13,13,0.08); border-radius: 999px;
+    padding: 4px; gap: 2px;
+    width: fit-content;
+  }
+  .pricing-tabs input[type="radio"] { position: absolute; opacity: 0; pointer-events: none; }
+  .pricing-tabs label {
+    font-size: 13px; font-weight: 600; color: #0d0d0d;
+    padding: 8px 18px; border-radius: 999px;
+    cursor: pointer; transition: background 0.15s, color 0.15s;
+    opacity: 0.65;
+  }
+  .pricing-tabs label:hover { opacity: 1; }
+  #p1:checked ~ .pricing-tabs label[for="p1"],
+  #p3:checked ~ .pricing-tabs label[for="p3"],
+  #p6:checked ~ .pricing-tabs label[for="p6"],
+  #p12:checked ~ .pricing-tabs label[for="p12"] {
+    background: #fff; opacity: 1; box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+  }
+
+  .pricing-amount { line-height: 1; }
+  .pricing-amount .price-row { display: none; align-items: baseline; gap: 10px; flex-wrap: wrap; }
+  .pricing-amount .pm {
+    font-size: 15px; font-weight: 600; color: #0d0d0d; opacity: 0.75;
+  }
+  .pricing-amount .total {
+    font-size: 56px; font-weight: 800; letter-spacing: -1.5px;
+    display: block; margin-top: 8px;
+  }
+  .pricing-amount .unit { font-size: 14px; font-weight: 600; color: #0d0d0d; opacity: 0.6; margin-left: 6px; }
+  .pricing-amount .save {
+    display: inline-block; font-size: 11px; font-weight: 700;
+    background: #0d0d0d; color: #ffdd00;
+    padding: 4px 10px; border-radius: 999px;
+    text-transform: uppercase; letter-spacing: 0.3px;
+  }
+  #p1:checked ~ .pricing-amount .r-1,
+  #p3:checked ~ .pricing-amount .r-3,
+  #p6:checked ~ .pricing-amount .r-6,
+  #p12:checked ~ .pricing-amount .r-12 { display: flex; flex-direction: column; align-items: flex-start; }
+
+  .pricing-cta {
+    display: inline-flex; align-items: center; justify-content: center;
+    background: #0d0d0d; color: #fff;
+    padding: 16px 32px; border-radius: 999px;
+    font-size: 15px; font-weight: 600;
+    text-decoration: none;
+    transition: transform 0.15s;
+    align-self: flex-start;
+  }
+  .pricing-cta:hover { transform: translateY(-1px); }
+  .pricing-note { font-size: 12px; color: #0d0d0d; opacity: 0.6; line-height: 1.5; }
+
   /* форматы */
   .formats-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
   .format-card {
@@ -239,7 +318,12 @@
     .nav-links { flex-wrap: wrap; gap: 12px; }
     .hero h1 { font-size: 28px; }
     .hero-actions { flex-direction: column; align-items: flex-start; }
-    .grid-3x2, .grid-2, .pillars, .protag-grid, .formats-grid { grid-template-columns: 1fr; }
+    .grid-3x2, .grid-2, .pillars, .protag-grid, .formats-grid, .pricing-grid { grid-template-columns: 1fr; }
+    .pricing-whats, .pricing-card { padding: 28px 24px; }
+    .pricing-whats h2 { font-size: 20px; }
+    .pricing-amount .total { font-size: 44px; }
+    .pricing-tabs { width: 100%; justify-content: space-between; }
+    .pricing-tabs label { flex: 1; text-align: center; padding: 8px 10px; font-size: 12px; }
     .founders-talk { grid-template-columns: 1fr; gap: 12px; padding: 18px; }
     .founders-talk .ft-thumb { width: 100%; height: 180px; }
     .protag-bottom-cta { grid-template-columns: 1fr; gap: 12px; }
@@ -481,6 +565,65 @@
           <div class="story-text"><strong>ситуация:</strong> нужна быстрая транскрипция локально, на маке, без облака и токенов<br><strong>AI:</strong> переписал inference с Node на Rust, интеграция через Claude Code<br><strong>результат:</strong> 18× быстрее Whisper на Apple Silicon, один бинарник 20 MB, open-source для всех</div>
           <div class="story-result">смысл: инструмент, сделанный для себя, работает и для других — это и есть комьюнити</div>
         </article>
+      </div>
+    </div>
+  </section>
+
+  <section id="pricing" class="pricing">
+    <div class="container">
+      <div class="pricing-grid">
+        <div class="pricing-whats">
+          <h2>что входит в подписку</h2>
+          <ul class="pricing-list">
+            <li><strong>приватный чат 24/7</strong> — люди из комьюнити делятся тем, что реально делают с AI</li>
+            <li><strong>протагонист-звонки</strong> — 1–2 в неделю, с живыми людьми, прошедшими свой путь</li>
+            <li><strong>unblocking</strong> — час в месяц на твой затык, с фасилитатором</li>
+            <li><strong>костры</strong> — еженедельный круг, без непрошеных советов</li>
+            <li><strong>спринты</strong> — участие в текущей теме: creative os, родительство, alignment</li>
+            <li><strong>база знаний</strong> — архив прошлых спринтов, артефакты, промпты, транскрипты</li>
+            <li><strong>AI-сетапы</strong> — готовые шаблоны протагонистов, можно раскатить у себя</li>
+            <li><strong>starter-pack</strong> — промпты и гайды для старта с AI</li>
+          </ul>
+        </div>
+
+        <div class="pricing-card">
+          <input type="radio" name="period" id="p1">
+          <input type="radio" name="period" id="p3" checked>
+          <input type="radio" name="period" id="p6">
+          <input type="radio" name="period" id="p12">
+
+          <div class="pricing-tabs">
+            <label for="p1">1 мес</label>
+            <label for="p3">3 мес</label>
+            <label for="p6">6 мес</label>
+            <label for="p12">12 мес</label>
+          </div>
+
+          <div class="pricing-amount">
+            <div class="price-row r-1">
+              <div class="pm">$79 в месяц</div>
+              <div><span class="total">$79</span><span class="unit">/ всего</span></div>
+            </div>
+            <div class="price-row r-3">
+              <span class="save">экономия 13%</span>
+              <div class="pm">$69 в месяц</div>
+              <div><span class="total">$207</span><span class="unit">/ за 3 месяца</span></div>
+            </div>
+            <div class="price-row r-6">
+              <span class="save">экономия 25%</span>
+              <div class="pm">$59 в месяц</div>
+              <div><span class="total">$354</span><span class="unit">/ за 6 месяцев</span></div>
+            </div>
+            <div class="price-row r-12">
+              <span class="save">экономия 38%</span>
+              <div class="pm">$49 в месяц</div>
+              <div><span class="total">$588</span><span class="unit">/ за год</span></div>
+            </div>
+          </div>
+
+          <a class="pricing-cta" href="https://t.me/matskevichaibot?start=start" target="_blank">подписаться →</a>
+          <div class="pricing-note">оплата картой — российской или иностранной. подписка продлевается вручную, без авто-списания</div>
+        </div>
       </div>
     </div>
   </section>
