@@ -209,38 +209,76 @@
   .pricing-cta:hover { transform: translateY(-1px); }
   .pricing-note { font-size: 12px; color: #0d0d0d; opacity: 0.6; line-height: 1.5; }
 
-  /* форматы — стиль pricing-whats */
+  /* форматы — карусель карточек */
   .formats-section { background: #0d0d0d; padding: 56px 0; }
-  .formats-card {
-    background: #fff; color: #0d0d0d;
-    border-radius: 18px;
-    padding: 44px 48px 48px;
-    max-width: 760px; margin: 0 auto;
-  }
-  .formats-card h2 {
+  .formats-head { max-width: 960px; margin: 0 auto 28px; padding: 0 40px; }
+  .formats-head h2 {
+    color: #fff;
     font-size: 26px; font-weight: 800;
     text-transform: uppercase; letter-spacing: -0.3px;
     line-height: 1.1; margin-bottom: 10px;
   }
-  .formats-card .formats-sub { font-size: 14px; color: #777; line-height: 1.5; margin-bottom: 28px; max-width: 540px; }
-  .formats-list { list-style: none; display: grid; gap: 18px; }
-  .formats-list li {
-    font-size: 14px; color: #555; line-height: 1.55;
-    padding-left: 24px; position: relative;
-    display: flex; flex-direction: column; gap: 2px;
+  .formats-head .formats-sub { color: #aaa; font-size: 14px; line-height: 1.5; max-width: 540px; }
+
+  .formats-carousel {
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    padding: 4px 40px 16px;
+    scrollbar-width: thin;
+    scrollbar-color: #444 transparent;
   }
-  .formats-list li::before {
-    content: "●"; color: #ffdd00; font-size: 14px;
-    position: absolute; left: 0; top: 2px;
+  .formats-carousel::-webkit-scrollbar { height: 6px; }
+  .formats-carousel::-webkit-scrollbar-track { background: transparent; }
+  .formats-carousel::-webkit-scrollbar-thumb { background: #333; border-radius: 3px; }
+
+  .formats-track {
+    display: flex;
+    gap: 16px;
+    width: max-content;
   }
-  .formats-list .f-head {
-    display: flex; align-items: baseline; gap: 10px; flex-wrap: wrap;
+
+  .fcard {
+    flex: 0 0 320px;
+    min-height: 360px;
+    border-radius: 20px;
+    padding: 28px;
+    display: flex; flex-direction: column;
+    scroll-snap-align: start;
+    transition: transform 0.2s ease;
   }
-  .formats-list .f-name { color: #0d0d0d; font-weight: 700; font-size: 15px; }
-  .formats-list .f-freq {
-    font-size: 11px; color: #999; font-weight: 600;
+  .fcard:hover { transform: translateY(-3px); }
+  .fcard-top { margin-bottom: auto; }
+  .fcard-freq {
+    display: inline-block;
+    font-size: 11px; font-weight: 700;
+    text-transform: lowercase; letter-spacing: 0.2px;
+    padding: 6px 12px; border-radius: 999px;
+    background: rgba(13,13,13,0.1);
+    margin-bottom: 18px;
+  }
+  .fcard h3 {
+    font-size: 30px; font-weight: 800;
+    line-height: 1.05; letter-spacing: -0.4px;
     text-transform: lowercase;
   }
+  .fcard p {
+    font-size: 14px; line-height: 1.5;
+    margin-top: 22px;
+    opacity: 0.88;
+  }
+  .fcard a.fcard-link { color: inherit; text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 3px; }
+
+  .fc-yellow { background: #ffdd00; color: #0d0d0d; }
+  .fc-pink { background: #ffa1cc; color: #0d0d0d; }
+  .fc-purple { background: #3b197f; color: #fff; }
+  .fc-purple .fcard-freq { background: rgba(255,255,255,0.15); }
+  .fc-green { background: #7cd8a4; color: #0d0d0d; }
+  .fc-blue { background: #3a3a8c; color: #fff; }
+  .fc-blue .fcard-freq { background: rgba(255,255,255,0.15); }
+  .fc-dark { background: #1a1a1a; color: #fff; border: 1px solid #2a2a2a; }
+  .fc-dark h3 { color: #ffdd00; }
+  .fc-dark .fcard-freq { background: rgba(255,255,255,0.08); color: #aaa; }
 
   .grid-3x2 {
     display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px;
@@ -320,8 +358,11 @@
     .grid-3x2, .grid-2, .pillars, .protag-grid, .pricing-grid { grid-template-columns: 1fr; }
     .pricing-whats, .pricing-card { padding: 28px 24px; }
     .pricing-whats h2 { font-size: 20px; }
-    .formats-card { padding: 28px 24px; }
-    .formats-card h2 { font-size: 20px; }
+    .formats-head { padding: 0 20px; }
+    .formats-head h2 { font-size: 22px; }
+    .formats-carousel { padding: 4px 20px 16px; }
+    .fcard { flex: 0 0 280px; min-height: 320px; padding: 24px; }
+    .fcard h3 { font-size: 26px; }
     .pricing-amount .total { font-size: 44px; }
     .pricing-tabs { width: 100%; justify-content: space-between; }
     .pricing-tabs label { flex: 1; text-align: center; padding: 8px 10px; font-size: 12px; }
@@ -463,36 +504,61 @@
   </section>
 
   <section id="formats" class="formats-section">
-    <div class="container">
-      <div class="formats-card">
-        <h2>форматы внутри комьюнити</h2>
-        <div class="formats-sub">регулярка, на которой держится комьюнити между спринтами. приходишь на то, что отзывается — не обязан на всё</div>
-        <ul class="formats-list">
-          <li>
-            <div class="f-head"><span class="f-name">костёр</span><span class="f-freq">пятница · еженедельно</span></div>
-            круг, шеринг без непрошеных советов. всё что родилось — в общее пространство. social glue, не контент
-          </li>
-          <li>
-            <div class="f-head"><span class="f-name">протагонист</span><span class="f-freq">1–2 в неделю</span></div>
-            человек из комьюнити, прошедший свой путь с AI, рассказывает как. не теория — конкретика: что сделал, что не получилось, где застрял
-          </li>
-          <li>
-            <div class="f-head"><span class="f-name">unblocking</span><span class="f-freq">раз в месяц</span></div>
-            час на один твой затык. приходишь со своим зависанием — уходишь с движением. фасилитатор ведёт, ты работаешь
-          </li>
-          <li>
-            <div class="f-head"><span class="f-name">alignment</span><span class="f-freq">раз в 3 месяца</span></div>
-            кто я сейчас, куда двигаюсь, что приоритет, что отвлечение. артефакт-контракт + AI коуч. якорный формат, к которому возвращаешься
-          </li>
-          <li>
-            <div class="f-head"><span class="f-name">метанавыки</span><span class="f-freq">постоянно фоном</span></div>
-            философия использования AI — что остаётся когда инструменты сменятся. «расширяй до сужения», антипаттерны, ритуалы
-          </li>
-          <li>
-            <div class="f-head"><span class="f-name">спринты</span><span class="f-freq">4–6 недель</span></div>
-            раз в 1–2 месяца комьюнити берёт тему и идёт в неё вместе. сейчас — <a href="community.html" style="color:#0d0d0d;border-bottom:1px solid #ffdd00">creative os → родительство → alignment</a>
-          </li>
-        </ul>
+    <div class="formats-head">
+      <h2>форматы внутри комьюнити</h2>
+      <div class="formats-sub">регулярка, на которой держится комьюнити между спринтами. приходишь на то, что отзывается — не обязан на всё</div>
+    </div>
+    <div class="formats-carousel">
+      <div class="formats-track">
+
+        <article class="fcard fc-yellow">
+          <div class="fcard-top">
+            <span class="fcard-freq">пятница · еженедельно</span>
+            <h3>костёр</h3>
+          </div>
+          <p>круг, шеринг без непрошеных советов. всё что родилось — в общее пространство. social glue, не контент</p>
+        </article>
+
+        <article class="fcard fc-pink">
+          <div class="fcard-top">
+            <span class="fcard-freq">1–2 в неделю</span>
+            <h3>протагонист</h3>
+          </div>
+          <p>человек из комьюнити, прошедший свой путь с AI, рассказывает как. не теория — конкретика: что сделал, что не получилось, где застрял</p>
+        </article>
+
+        <article class="fcard fc-purple">
+          <div class="fcard-top">
+            <span class="fcard-freq">раз в месяц</span>
+            <h3>unblocking</h3>
+          </div>
+          <p>час на один твой затык. приходишь со своим зависанием — уходишь с движением. фасилитатор ведёт, ты работаешь</p>
+        </article>
+
+        <article class="fcard fc-green">
+          <div class="fcard-top">
+            <span class="fcard-freq">раз в 3 месяца</span>
+            <h3>alignment</h3>
+          </div>
+          <p>кто я сейчас, куда двигаюсь, что приоритет, что отвлечение. артефакт-контракт + AI коуч. якорный формат, к которому возвращаешься</p>
+        </article>
+
+        <article class="fcard fc-blue">
+          <div class="fcard-top">
+            <span class="fcard-freq">постоянно фоном</span>
+            <h3>метанавыки</h3>
+          </div>
+          <p>философия использования AI — что остаётся когда инструменты сменятся. «расширяй до сужения», антипаттерны, ритуалы</p>
+        </article>
+
+        <article class="fcard fc-dark">
+          <div class="fcard-top">
+            <span class="fcard-freq">4–6 недель</span>
+            <h3>спринты</h3>
+          </div>
+          <p>раз в 1–2 месяца комьюнити берёт тему и идёт в неё вместе. сейчас — <a class="fcard-link" href="community.html">creative os → родительство → alignment</a></p>
+        </article>
+
       </div>
     </div>
   </section>
