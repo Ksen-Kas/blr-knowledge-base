@@ -260,6 +260,22 @@
     line-height: 1.5;
   }
 
+  /* ── VIDEO EMBED ── */
+  .video-embed {
+    position: relative;
+    aspect-ratio: 16 / 9;
+    background: #000;
+    border-radius: var(--radius);
+    overflow: hidden;
+    border: 1px solid var(--card-border);
+    margin-top: 12px;
+  }
+  .video-embed iframe {
+    position: absolute; inset: 0;
+    width: 100%; height: 100%;
+    border: 0; display: block;
+  }
+
   /* ── DETAIL SECTION ── */
   .detail-section {
     scroll-margin-top: 32px;
@@ -715,6 +731,13 @@
       </ul>
     </div>
 
+    <div class="nav-group">
+      <a href="#demos" class="nav-group-title" data-section="demos">демо</a>
+      <ul class="nav-sub">
+        <li><a href="demo-wdmchk.html">контент на Freepik за $30 в месяц</a></li>
+      </ul>
+    </div>
+
   </nav>
 </aside>
 
@@ -882,6 +905,21 @@
           <li>Разгружать голову — выносить сомнения и получать неожиданные направления</li>
         </ul>
       </div>
+
+      <div class="card mt-20" id="talk-founders">
+        <span class="tag">разговор основателей</span>
+        <h4 style="margin-top:8px;">Дима Мацкевич × Лёша Хахунов — вайбкодинг мёртв</h4>
+        <p class="text-sm">Cursor, Codex, Claude Code — что реально важно в 2026. Как кодинг-агенты меняют работу и мышление.</p>
+        <div class="video-embed">
+          <iframe
+            src="https://www.youtube.com/embed/J9cvaJ5enIw"
+            title="Дима Мацкевич × Лёша Хахунов — вайбкодинг мёртв"
+            loading="lazy"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowfullscreen></iframe>
+        </div>
+        <p class="text-sm mt-12" style="color:#666;font-style:italic;">«кодинг-агенты — это офигенная возможность делать гиперперсонализированные вещи»</p>
+      </div>
     </div>
   </section>
 
@@ -1019,6 +1057,21 @@
         <div class="story-teaser" style="font-size:12px;color:#999;margin:2px 0 6px;">Макс Янукович</div>
         <div class="story-teaser">нарратив определяет весь спектр взаимодействия</div>
         <div style="margin-top:10px;font-size:12px;font-weight:600;color:#999;">читать кейс →</div>
+      </a>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════ DEMOS ═══════════════════════════ -->
+  <section class="section" id="demos">
+    <h2>Демо</h2>
+    <p class="section-intro">короткие разборы — как сделать конкретную вещь с AI</p>
+
+    <div class="stories-grid">
+      <a href="demo-wdmchk.html" class="story-card">
+        <div class="story-name">контент на Freepik за $30 в месяц</div>
+        <div class="story-teaser" style="font-size:12px;color:#999;margin:2px 0 6px;">gconf × wdmchk</div>
+        <div class="story-teaser">как собирать визуальный контент с минимальным бюджетом</div>
+        <div style="margin-top:10px;font-size:12px;font-weight:600;color:#999;">смотреть демо →</div>
       </a>
     </div>
   </section>

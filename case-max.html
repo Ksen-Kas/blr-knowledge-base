@@ -49,8 +49,56 @@
   .overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.5); z-index: 99; }
   .overlay.visible { display: block; }
 
-  .main { margin-left: var(--sidebar-w); flex: 1; min-width: 0; }
-  .content { max-width: 740px; padding: 56px 48px 96px; }
+  .main { margin-left: var(--sidebar-w); flex: 1; min-width: 0; display: flex; gap: 32px; align-items: flex-start; }
+  .content { max-width: 740px; width: 100%; padding: 56px 48px 96px; flex-shrink: 0; }
+  /* ── RABBIT HOLE ── */
+  .rabbit-hole {
+    width: 360px;
+    padding: 72px 24px 96px 0;
+    position: sticky;
+    top: 24px;
+    flex-shrink: 0;
+    align-self: flex-start;
+    margin-left: auto;
+  }
+  .rabbit-hole h4 {
+    font-size: 12px; font-weight: 700;
+    text-transform: uppercase; letter-spacing: 0.8px;
+    color: #999; margin-bottom: 18px;
+  }
+  .rh-card {
+    display: block; padding: 20px 22px;
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    border-radius: 10px;
+    text-decoration: none; color: inherit;
+    margin-bottom: 12px;
+    transition: border-color 0.15s, transform 0.15s;
+  }
+  .rh-card:hover { border-color: #0d0d0d; transform: translateY(-1px); }
+  .rh-type {
+    font-size: 11px; font-weight: 700;
+    text-transform: uppercase; letter-spacing: 0.6px;
+    color: #999; margin-bottom: 4px;
+  }
+  .rh-name {
+    font-size: 15px; font-weight: 700;
+    color: var(--text);
+    line-height: 1.35; margin-bottom: 6px;
+  }
+  .rh-desc { font-size: 13px; color: #666; line-height: 1.5; }
+  .rh-all {
+    display: inline-block; margin-top: 6px;
+    font-size: 12px; color: #999; text-decoration: none;
+    border-bottom: 1px solid transparent;
+    transition: color 0.15s, border-color 0.15s;
+  }
+  .rh-all:hover { color: #0d0d0d; border-bottom-color: #0d0d0d; }
+
+  @media (max-width: 1280px) {
+    .rabbit-hole { display: none; }
+  }
+
 
   h1 { font-size: 32px; font-weight: 800; letter-spacing: -0.8px; margin-bottom: 8px; }
   h2 { font-size: 26px; font-weight: 700; letter-spacing: -0.5px; margin-bottom: 16px; }
@@ -254,6 +302,49 @@
   </div>
 
 </div>
+
+<aside class="rabbit-hole">
+  <h4>вдохновиться другими историями</h4>
+
+  <a class="rh-card" href="kb.html#talk-founders">
+    <div class="rh-type">разговор основателей</div>
+    <div class="rh-name">Дима × Лёша Хахунов — вайбкодинг мёртв</div>
+    <div class="rh-desc">Cursor, Codex, Claude Code — что реально важно в 2026.</div>
+  </a>
+
+  <a class="rh-card" href="case-masha.html">
+    <div class="rh-type">кейс · health os</div>
+    <div class="rh-name">Маша Куликовская — медицинская ОС</div>
+    <div class="rh-desc">Консилиум агентов-врачей и локальный дашборд.</div>
+  </a>
+
+  <a class="rh-card" href="case-vlad.html">
+    <div class="rh-type">кейс · health os</div>
+    <div class="rh-name">Влад Куклев — AI-тренер в Telegram</div>
+    <div class="rh-desc">5 недель без пропусков и без волевых усилий.</div>
+  </a>
+
+  <a class="rh-card" href="case-tonya.html">
+    <div class="rh-type">кейс · health os</div>
+    <div class="rh-name">Тоня Жукова — 18 агентов</div>
+    <div class="rh-desc">7 лет загадки холестерина — нашли Lp(a).</div>
+  </a>
+
+  <a class="rh-card" href="case-mika.html">
+    <div class="rh-type">кейс · health os</div>
+    <div class="rh-name">Мика Ян — AI sleep coach</div>
+    <div class="rh-desc">Не сила воли — система которая работает с биологией.</div>
+  </a>
+
+  <a class="rh-card" href="demo-wdmchk.html">
+    <div class="rh-type">демо · gconf × wdmchk</div>
+    <div class="rh-name">контент на Freepik за $30 в месяц</div>
+    <div class="rh-desc">Как собирать визуальный контент с минимальным бюджетом.</div>
+  </a>
+
+  <a class="rh-all" href="kb.html">вся база знаний →</a>
+</aside>
+
 </main>
 
 <script>

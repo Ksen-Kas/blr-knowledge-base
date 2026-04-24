@@ -167,11 +167,64 @@
     margin-left: var(--sidebar-w);
     flex: 1;
     min-width: 0;
+    display: flex;
+    gap: 32px;
+    align-items: flex-start;
   }
 
   .content {
     max-width: 740px;
+    width: 100%;
     padding: 56px 48px 96px;
+    flex-shrink: 0;
+  }
+
+  /* ── RABBIT HOLE ── */
+  .rabbit-hole {
+    width: 360px;
+    padding: 72px 24px 96px 0;
+    position: sticky;
+    top: 24px;
+    flex-shrink: 0;
+    align-self: flex-start;
+    margin-left: auto;
+  }
+  .rabbit-hole h4 {
+    font-size: 12px; font-weight: 700;
+    text-transform: uppercase; letter-spacing: 0.8px;
+    color: #999; margin-bottom: 18px;
+  }
+  .rh-card {
+    display: block; padding: 20px 22px;
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    border-radius: 10px;
+    text-decoration: none; color: inherit;
+    margin-bottom: 12px;
+    transition: border-color 0.15s, transform 0.15s;
+  }
+  .rh-card:hover { border-color: #0d0d0d; transform: translateY(-1px); }
+  .rh-type {
+    font-size: 11px; font-weight: 700;
+    text-transform: uppercase; letter-spacing: 0.6px;
+    color: #999; margin-bottom: 4px;
+  }
+  .rh-name {
+    font-size: 15px; font-weight: 700;
+    color: var(--text);
+    line-height: 1.35; margin-bottom: 6px;
+  }
+  .rh-desc { font-size: 13px; color: #666; line-height: 1.5; }
+  .rh-all {
+    display: inline-block; margin-top: 6px;
+    font-size: 12px; color: #999; text-decoration: none;
+    border-bottom: 1px solid transparent;
+    transition: color 0.15s, border-color 0.15s;
+  }
+  .rh-all:hover { color: #0d0d0d; border-bottom-color: #0d0d0d; }
+
+  @media (max-width: 1280px) {
+    .rabbit-hole { display: none; }
   }
 
   /* ── HEADINGS ── */
@@ -255,6 +308,23 @@
     line-height: 1.5;
     font-weight: 400;
     max-width: 580px;
+  }
+
+  /* ── VIDEO EMBED ── */
+  .video-section { margin: 0 0 40px; }
+  .video-section .case-block-label { margin-bottom: 14px; }
+  .video-embed {
+    position: relative;
+    aspect-ratio: 16 / 9;
+    background: #000;
+    border-radius: var(--radius);
+    overflow: hidden;
+    border: 1px solid var(--card-border);
+  }
+  .video-embed iframe {
+    position: absolute; inset: 0;
+    width: 100%; height: 100%;
+    border: 0; display: block;
   }
 
   /* ── CARD ── */
@@ -593,6 +663,19 @@
     <p class="lead">Разобралась с 7-летней загадкой холестерина — с помощью 18 агентов которые нашли то, что врачи не искали.</p>
   </div>
 
+  <!-- Video -->
+  <section class="video-section">
+    <div class="case-block-label"><span class="dot"></span>полная запись звонка</div>
+    <div class="video-embed">
+      <iframe
+        src="https://www.youtube.com/embed/jb2vEdBIGks"
+        title="Тоня Жукова — полная запись звонка"
+        loading="lazy"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+        allowfullscreen></iframe>
+    </div>
+  </section>
+
   <!-- Formula -->
   <div class="formula">
     <span class="f-step">ситуация</span>
@@ -678,6 +761,49 @@
   </div>
 
 </div>
+
+<aside class="rabbit-hole">
+  <h4>вдохновиться другими историями</h4>
+
+  <a class="rh-card" href="kb.html#talk-founders">
+    <div class="rh-type">разговор основателей</div>
+    <div class="rh-name">Дима × Лёша Хахунов — вайбкодинг мёртв</div>
+    <div class="rh-desc">Cursor, Codex, Claude Code — что реально важно в 2026.</div>
+  </a>
+
+  <a class="rh-card" href="case-vlad.html">
+    <div class="rh-type">кейс · health os</div>
+    <div class="rh-name">Влад Куклев — AI-тренер в Telegram</div>
+    <div class="rh-desc">5 недель без пропусков и без волевых усилий.</div>
+  </a>
+
+  <a class="rh-card" href="case-masha.html">
+    <div class="rh-type">кейс · health os</div>
+    <div class="rh-name">Маша Куликовская — медицинская ОС</div>
+    <div class="rh-desc">Консилиум агентов-врачей и локальный дашборд.</div>
+  </a>
+
+  <a class="rh-card" href="case-katya.html">
+    <div class="rh-type">кейс · health os</div>
+    <div class="rh-name">Катя Кирилова — совет директоров</div>
+    <div class="rh-desc">8 агентов-коучей, тренировки автоматически в часах.</div>
+  </a>
+
+  <a class="rh-card" href="case-lyosha.html">
+    <div class="rh-type">кейс · health os</div>
+    <div class="rh-name">Лёша Евдокимов — CGM + метаболика</div>
+    <div class="rh-desc">Баня нагружает нервную систему в 13 раз сильнее тренировки.</div>
+  </a>
+
+  <a class="rh-card" href="demo-wdmchk.html">
+    <div class="rh-type">демо · gconf × wdmchk</div>
+    <div class="rh-name">контент на Freepik за $30 в месяц</div>
+    <div class="rh-desc">Как собирать визуальный контент с минимальным бюджетом.</div>
+  </a>
+
+  <a class="rh-all" href="kb.html">вся база знаний →</a>
+</aside>
+
 </main>
 
 <script>

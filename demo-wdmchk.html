@@ -1,0 +1,529 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Контент на Freepik за $30/мес — демо gconf × wdmchk | BLR</title>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg: #ffffff;
+    --text: #0d0d0d;
+    --accent: #ffdd00;
+    --card-bg: #f7f7f7;
+    --card-border: #e8e8e8;
+    --sidebar-bg: #0d0d0d;
+    --sidebar-w: 260px;
+    --radius: 14px;
+    --font: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  }
+
+  html { scroll-behavior: smooth; }
+  body { font-family: var(--font); background: var(--bg); color: var(--text); display: flex; min-height: 100vh; }
+
+  .sidebar { width: var(--sidebar-w); min-width: var(--sidebar-w); background: var(--sidebar-bg); color: #fff; position: fixed; top: 0; left: 0; height: 100vh; overflow-y: auto; display: flex; flex-direction: column; padding: 28px 0 32px; z-index: 100; }
+  .sidebar::-webkit-scrollbar { width: 4px; }
+  .sidebar::-webkit-scrollbar-thumb { background: #333; border-radius: 2px; }
+  .sidebar-logo { padding: 0 24px 8px; }
+  .sidebar-logo .brand { font-size: 15px; font-weight: 700; color: #fff; letter-spacing: -0.3px; line-height: 1.3; display: block; text-decoration: none; }
+  .sidebar-logo .brand span { color: var(--accent); }
+  .sidebar-back { display: inline-flex; align-items: center; gap: 6px; font-size: 12px; color: #888; text-decoration: none; padding: 6px 24px 0; transition: color 0.15s; }
+  .sidebar-back:hover { color: #bbb; }
+  .sidebar-divider { height: 1px; background: #1e1e1e; margin: 20px 24px; }
+  .sidebar-nav { flex: 1; padding: 0 12px; }
+  .nav-group { margin-bottom: 4px; }
+  .nav-group-title { display: block; font-size: 11px; font-weight: 600; color: #555; text-transform: uppercase; letter-spacing: 0.8px; padding: 8px 12px 4px; text-decoration: none; cursor: pointer; border-radius: 6px; transition: color 0.15s; }
+  .nav-group-title:hover { color: #aaa; }
+  .nav-sub { list-style: none; padding: 0 0 6px 0; }
+  .nav-sub li a { display: block; font-size: 13px; color: #aaa; text-decoration: none; padding: 5px 12px; border-radius: 6px; transition: color 0.15s, background 0.15s; }
+  .nav-sub li a:hover { color: #fff; background: #1a1a1a; }
+  .nav-sub li a.active { color: var(--accent); }
+
+  .burger { display: none; position: fixed; top: 16px; left: 16px; z-index: 200; background: var(--sidebar-bg); color: #fff; border: none; border-radius: 8px; width: 40px; height: 40px; cursor: pointer; flex-direction: column; align-items: center; justify-content: center; gap: 5px; }
+  .burger span { display: block; width: 20px; height: 2px; background: #fff; border-radius: 2px; transition: transform 0.2s, opacity 0.2s; }
+  .burger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+  .burger.open span:nth-child(2) { opacity: 0; }
+  .burger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+  .overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.5); z-index: 99; }
+  .overlay.visible { display: block; }
+
+  .main { margin-left: var(--sidebar-w); flex: 1; min-width: 0; display: flex; gap: 32px; align-items: flex-start; }
+  .content { max-width: 740px; width: 100%; padding: 56px 48px 96px; flex-shrink: 0; }
+
+  .rabbit-hole {
+    width: 360px;
+    padding: 72px 24px 96px 0;
+    position: sticky;
+    top: 24px;
+    flex-shrink: 0;
+    align-self: flex-start;
+    margin-left: auto;
+  }
+  .rabbit-hole h4 {
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+    color: #999;
+    margin-bottom: 14px;
+  }
+  .rh-card {
+    display: block;
+    padding: 14px 16px;
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    border-radius: 10px;
+    text-decoration: none;
+    color: inherit;
+    margin-bottom: 12px;
+    transition: border-color 0.15s, transform 0.15s;
+  }
+  .rh-card:hover { border-color: #0d0d0d; transform: translateY(-1px); }
+  .rh-type {
+    font-size: 11px; font-weight: 700;
+    text-transform: uppercase; letter-spacing: 0.6px;
+    color: #999; margin-bottom: 4px;
+  }
+  .rh-name {
+    font-size: 15px; font-weight: 700;
+    color: var(--text);
+    line-height: 1.35; margin-bottom: 6px;
+  }
+  .rh-desc {
+    font-size: 12px; color: #666;
+    line-height: 1.45;
+  }
+  .rh-all {
+    display: inline-block;
+    margin-top: 6px;
+    font-size: 12px;
+    color: #999;
+    text-decoration: none;
+    border-bottom: 1px solid transparent;
+    transition: color 0.15s, border-color 0.15s;
+  }
+  .rh-all:hover { color: #0d0d0d; border-bottom-color: #0d0d0d; }
+
+  @media (max-width: 1280px) {
+    .rabbit-hole { display: none; }
+  }
+
+  h1 { font-size: 32px; font-weight: 800; letter-spacing: -0.8px; margin-bottom: 8px; }
+  h3 { font-size: 18px; font-weight: 700; margin-bottom: 10px; }
+  h4 { font-size: 15px; font-weight: 600; margin-bottom: 8px; }
+  p { line-height: 1.65; }
+  .text-sm { font-size: 14px; color: #444; line-height: 1.65; }
+  .mt-12 { margin-top: 12px; }
+  .mt-20 { margin-top: 20px; }
+
+  .breadcrumb { display: flex; align-items: center; gap: 8px; font-size: 13px; color: #999; margin-bottom: 32px; flex-wrap: wrap; }
+  .breadcrumb a { color: #999; text-decoration: none; transition: color 0.15s; }
+  .breadcrumb a:hover { color: #0d0d0d; }
+  .breadcrumb .sep { color: #ddd; }
+  .breadcrumb .current { color: #555; }
+
+  .hero { margin-bottom: 40px; padding-bottom: 32px; border-bottom: 1px solid var(--card-border); }
+  .hero-meta { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 16px; }
+  .hero-meta .meta-badge { font-size: 12px; font-weight: 500; color: #666; background: var(--card-bg); border: 1px solid var(--card-border); border-radius: 6px; padding: 4px 10px; }
+  .hero h1 { margin-bottom: 12px; }
+  .hero .lead { font-size: 18px; color: #333; line-height: 1.5; font-weight: 400; max-width: 580px; }
+
+  .case-block-label { display: inline-flex; align-items: center; gap: 8px; font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; color: #999; margin-bottom: 12px; }
+  .case-block-label .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--accent); flex-shrink: 0; }
+
+  .video-section { margin: 0 0 40px; }
+  .video-section .case-block-label { margin-bottom: 14px; }
+  .video-embed {
+    position: relative;
+    aspect-ratio: 16 / 9;
+    background: #000;
+    border-radius: var(--radius);
+    overflow: hidden;
+    border: 1px solid var(--card-border);
+  }
+  .video-embed iframe {
+    position: absolute; inset: 0;
+    width: 100%; height: 100%;
+    border: 0; display: block;
+  }
+
+  .artifact-section { background: var(--card-bg); border: 1px solid var(--card-border); border-radius: var(--radius); padding: 28px; margin: 32px 0; }
+  .artifact-section h3 { font-size: 18px; font-weight: 700; margin-bottom: 4px; }
+
+  .quotes-section { margin: 40px 0; }
+  .quotes-section > h3 { font-size: 22px; font-weight: 800; letter-spacing: -0.4px; margin-bottom: 6px; }
+  .quotes-section > p.text-sm { margin-bottom: 20px; color: #666; }
+  blockquote {
+    border-left: 3px solid var(--accent);
+    padding: 14px 22px;
+    margin: 16px 0;
+    background: #fafafa;
+    border-radius: 0 8px 8px 0;
+  }
+  blockquote p {
+    font-size: 15px;
+    color: #222;
+    line-height: 1.6;
+    margin: 0;
+    font-style: italic;
+  }
+
+  .pattern-list { display: flex; flex-direction: column; gap: 12px; margin-top: 18px; }
+  .pattern-item {
+    background: #fff; border: 1px solid var(--card-border);
+    border-radius: 10px; padding: 16px 20px;
+  }
+  .pattern-item .pattern-title {
+    font-size: 14px; font-weight: 700; color: var(--text);
+    margin-bottom: 6px;
+  }
+  .pattern-item .pattern-desc {
+    font-size: 13px; line-height: 1.6; color: #555;
+  }
+
+  .tool-group { margin-top: 20px; }
+  .tool-group h4 {
+    font-size: 11px; font-weight: 700;
+    text-transform: uppercase; letter-spacing: 0.8px;
+    color: #999; margin-bottom: 10px;
+  }
+
+  .link-list { display: flex; flex-direction: column; gap: 8px; margin-top: 16px; }
+  .link-row {
+    display: flex; align-items: center; justify-content: space-between;
+    gap: 12px;
+    background: #fff; border: 1px solid var(--card-border);
+    border-radius: 10px; padding: 12px 16px;
+    text-decoration: none; color: var(--text);
+    transition: border-color 0.15s, transform 0.15s;
+  }
+  .link-row:hover { border-color: #0d0d0d; transform: translateY(-1px); }
+  .link-row .link-label { font-size: 14px; font-weight: 600; }
+  .link-row .link-url { font-size: 12px; color: #999; font-family: monospace; }
+  .link-row .link-arrow { font-size: 13px; color: #999; flex-shrink: 0; }
+
+  .cta-block { background: var(--text); border-radius: var(--radius); padding: 32px 28px; margin-top: 48px; text-align: center; }
+  .cta-block p { font-size: 14px; color: #aaa; line-height: 1.6; margin-bottom: 20px; }
+  .cta-block .cta-btn { display: inline-block; background: var(--accent); color: var(--text); font-size: 14px; font-weight: 700; border-radius: 8px; padding: 12px 24px; text-decoration: none; transition: opacity 0.15s; }
+  .cta-block .cta-btn:hover { opacity: 0.85; }
+
+  @media (max-width: 768px) {
+    .sidebar { transform: translateX(-100%); transition: transform 0.25s ease; }
+    .sidebar.open { transform: translateX(0); }
+    .burger { display: flex; }
+    .main { margin-left: 0; }
+    .content { padding: 72px 20px 80px; }
+    .link-row { flex-direction: column; align-items: flex-start; }
+    .link-row .link-arrow { align-self: flex-end; }
+  }
+</style>
+</head>
+<body>
+
+<aside class="sidebar" id="sidebar">
+  <div class="sidebar-logo">
+    <a href="index.html" class="brand">brain <span>love</span> & robots</a>
+  </div>
+  <a href="kb.html#demos" class="sidebar-back">← все демо</a>
+  <div class="sidebar-divider"></div>
+
+  <nav class="sidebar-nav">
+    <div class="nav-group">
+      <span class="nav-group-title">на странице</span>
+      <ul class="nav-sub">
+        <li><a href="#video">запись</a></li>
+        <li><a href="#links">ссылки и тулбокс</a></li>
+      </ul>
+    </div>
+
+    <div class="nav-group">
+      <span class="nav-group-title">демо</span>
+      <ul class="nav-sub">
+        <li><a href="demo-wdmchk.html" class="active">контент на Freepik за $30 в месяц</a></li>
+      </ul>
+    </div>
+
+    <div class="nav-group">
+      <span class="nav-group-title">в базе знаний</span>
+      <ul class="nav-sub">
+        <li><a href="kb.html#demos">все демо</a></li>
+        <li><a href="kb.html#cases">кейсы участников</a></li>
+      </ul>
+    </div>
+  </nav>
+</aside>
+
+<button class="burger" id="burger" aria-label="Меню">
+  <span></span><span></span><span></span>
+</button>
+<div class="overlay" id="overlay"></div>
+
+<main class="main">
+<div class="content">
+
+  <nav class="breadcrumb">
+    <a href="kb.html">база знаний</a>
+    <span class="sep">/</span>
+    <a href="kb.html#demos">демо</a>
+    <span class="sep">/</span>
+    <span class="current">контент на Freepik</span>
+  </nav>
+
+  <div class="hero">
+    <div class="hero-meta">
+      <span class="meta-badge">демо</span>
+      <span class="meta-badge">gconf × wdmchk</span>
+    </div>
+    <h1>Контент на Freepik за $30 в месяц</h1>
+    <p class="lead">Как собирать визуальный контент с минимальным бюджетом — разбор на Freepik в связке с AI.</p>
+  </div>
+
+  <section class="video-section" id="video">
+    <div class="case-block-label"><span class="dot"></span>запись</div>
+    <div class="video-embed">
+      <iframe
+        src="https://www.youtube.com/embed/6ZY7TlPVT9o"
+        title="как делать контент за $30 в месяц с помощью Freepik — gconf × wdmchk"
+        loading="lazy"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+        allowfullscreen></iframe>
+    </div>
+  </section>
+
+  <section class="quotes-section" id="quotes">
+    <blockquote>
+      <p>«Проблема в том, что ты не балуешься, ты слишком серьёзно подходишь. Надо баловаться. Сейчас разрешено абсолютно всё.»</p>
+    </blockquote>
+
+    <blockquote>
+      <p>«Контент перестал быть ценным. Есть только алгоритмическая ценность. Самое главное в контенте — удерживает он зрителей или нет. Всё остальное неважно.»</p>
+    </blockquote>
+
+    <blockquote>
+      <p>«Качество промта проверяется только количеством итераций. Понять хороший промт или нет — можно только прогнав его раз 10.»</p>
+    </blockquote>
+
+    <blockquote>
+      <p>«Сложно создать что-то из ничего. Но очень легко взять то, что работает, и повторить пайплайн, превратить в автоматизацию. Это всегда самый рабочий кейс.»</p>
+    </blockquote>
+
+    <blockquote>
+      <p>«Сложно придумать с нуля и донести до него, что именно надо. А если где-то у кого-то что-то подсмотреть и потом перепридумать — вот это прямо очень прикольно.»</p>
+    </blockquote>
+
+    <blockquote>
+      <p>«Готов ли я на эту единицу контента тратить неделю? Через неделю она перестанет быть актуальной. Значит не готов — надо прямо сейчас зафигарить как возможно.»</p>
+    </blockquote>
+  </section>
+
+  <div class="artifact-section" id="links">
+    <h3>Ссылки и тулбокс</h3>
+    <p class="text-sm">Стек Вадима для быстрой генерации контента.</p>
+
+    <div class="tool-group">
+      <h4>Автор</h4>
+      <div class="link-list">
+        <a href="https://linktr.ee/wdmchk" class="link-row" target="_blank" rel="noopener">
+          <div>
+            <div class="link-label">Комьюнити Вадимчика</div>
+            <div class="link-url">linktr.ee/wdmchk</div>
+          </div>
+          <span class="link-arrow">→</span>
+        </a>
+      </div>
+    </div>
+
+    <div class="tool-group">
+      <h4>Ядро — $30 в месяц</h4>
+      <div class="link-list">
+        <a href="https://referral.freepik.com/mQLNern" class="link-row" target="_blank" rel="noopener">
+          <div>
+            <div class="link-label">Freepik Premium</div>
+            <div class="link-url">$30/мес · nano banana безлимит, ~1000 быстрых, Kling 2.5</div>
+          </div>
+          <span class="link-arrow">→</span>
+        </a>
+      </div>
+    </div>
+
+    <div class="tool-group">
+      <h4>Генерация и вайбкодинг</h4>
+      <div class="link-list">
+        <a href="https://openai.com/codex" class="link-row" target="_blank" rel="noopener">
+          <div>
+            <div class="link-label">Codex</div>
+            <div class="link-url">технические задачи, full-access конструкторы</div>
+          </div>
+          <span class="link-arrow">→</span>
+        </a>
+        <a href="https://www.anthropic.com/claude-code" class="link-row" target="_blank" rel="noopener">
+          <div>
+            <div class="link-label">Claude Code</div>
+            <div class="link-url">когда надо собрать тексты внутри</div>
+          </div>
+          <span class="link-arrow">→</span>
+        </a>
+        <a href="https://chat.openai.com" class="link-row" target="_blank" rel="noopener">
+          <div>
+            <div class="link-label">ChatGPT</div>
+            <div class="link-url">всегда открыт слева как промт-генератор</div>
+          </div>
+          <span class="link-arrow">→</span>
+        </a>
+      </div>
+    </div>
+
+    <div class="tool-group">
+      <h4>Нод-редакторы и пайплайны</h4>
+      <div class="link-list">
+        <a href="https://www.comfy.org" class="link-row" target="_blank" rel="noopener">
+          <div>
+            <div class="link-label">ComfyUI</div>
+            <div class="link-url">open space с текстовыми / image / video нодами</div>
+          </div>
+          <span class="link-arrow">→</span>
+        </a>
+        <a href="https://lumalabs.ai/dream-machine" class="link-row" target="_blank" rel="noopener">
+          <div>
+            <div class="link-label">Luma Dream Machine</div>
+            <div class="link-url">нод-редактор со встроенным агентом, дорого но вау</div>
+          </div>
+          <span class="link-arrow">→</span>
+        </a>
+      </div>
+    </div>
+
+    <div class="tool-group">
+      <h4>Аудио и липсинк</h4>
+      <div class="link-list">
+        <a href="https://suno.com" class="link-row" target="_blank" rel="noopener">
+          <div>
+            <div class="link-label">Suno</div>
+            <div class="link-url">короткие странные джинглы для рилсов</div>
+          </div>
+          <span class="link-arrow">→</span>
+        </a>
+        <a href="https://elevenlabs.io" class="link-row" target="_blank" rel="noopener">
+          <div>
+            <div class="link-label">ElevenLabs</div>
+            <div class="link-url">клон голоса</div>
+          </div>
+          <span class="link-arrow">→</span>
+        </a>
+        <a href="https://www.vidu.com" class="link-row" target="_blank" rel="noopener">
+          <div>
+            <div class="link-label">Vidu</div>
+            <div class="link-url">натягивание аудио на статичную картинку</div>
+          </div>
+          <span class="link-arrow">→</span>
+        </a>
+      </div>
+    </div>
+
+    <div class="tool-group">
+      <h4>Финалка</h4>
+      <div class="link-list">
+        <a href="https://www.midjourney.com" class="link-row" target="_blank" rel="noopener">
+          <div>
+            <div class="link-label">Midjourney</div>
+            <div class="link-url">для «настоящего арта», концептуальных кадров</div>
+          </div>
+          <span class="link-arrow">→</span>
+        </a>
+        <a href="https://www.capcut.com" class="link-row" target="_blank" rel="noopener">
+          <div>
+            <div class="link-label">CapCut</div>
+            <div class="link-url">финальная сборка рилсов</div>
+          </div>
+          <span class="link-arrow">→</span>
+        </a>
+      </div>
+    </div>
+
+    <div class="tool-group">
+      <h4>Бюджет</h4>
+      <p class="text-sm" style="margin-top:10px;">В активной фазе: ~$300–400/мес (Codex ~$100 + coworking ~$100 + экспериментальные сервисы). В спокойной — $30–40 Freepik закрывает почти всё.</p>
+    </div>
+
+    <div class="tool-group">
+      <h4>Запись целиком</h4>
+      <div class="link-list">
+        <a href="https://www.youtube.com/watch?v=6ZY7TlPVT9o" class="link-row" target="_blank" rel="noopener">
+          <div>
+            <div class="link-label">Запись на YouTube</div>
+            <div class="link-url">youtu.be/6ZY7TlPVT9o</div>
+          </div>
+          <span class="link-arrow">→</span>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <div class="cta-block">
+    <p>brain love & robots — подписочное комьюнити где люди применяют AI в реальной жизни: в здоровье, работе, творчестве и личных системах.</p>
+    <a href="https://t.me/matskevichaibot?start=start" class="cta-btn" target="_blank" rel="noopener">в комьюнити →</a>
+  </div>
+
+</div>
+
+<aside class="rabbit-hole">
+  <h4>вдохновиться другими историями</h4>
+
+  <a class="rh-card" href="kb.html#talk-founders">
+    <div class="rh-type">разговор основателей</div>
+    <div class="rh-name">Дима × Лёша Хахунов — вайбкодинг мёртв</div>
+    <div class="rh-desc">Cursor, Codex, Claude Code — что реально важно в 2026.</div>
+  </a>
+
+  <a class="rh-card" href="case-vlad.html">
+    <div class="rh-type">кейс · health os</div>
+    <div class="rh-name">Влад Куклев — AI-тренер в Telegram</div>
+    <div class="rh-desc">5 недель без пропусков и без волевых усилий.</div>
+  </a>
+
+  <a class="rh-card" href="case-tonya.html">
+    <div class="rh-type">кейс · health os</div>
+    <div class="rh-name">Тоня Жукова — 18 агентов</div>
+    <div class="rh-desc">7 лет загадки холестерина — нашли Lp(a).</div>
+  </a>
+
+  <a class="rh-card" href="case-masha.html">
+    <div class="rh-type">кейс · health os</div>
+    <div class="rh-name">Маша Куликовская — медицинская ОС</div>
+    <div class="rh-desc">Консилиум агентов-врачей и локальный дашборд.</div>
+  </a>
+
+  <a class="rh-card" href="case-mika.html">
+    <div class="rh-type">кейс · health os</div>
+    <div class="rh-name">Мика Ян — AI sleep coach</div>
+    <div class="rh-desc">Не сила воли — система которая работает с биологией.</div>
+  </a>
+
+  <a class="rh-all" href="kb.html">вся база знаний →</a>
+</aside>
+
+</main>
+
+<script>
+  const burger = document.getElementById('burger');
+  const sidebar = document.getElementById('sidebar');
+  const overlay = document.getElementById('overlay');
+
+  burger.addEventListener('click', () => {
+    burger.classList.toggle('open');
+    sidebar.classList.toggle('open');
+    overlay.classList.toggle('visible');
+  });
+
+  overlay.addEventListener('click', () => {
+    burger.classList.remove('open');
+    sidebar.classList.remove('open');
+    overlay.classList.remove('visible');
+  });
+</script>
+
+<script src="ticker.js"></script>
+</body>
+</html>
