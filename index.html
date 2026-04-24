@@ -206,6 +206,26 @@
   .os-cases li::before { content: "▸"; position: absolute; left: 0; color: #FFCE00; font-weight: 700; }
   .os-cases strong { color: #fff; font-weight: 700; }
 
+  /* sprint flow — как проходит спринт */
+  .sprint-flow { margin-top: 64px; padding: 44px 0; border-top: 1px solid #E2DED9; border-bottom: 1px solid #E2DED9; }
+  .sprint-flow-head h3 { font-size: 28px; font-weight: 800; letter-spacing: -0.6px; margin-bottom: 6px; }
+  .sprint-flow-head p { font-size: 15px; color: #5C5A57; line-height: 1.5; margin-bottom: 28px; max-width: 620px; }
+  .flow-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; position: relative; }
+  .flow-step { background: #fff; border: 1px solid #E2DED9; border-radius: 14px; padding: 22px 20px 24px; position: relative; display: flex; flex-direction: column; }
+  .flow-step .flow-num { display: inline-flex; align-items: center; justify-content: center; width: 28px; height: 28px; border-radius: 50%; background: #FFCE00; color: #2D2C2B; font-size: 12px; font-weight: 800; margin-bottom: 14px; }
+  .flow-step .flow-tag { font-size: 10px; font-weight: 700; color: #B8622E; text-transform: uppercase; letter-spacing: 0.8px; margin-bottom: 8px; }
+  .flow-step h4 { font-size: 17px; font-weight: 800; color: #2D2C2B; line-height: 1.2; letter-spacing: -0.2px; margin-bottom: 10px; }
+  .flow-step p { font-size: 13px; color: #5C5A57; line-height: 1.55; }
+  .flow-step::after { content: "→"; position: absolute; right: -14px; top: 32px; color: #B8622E; font-size: 18px; font-weight: 700; z-index: 2; background: var(--bg, #F5F0E8); padding: 0 2px; }
+  .flow-step:last-child::after { display: none; }
+  @media (max-width: 900px) {
+    .flow-grid { grid-template-columns: 1fr 1fr; }
+    .flow-step::after { display: none; }
+  }
+  @media (max-width: 540px) {
+    .flow-grid { grid-template-columns: 1fr; }
+  }
+
   /* подписка */
   .pricing { background: transparent; padding: 72px 0; color: #2D2C2B; }
   .pricing-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
@@ -385,12 +405,48 @@
     transition: transform 0.2s ease;
     display: flex; flex-direction: column;
     justify-content: flex-end;
+    text-decoration: none;
+    color: inherit;
+    cursor: pointer;
   }
   .ccard:hover { transform: translateY(-3px); }
+  .ccard-link {
+    position: relative; z-index: 2;
+    display: inline-flex; align-items: center; gap: 6px;
+    margin-top: 14px;
+    font-size: 12px; font-weight: 600;
+    color: rgba(255,255,255,0.85);
+    text-transform: lowercase; letter-spacing: 0.3px;
+    transition: gap 0.2s;
+  }
+  .ccard:hover .ccard-link { gap: 10px; color: #fff; }
+  .ccard-art {
+    position: absolute;
+    top: 56px; left: 24px; right: 24px;
+    height: 120px;
+    z-index: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    pointer-events: none;
+  }
+  .ccard-art svg {
+    width: 100%;
+    height: 100%;
+    max-width: 190px;
+    stroke: rgba(255, 255, 255, 0.9);
+    fill: none;
+    stroke-width: 1.8;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    opacity: 0.85;
+  }
+  .ccard-art svg .dot { fill: rgba(255, 255, 255, 0.92); stroke: none; }
+  .ccard-art svg .filled { fill: rgba(255, 255, 255, 0.16); }
   .ccard::before {
     content: "";
     position: absolute; inset: 0;
-    background: linear-gradient(180deg, rgba(20,19,19,0) 50%, rgba(20,19,19,0.35) 75%, rgba(20,19,19,1) 100%);
+    background: linear-gradient(180deg, rgba(20,19,19,0) 30%, rgba(20,19,19,0.55) 55%, rgba(20,19,19,0.92) 78%, rgba(20,19,19,1) 100%);
     z-index: 1;
   }
   .ccard-tag {
@@ -700,6 +756,44 @@
           <p>главный вопрос - какой процесс может поддерживать меня в моих целях каждый день. не рывок, не ретрит - рабочая опора.</p>
         </div>
       </div>
+
+      <div class="sprint-flow">
+        <div class="sprint-flow-head">
+          <h3>как проходит спринт</h3>
+          <p>четыре акта в каждом спринте - от открытия до закрытия. между ними - еженедельная практика и живые звонки.</p>
+        </div>
+        <div class="flow-grid">
+
+          <div class="flow-step">
+            <div class="flow-num">1</div>
+            <div class="flow-tag">открытие</div>
+            <h4>community check-in</h4>
+            <p>собираемся вместе. знакомимся с новичками, делимся почему пришли в этот спринт и что хотим разобрать.</p>
+          </div>
+
+          <div class="flow-step">
+            <div class="flow-num">2</div>
+            <div class="flow-tag">разгон</div>
+            <h4>практика вокруг темы</h4>
+            <p>поднимаем личный контекст - что привело в этот спринт, как ты сейчас думаешь про тему. через AI-практику превращаем в рабочий вопрос.</p>
+          </div>
+
+          <div class="flow-step">
+            <div class="flow-num">3</div>
+            <div class="flow-tag">ядро спринта</div>
+            <h4>еженедельные звонки с протагонистами</h4>
+            <p>гости с реальными кейсами по теме. записи публичные. от каждого - артефакт для твоего агента, чтобы раскатить подход у себя гораздо проще, чем с нуля.</p>
+          </div>
+
+          <div class="flow-step">
+            <div class="flow-num">4</div>
+            <div class="flow-tag">закрытие</div>
+            <h4>что получилось</h4>
+            <p>что собрал, что заработало, что оставляешь. выходишь из спринта с артефактом, который продолжает работать после.</p>
+          </div>
+
+        </div>
+      </div>
     </div>
   </section>
 
@@ -708,7 +802,7 @@
     <div class="container">
       <div class="protag-head">
         <h2>протагонисты</h2>
-        <div class="meta">артефакты · видео · промпты</div>
+        <div class="meta">протагонисты из health спринта</div>
       </div>
       <div class="protag-sub">находим гостей с реальными кейсами, которые действительно работают. от каждого протагониста - артефакт для вашего агента, по которому он сможет раскатить подход и кейс у себя.</div>
 
@@ -790,59 +884,208 @@
 
   <section id="cases" class="cases-section">
     <div class="cases-head">
-      <h2>что делают внутри</h2>
-      <div class="section-sub">живые кейсы участников. без имён - приватный чат остаётся приватным. то, что там родилось, участники сами выносят наружу когда готовы</div>
+      <h2>кейсы из комьюнити</h2>
+      <div class="section-sub">живые истории участников из <a href="https://t.me/brainloveandrobots" target="_blank" style="color:#2D2C2B; text-decoration:underline">@brainloveandrobots</a>. кликай на карточку - откроется пост с деталями</div>
     </div>
     <div class="cases-carousel">
       <div class="cases-track">
 
-        <article class="ccard bg-health-1">
+        <a class="ccard bg-health-1" href="https://t.me/brainloveandrobots/19" target="_blank">
           <span class="ccard-tag t-health">здоровье</span>
-          <div class="ccard-body">
-            <div class="ccard-title">медицинская ОС для себя и мамы</div>
-            <div class="ccard-text">можно не ждать системы здравоохранения - собрать свою</div>
+          <div class="ccard-art">
+            <svg viewBox="0 0 230 140" xmlns="http://www.w3.org/2000/svg">
+              <!-- ECG line -->
+              <path d="M10 30 L40 30 L48 16 L56 48 L64 24 L74 30 L120 30 L128 10 L136 52 L144 22 L154 30 L220 30"/>
+              <!-- data bars -->
+              <rect x="14" y="70" width="18" height="36" rx="1" class="filled"/>
+              <rect x="40" y="58" width="18" height="48" rx="1" class="filled"/>
+              <rect x="66" y="80" width="18" height="26" rx="1"/>
+              <rect x="92" y="64" width="18" height="42" rx="1" class="filled"/>
+              <rect x="118" y="76" width="18" height="30" rx="1"/>
+              <rect x="144" y="52" width="18" height="54" rx="1" class="filled"/>
+              <rect x="170" y="68" width="18" height="38" rx="1"/>
+              <rect x="196" y="82" width="18" height="24" rx="1" class="filled"/>
+              <!-- interaction dots -->
+              <circle cx="49" cy="90" r="3.2" class="dot"/>
+              <circle cx="153" cy="86" r="3.2" class="dot"/>
+              <path d="M49 90 Q100 110 153 86" stroke-dasharray="2 3" opacity="0.7"/>
+              <!-- pill -->
+              <rect x="185" y="122" width="26" height="10" rx="5"/>
+              <line x1="198" y1="122" x2="198" y2="132"/>
+            </svg>
           </div>
-        </article>
+          <div class="ccard-body">
+            <div class="ccard-title">система здоровья для сына с СДВГ</div>
+            <div class="ccard-text">мама без IT-фона через Claude и скиллы Тони нашла неочевидные взаимодействия между препаратами и собрала визуальный дашборд здоровья сына</div>
+            <span class="ccard-link">читать пост →</span>
+          </div>
+        </a>
 
-        <article class="ccard bg-health-2">
+        <a class="ccard bg-health-2" href="https://t.me/brainloveandrobots/20" target="_blank">
           <span class="ccard-tag t-health">здоровье</span>
-          <div class="ccard-body">
-            <div class="ccard-title">интеграция сенсоров и генетики</div>
-            <div class="ccard-text">AI не просто читает данные - ищет противоречия и сверяется сам</div>
+          <div class="ccard-art">
+            <svg viewBox="0 0 230 140" xmlns="http://www.w3.org/2000/svg">
+              <!-- circadian ring (24h clock) -->
+              <circle cx="115" cy="70" r="54"/>
+              <circle cx="115" cy="70" r="42"/>
+              <!-- sun position (morning) -->
+              <circle cx="115" cy="16" r="4.5" class="dot"/>
+              <line x1="115" y1="22" x2="115" y2="30"/>
+              <!-- moon position (evening) -->
+              <path d="M160 88 Q168 82 170 90 Q166 92 160 88" class="filled"/>
+              <!-- activity segments -->
+              <path d="M115 16 A 54 54 0 0 1 169 70" stroke-width="4"/>
+              <path d="M115 124 A 54 54 0 0 1 61 70" stroke-width="4" opacity="0.5"/>
+              <!-- sleep wave inside -->
+              <path d="M82 70 Q96 58 110 70 T140 70 T168 70"/>
+              <!-- 24 tick marks -->
+              <line x1="115" y1="12" x2="115" y2="20" opacity="0.6"/>
+              <line x1="115" y1="120" x2="115" y2="128" opacity="0.6"/>
+              <line x1="59" y1="70" x2="67" y2="70" opacity="0.6"/>
+              <line x1="163" y1="70" x2="171" y2="70" opacity="0.6"/>
+            </svg>
           </div>
-        </article>
+          <div class="ccard-body">
+            <div class="ccard-title">Oura + WHOOP + OpenClaw</div>
+            <div class="ccard-text">утром агент даёт рекомендации по нагрузке на основе сна и восстановления, вечером проверяет результаты, адаптирует тренировки под состояние</div>
+            <span class="ccard-link">читать пост →</span>
+          </div>
+        </a>
 
-        <article class="ccard bg-self-1">
+        <a class="ccard bg-self-1" href="https://t.me/brainloveandrobots/24" target="_blank">
           <span class="ccard-tag t-self">саморазвитие</span>
-          <div class="ccard-body">
-            <div class="ccard-title">коуч-промпт для внутренней работы</div>
-            <div class="ccard-text">AI как отражение, которое подсвечивает то что сам не видишь</div>
+          <div class="ccard-art">
+            <svg viewBox="0 0 230 140" xmlns="http://www.w3.org/2000/svg">
+              <!-- phone frame -->
+              <rect x="70" y="10" width="90" height="125" rx="14"/>
+              <rect x="96" y="16" width="38" height="3" rx="1.5"/>
+              <!-- crescent moon -->
+              <path d="M115 48 A 18 18 0 1 0 128 72 A 14 14 0 1 1 115 48 Z" class="filled"/>
+              <!-- spiral -->
+              <path d="M92 100 Q92 93 99 93 Q106 93 106 100 Q106 107 99 107 Q95 107 95 102 Q95 99 98 99"/>
+              <!-- eye / archetype -->
+              <ellipse cx="140" cy="100" rx="10" ry="6"/>
+              <circle cx="140" cy="100" r="2.2" class="dot"/>
+              <!-- stars scattered -->
+              <circle cx="85" cy="38" r="1.8" class="dot"/>
+              <circle cx="148" cy="42" r="1.8" class="dot"/>
+              <circle cx="95" cy="80" r="1.4" class="dot"/>
+              <circle cx="148" cy="78" r="1.4" class="dot"/>
+              <!-- triangle archetype -->
+              <path d="M100 120 L110 132 L120 120 Z" opacity="0.6"/>
+            </svg>
           </div>
-        </article>
+          <div class="ccard-body">
+            <div class="ccard-title">web-приложение для расшифровки снов</div>
+            <div class="ccard-text">участница без IT-фона за одну ночь вайбкодила приложение, которое анализирует сны по архетипам Юнга и помогает ловить подсознательные паттерны</div>
+            <span class="ccard-link">читать пост →</span>
+          </div>
+        </a>
 
-        <article class="ccard bg-self-2">
+        <a class="ccard bg-self-2" href="https://t.me/brainloveandrobots/31" target="_blank">
           <span class="ccard-tag t-self">саморазвитие</span>
-          <div class="ccard-body">
-            <div class="ccard-title">личный коуч на ценностях и паттернах</div>
-            <div class="ccard-text">«очень кайфую, какой приятный и любопытный может быть процесс»</div>
+          <div class="ccard-art">
+            <svg viewBox="0 0 230 140" xmlns="http://www.w3.org/2000/svg">
+              <!-- central Self -->
+              <circle cx="115" cy="70" r="14"/>
+              <circle cx="115" cy="70" r="4" class="dot"/>
+              <!-- parts around -->
+              <circle cx="60" cy="40" r="11" class="filled"/>
+              <circle cx="170" cy="40" r="11" class="filled"/>
+              <circle cx="55" cy="100" r="11" class="filled"/>
+              <circle cx="175" cy="100" r="11" class="filled"/>
+              <circle cx="115" cy="20" r="9"/>
+              <circle cx="115" cy="120" r="9"/>
+              <!-- connecting lines -->
+              <line x1="69" y1="46" x2="102" y2="64" stroke-dasharray="2 3"/>
+              <line x1="161" y1="46" x2="128" y2="64" stroke-dasharray="2 3"/>
+              <line x1="64" y1="94" x2="103" y2="78" stroke-dasharray="2 3"/>
+              <line x1="166" y1="94" x2="127" y2="78" stroke-dasharray="2 3"/>
+              <line x1="115" y1="29" x2="115" y2="56" stroke-dasharray="2 3"/>
+              <line x1="115" y1="84" x2="115" y2="111" stroke-dasharray="2 3"/>
+            </svg>
           </div>
-        </article>
+          <div class="ccard-body">
+            <div class="ccard-title">коуч-цикл для психолога</div>
+            <div class="ccard-text">переформулировала промпт под IFS и схема-терапию, загрузила 20 недель журналов - за вечер получила персональный еженедельный коуч-цикл</div>
+            <span class="ccard-link">читать пост →</span>
+          </div>
+        </a>
 
-        <article class="ccard bg-work-1">
+        <a class="ccard bg-work-1" href="https://t.me/brainloveandrobots/22" target="_blank">
           <span class="ccard-tag t-work">работа</span>
-          <div class="ccard-body">
-            <div class="ccard-title">unified os для проектов</div>
-            <div class="ccard-text">AI - не «помощник», а соавтор, с которым вместе думаешь и строишь</div>
+          <div class="ccard-art">
+            <svg viewBox="0 0 230 140" xmlns="http://www.w3.org/2000/svg">
+              <!-- plate divided into macros -->
+              <circle cx="75" cy="70" r="44"/>
+              <line x1="75" y1="26" x2="75" y2="114"/>
+              <line x1="31" y1="70" x2="75" y2="70"/>
+              <!-- protein icon -->
+              <circle cx="55" cy="50" r="4" class="dot"/>
+              <circle cx="63" cy="56" r="3" class="dot"/>
+              <!-- carb icon -->
+              <circle cx="90" cy="44" r="3.5" class="dot"/>
+              <circle cx="100" cy="52" r="3" class="dot"/>
+              <circle cx="92" cy="60" r="2.5" class="dot"/>
+              <!-- greens -->
+              <path d="M48 88 Q52 82 58 88 Q60 94 55 97 Q50 95 48 88"/>
+              <path d="M60 95 Q65 90 70 96" opacity="0.7"/>
+              <!-- runner trail (arrow path) -->
+              <path d="M138 110 Q158 70 180 90 Q200 112 220 55" stroke-dasharray="3 4"/>
+              <!-- runner figure -->
+              <circle cx="220" cy="55" r="4.5" class="dot"/>
+              <path d="M220 60 L220 74 M220 68 L214 78 M220 68 L226 78 M218 65 L212 60"/>
+              <!-- distance markers -->
+              <circle cx="158" cy="84" r="2" class="dot"/>
+              <circle cx="192" cy="98" r="2" class="dot"/>
+            </svg>
           </div>
-        </article>
+          <div class="ccard-body">
+            <div class="ccard-title">питание под марафон в Cursor</div>
+            <div class="ccard-text">марафонка загрузила график тренировок и рекомендации нутрициолога в GPT, получила персональное меню и собрала себе сайт в Cursor для отслеживания</div>
+            <span class="ccard-link">читать пост →</span>
+          </div>
+        </a>
 
-        <article class="ccard bg-work-2">
+        <a class="ccard bg-work-2" href="https://t.me/brainloveandrobots/36" target="_blank">
           <span class="ccard-tag t-work">работа</span>
-          <div class="ccard-body">
-            <div class="ccard-title">open-source voice kit на Rust</div>
-            <div class="ccard-text">инструмент, сделанный для себя, работает и для других - это и есть комьюнити</div>
+          <div class="ccard-art">
+            <svg viewBox="0 0 230 140" xmlns="http://www.w3.org/2000/svg">
+              <!-- house floor plan -->
+              <rect x="30" y="30" width="170" height="90" rx="2"/>
+              <line x1="110" y1="30" x2="110" y2="120"/>
+              <line x1="30" y1="75" x2="110" y2="75"/>
+              <line x1="110" y1="70" x2="200" y2="70"/>
+              <line x1="155" y1="70" x2="155" y2="120"/>
+              <!-- doors (gaps) -->
+              <line x1="110" y1="48" x2="110" y2="58" stroke="none"/>
+              <!-- sensors -->
+              <circle cx="60" cy="52" r="4" class="dot"/>
+              <circle cx="88" cy="98" r="4" class="dot"/>
+              <circle cx="135" cy="48" r="4" class="dot"/>
+              <circle cx="180" cy="50" r="4" class="dot"/>
+              <circle cx="130" cy="96" r="4" class="dot"/>
+              <circle cx="180" cy="96" r="4" class="dot"/>
+              <!-- wifi signal from one sensor -->
+              <path d="M60 52 Q70 44 80 52" opacity="0.75"/>
+              <path d="M60 52 Q74 38 88 52" opacity="0.5"/>
+              <path d="M60 52 Q78 32 96 52" opacity="0.3"/>
+              <!-- connectors -->
+              <line x1="64" y1="52" x2="84" y2="98" stroke-dasharray="2 3" opacity="0.7"/>
+              <line x1="139" y1="48" x2="176" y2="50" stroke-dasharray="2 3" opacity="0.7"/>
+              <line x1="134" y1="96" x2="176" y2="96" stroke-dasharray="2 3" opacity="0.7"/>
+              <!-- central hub -->
+              <circle cx="115" cy="10" r="6"/>
+              <circle cx="115" cy="10" r="2" class="dot"/>
+              <line x1="115" y1="16" x2="115" y2="30" stroke-dasharray="2 3"/>
+            </svg>
           </div>
-        </article>
+          <div class="ccard-body">
+            <div class="ccard-title">умный дом на Claude Code</div>
+            <div class="ccard-text">датчики протечки, розетки, звонок, счётчик и свет - всё автоматизировано. Claude пишет приложения для Samsung TV и трекинг сна ребёнка</div>
+            <span class="ccard-link">читать пост →</span>
+          </div>
+        </a>
 
       </div>
     </div>
@@ -854,14 +1097,14 @@
         <div class="pricing-whats">
           <h2>что входит в подписку</h2>
           <ul class="pricing-list">
-            <li><strong>приватный чат 24/7</strong> - люди из комьюнити делятся тем, что реально делают с AI</li>
-            <li><strong>протагонист-звонки</strong> - 1–2 в неделю, с живыми людьми, прошедшими свой путь</li>
-            <li><strong>unblocking</strong> - час в месяц на твой затык, с фасилитатором</li>
-            <li><strong>костры</strong> - еженедельный круг, без непрошеных советов</li>
-            <li><strong>спринты</strong> - участие в текущей теме: creative os, родительство, alignment</li>
-            <li><strong>база знаний</strong> - архив прошлых спринтов, артефакты, промпты, транскрипты</li>
-            <li><strong>AI-сетапы</strong> - готовые шаблоны протагонистов, можно раскатить у себя</li>
-            <li><strong>starter-pack</strong> - промпты и гайды для старта с AI</li>
+            <li><strong>приватный чат 24/7</strong> - люди из комьюнити делятся тем, что реально делают с AI. живые инсайты и обсуждения каждый день</li>
+            <li><strong>протагонист-звонки</strong> - еженедельные встречи с гостями, у которых работающие кейсы. от каждого - артефакт для твоего агента, чтобы раскатить подход у себя</li>
+            <li><strong>спринты</strong> - раз в 1–2 месяца комьюнити берёт тему и идёт в неё вместе: creative os, ии и дети, radical alignment. неделя перерыва между спринтами</li>
+            <li><strong>мужской круг</strong> - еженедельный горизонтальный формат без ролей и советов. контакт с собой через контакт с другими</li>
+            <li><strong>unblocking</strong> - раз в месяц. практика в zoom на 60 минут для новичков с AI: собираем игру с codex, тренируем разгон</li>
+            <li><strong>alignment</strong> - раз в 3 месяца. пересборка целей, контекста для AI и системы решений. артефакт для себя и агентов</li>
+            <li><strong>база знаний</strong> - архив всех спринтов: артефакты, транскрипты звонков, кейсы протагонистов - можно попросить свой кодекс что нового и что ценного лично для тебя</li>
+            <li><strong>starter-pack</strong> - loom-видео про настройку своего AI-сетапа: codex, claude code, cowork</li>
           </ul>
         </div>
 
