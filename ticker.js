@@ -1,6 +1,6 @@
 (function () {
   const items = [
-    { hot: 'скоро', text: '27 апреля · старт health os lab #2' },
+    { hot: 'скоро', text: '11 мая · старт health os lab #2' },
     { text: '25 апреля · костёр «мужской круг» — application' },
     { text: '5 мая · открытие creative os — усилитель твоего голоса' },
     { text: '6 мая · протагонист — Вадим' },

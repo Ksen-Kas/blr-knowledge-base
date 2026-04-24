@@ -1,0 +1,997 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>health os лаба — brain love & robots</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600;700;800&family=Sora:wght@500;600;700;800&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    --bg: #f3f4f6;
+    --surface: #ffffff;
+    --ink: #1e232c;
+    --muted: #5f6672;
+    --line: #e6e7eb;
+    --yellow: #ffd200;
+    --blue: #2a6fff;
+    --orange: #ff9e2c;
+    --green: #12a553;
+    --pink: #ea95c1;
+    --violet: #582fc8;
+    --radius-xl: 32px;
+    --radius-lg: 24px;
+    --radius-md: 16px;
+    --maxw: 1200px;
+    --shadow-soft: 0 16px 44px rgba(20, 27, 43, 0.09);
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: "Instrument Sans", "Segoe UI", sans-serif;
+    background: var(--bg);
+    color: var(--ink);
+    line-height: 1.45;
+    -webkit-font-smoothing: antialiased;
+  }
+  a { color: inherit; text-decoration: none; }
+
+  main { display: grid; gap: 56px; padding: 24px 20px 80px; }
+  section { width: min(var(--maxw), 100%); margin: 0 auto; }
+
+  /* — HEADER — */
+  .site-header {
+    width: min(var(--maxw), 100%);
+    margin: 0 auto;
+    display: flex; align-items: center; justify-content: space-between;
+    gap: 20px; padding: 18px 20px 0;
+  }
+  .site-header .back {
+    display: inline-flex; align-items: center; gap: 8px;
+    font-size: 14px; color: var(--muted); font-weight: 500;
+    padding: 8px 14px; border-radius: 999px;
+    background: var(--surface); border: 1px solid var(--line);
+    transition: color 0.15s, border-color 0.15s;
+  }
+  .site-header .back:hover { color: var(--ink); border-color: var(--ink); }
+  .site-header nav { display: flex; gap: 20px; font-size: 14px; color: var(--muted); }
+  .site-header nav a:hover { color: var(--ink); }
+  @media (max-width: 760px) { .site-header nav { display: none; } }
+
+  /* — HERO — */
+  .hero {
+    display: grid;
+    grid-template-columns: 1.15fr 1fr;
+    gap: 24px;
+    align-items: stretch;
+  }
+  .hero-headline {
+    background: var(--surface);
+    border-radius: var(--radius-xl);
+    padding: 44px 44px 40px;
+    box-shadow: var(--shadow-soft);
+    display: flex; flex-direction: column;
+  }
+  .hero-pills {
+    display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 24px;
+  }
+  .pill {
+    display: inline-flex; align-items: center; gap: 8px;
+    padding: 8px 14px; border-radius: 999px;
+    background: var(--yellow); color: var(--ink);
+    font-size: 13px; font-weight: 700;
+  }
+  .pill.dark { background: var(--ink); color: #fff; }
+  .pill.ghost { background: transparent; border: 1px solid var(--line); color: var(--muted); font-weight: 600; }
+  .pill .dot { width: 7px; height: 7px; border-radius: 50%; background: var(--ink); }
+  .pill.dark .dot { background: var(--yellow); }
+
+  .hero-headline h1 {
+    font-family: "Sora", "Instrument Sans", sans-serif;
+    font-size: clamp(38px, 5vw, 60px);
+    font-weight: 800;
+    line-height: 1.02;
+    letter-spacing: -0.025em;
+    margin-bottom: 18px;
+  }
+  .hero-headline h1 em {
+    font-style: normal;
+    background: var(--yellow);
+    padding: 0 6px;
+    border-radius: 8px;
+  }
+  .hero-lede {
+    font-size: 18px; color: var(--muted); max-width: 520px;
+    margin-bottom: 22px;
+  }
+  .hero-questions {
+    list-style: none; display: grid; gap: 6px; margin-bottom: 24px;
+  }
+  .hero-questions li {
+    font-size: 15px; color: var(--ink);
+    padding-left: 22px; position: relative;
+  }
+  .hero-questions li::before {
+    content: "→"; position: absolute; left: 0; top: 0;
+    color: var(--orange); font-weight: 700;
+  }
+  .hero-meta {
+    display: flex; flex-wrap: wrap; gap: 10px 20px;
+    font-size: 13px; color: var(--muted);
+    border-top: 1px solid var(--line);
+    padding-top: 18px; margin-top: auto;
+  }
+  .hero-meta b { color: var(--ink); font-weight: 700; }
+
+  .hero-card-side {
+    background: var(--ink); color: #fff;
+    border-radius: var(--radius-xl);
+    padding: 36px;
+    display: flex; flex-direction: column;
+    justify-content: space-between;
+    position: relative; overflow: hidden;
+  }
+  .hero-card-side::before {
+    content: ""; position: absolute;
+    width: 260px; height: 260px; border-radius: 50%;
+    background: var(--orange); opacity: 0.35;
+    top: -60px; right: -60px; filter: blur(18px);
+  }
+  .hero-card-side::after {
+    content: ""; position: absolute;
+    width: 140px; height: 140px; border-radius: 50%;
+    background: var(--pink); opacity: 0.55;
+    bottom: -30px; left: 40%; filter: blur(12px);
+  }
+  .card-kicker {
+    font-size: 12px; font-weight: 700;
+    text-transform: uppercase; letter-spacing: 0.08em;
+    color: var(--yellow); margin-bottom: 8px;
+    position: relative; z-index: 2;
+  }
+  .hero-card-side h2 {
+    font-family: "Sora", sans-serif;
+    font-size: 32px; font-weight: 700;
+    line-height: 1.1; letter-spacing: -0.02em;
+    margin-bottom: 14px; position: relative; z-index: 2;
+  }
+  .hero-card-side .copy {
+    font-size: 15px; color: #c4c9d1;
+    max-width: 340px; margin-bottom: 14px;
+    position: relative; z-index: 2;
+  }
+  .hero-cases {
+    list-style: none; display: grid; gap: 6px;
+    position: relative; z-index: 2;
+  }
+  .hero-cases li {
+    font-size: 14px; color: #c4c9d1;
+    padding-left: 16px; position: relative;
+  }
+  .hero-cases li::before {
+    content: "·"; position: absolute; left: 4px; top: -2px;
+    color: var(--yellow); font-weight: 800; font-size: 18px;
+  }
+  .hero-cases li b { color: #fff; font-weight: 700; }
+  .hero-card-side .cta-wrap {
+    position: relative; z-index: 2;
+    display: flex; flex-direction: column; gap: 12px;
+  }
+  .btn {
+    display: inline-flex; align-items: center; gap: 8px;
+    padding: 14px 22px; border-radius: 999px;
+    font-size: 15px; font-weight: 700;
+    font-family: inherit;
+    border: 1px solid transparent;
+    cursor: pointer; transition: transform 0.15s, opacity 0.15s;
+    text-decoration: none;
+    width: fit-content;
+  }
+  .btn:hover { transform: translateY(-1px); opacity: 0.92; }
+  .btn-yellow { background: var(--yellow); color: var(--ink); }
+  .btn-dark { background: var(--ink); color: #fff; }
+  .btn-light { background: #fff; color: var(--ink); }
+  .btn-ghost { border-color: var(--line); background: transparent; color: var(--ink); }
+  .btn-ghost:hover { border-color: var(--ink); }
+  .btn-on-dark-ghost { border: 1px solid rgba(255,255,255,0.25); color: #fff; background: transparent; }
+
+  @media (max-width: 860px) { .hero { grid-template-columns: 1fr; } }
+
+  /* — PHASES — */
+  .phases-head { display: flex; align-items: end; justify-content: space-between; margin-bottom: 22px; flex-wrap: wrap; gap: 12px; }
+  .phases-head h2 {
+    font-family: "Sora", sans-serif; font-size: 34px; font-weight: 700;
+    letter-spacing: -0.02em; line-height: 1.1;
+  }
+  .phases-head p { color: var(--muted); font-size: 15px; max-width: 420px; }
+
+  .phases { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+  .phase {
+    background: var(--surface);
+    border-radius: var(--radius-lg);
+    padding: 28px 28px 32px;
+    box-shadow: var(--shadow-soft);
+    display: flex; flex-direction: column;
+  }
+  .phase .ph-num {
+    font-size: 13px; font-weight: 700;
+    color: var(--muted); margin-bottom: 20px;
+    display: flex; align-items: center; gap: 8px;
+  }
+  .phase .ph-num span {
+    display: inline-flex; align-items: center; justify-content: center;
+    width: 28px; height: 28px; border-radius: 50%;
+    background: var(--yellow); color: var(--ink);
+    font-weight: 800; font-size: 13px;
+  }
+  .phase h3 {
+    font-family: "Sora", sans-serif; font-size: 22px;
+    font-weight: 700; margin-bottom: 10px; letter-spacing: -0.01em;
+  }
+  .phase p { color: var(--muted); font-size: 15px; line-height: 1.5; }
+  @media (max-width: 820px) { .phases { grid-template-columns: 1fr; } }
+
+  /* — LIBRARY RAIL — */
+  .rail-head { display: flex; align-items: end; justify-content: space-between; margin-bottom: 22px; flex-wrap: wrap; gap: 12px; }
+  .rail-head h2 {
+    font-family: "Sora", sans-serif; font-size: 34px; font-weight: 700;
+    letter-spacing: -0.02em; line-height: 1.1;
+  }
+  .rail-head p { color: var(--muted); font-size: 15px; max-width: 440px; }
+
+  .library-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+  }
+  .lib-card {
+    background: var(--surface);
+    border-radius: var(--radius-lg);
+    padding: 24px;
+    box-shadow: var(--shadow-soft);
+    display: flex; flex-direction: column;
+    position: relative;
+    transition: transform 0.15s;
+  }
+  .lib-card:hover { transform: translateY(-2px); }
+  .lib-card .num {
+    font-size: 11px; font-weight: 800;
+    letter-spacing: 0.08em; text-transform: uppercase;
+    color: var(--muted); margin-bottom: 14px;
+  }
+  .lib-card .top-badge {
+    position: absolute;
+    top: -14px; right: 16px;
+    display: inline-flex; align-items: center; gap: 8px;
+    height: 38px;
+    padding: 0 18px;
+    border-radius: 999px;
+    background: #2D2C2B;
+    color: #ffffff;
+    font-family: 'Instrument Sans', Inter, sans-serif;
+    font-weight: 700;
+    font-size: 14px;
+    letter-spacing: -0.02em;
+    white-space: nowrap;
+    z-index: 3;
+    box-shadow: 0 8px 20px rgba(45, 44, 43, 0.22);
+  }
+  .lib-card .top-badge svg {
+    width: 16px; height: 16px; flex-shrink: 0;
+  }
+  .lib-card .tag {
+    display: inline-block;
+    font-size: 11px; font-weight: 700;
+    padding: 4px 10px; border-radius: 999px;
+    margin-bottom: 10px;
+  }
+  .lib-card .tag.t1 { background: #fff5cc; color: #8a6d00; }
+  .lib-card .tag.t2 { background: #e5f2ff; color: #1f4fbf; }
+  .lib-card .tag.t3 { background: #ffe9e9; color: #b93b3b; }
+  .lib-card .tag.t4 { background: #e3f6ea; color: #0d7a3e; }
+  .lib-card .tag.t5 { background: #f3eeff; color: #4a2bb3; }
+  .lib-card .tag.t6 { background: #fde7f3; color: #a63371; }
+  .lib-card h3 {
+    font-family: "Sora", sans-serif;
+    font-size: 20px; font-weight: 700;
+    line-height: 1.2; letter-spacing: -0.01em;
+    margin-bottom: 10px;
+  }
+  .lib-card p { color: var(--muted); font-size: 14px; line-height: 1.55; flex: 1; }
+  .lib-pack {
+    grid-column: 1 / -1;
+    background: var(--yellow);
+    border-radius: var(--radius-lg);
+    padding: 22px 28px;
+    display: flex; flex-wrap: wrap; align-items: center; gap: 16px;
+  }
+  .lib-pack .kicker {
+    font-size: 11px; font-weight: 800; text-transform: uppercase;
+    letter-spacing: 0.08em; color: var(--ink);
+  }
+  .lib-pack .txt { color: var(--ink); font-size: 15px; flex: 1; min-width: 240px; }
+  .lib-pack .txt b { font-weight: 800; }
+  @media (max-width: 980px) { .library-grid { grid-template-columns: repeat(2, 1fr); } }
+  @media (max-width: 640px) { .library-grid { grid-template-columns: 1fr; } }
+
+  /* — COWORK — */
+  .cowork {
+    background: var(--surface);
+    border-radius: var(--radius-xl);
+    padding: 44px;
+    box-shadow: var(--shadow-soft);
+    display: grid;
+    grid-template-columns: 1.1fr 1fr;
+    gap: 32px;
+    align-items: center;
+  }
+  .cowork h2 {
+    font-family: "Sora", sans-serif; font-size: 32px;
+    font-weight: 700; line-height: 1.1; letter-spacing: -0.02em;
+    margin-bottom: 14px;
+  }
+  .cowork h2 em { font-style: normal; color: var(--blue); }
+  .cowork p { color: var(--muted); font-size: 16px; margin-bottom: 18px; max-width: 520px; }
+  .cowork ul { list-style: none; display: grid; gap: 10px; margin-bottom: 20px; }
+  .cowork ul li {
+    padding: 12px 16px; background: var(--bg); border-radius: 12px;
+    font-size: 14px; color: var(--ink);
+  }
+  .cowork ul li b { color: var(--ink); font-weight: 700; }
+  .cowork-req {
+    background: var(--bg); border-radius: var(--radius-md); padding: 22px 24px;
+    font-size: 14px; color: var(--muted); line-height: 1.5;
+    display: grid; gap: 14px;
+  }
+  .cowork-req b { color: var(--ink); font-weight: 700; }
+  .cowork-req .row { display: block; }
+  .cowork-req .req-label {
+    display: block; font-size: 11px; font-weight: 800;
+    text-transform: uppercase; letter-spacing: 0.08em;
+    color: var(--muted); margin-bottom: 10px;
+  }
+  .cowork-req ul.req-list {
+    list-style: none; display: grid; gap: 8px;
+  }
+  .cowork-req ul.req-list li {
+    color: var(--ink); font-size: 14px; line-height: 1.45;
+    display: flex; align-items: center; gap: 10px;
+  }
+  .cowork-req ul.req-list li::before {
+    content: "";
+    flex-shrink: 0;
+    width: 16px; height: 16px;
+    border-radius: 50%;
+    background-color: var(--yellow);
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><path d='M4 8.2 L7 11 L12 5' stroke='%231e232c' stroke-width='2' fill='none' stroke-linecap='round' stroke-linejoin='round'/></svg>");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 12px 12px;
+  }
+  .cowork-req .check-row {
+    display: flex; flex-wrap: wrap; gap: 10px 14px;
+    align-items: center;
+    padding: 12px 14px 12px 16px; border-radius: 12px;
+    background: #fff; border: 1px solid var(--line);
+    box-shadow: 0 2px 8px rgba(20, 27, 43, 0.04);
+  }
+  .cowork-req .check-row span { color: var(--ink); font-size: 14px; flex: 1; min-width: 180px; line-height: 1.4; }
+  .cowork-req .check-btns {
+    display: flex; flex-wrap: wrap; gap: 8px;
+  }
+  .cowork-req .req-btn {
+    display: inline-flex; align-items: center; gap: 6px;
+    padding: 9px 16px; border-radius: 999px;
+    background: var(--ink); color: #fff;
+    font-size: 13px; font-weight: 700;
+    white-space: nowrap;
+    transition: transform 0.15s, opacity 0.15s;
+  }
+  .cowork-req .req-btn:hover { transform: translateY(-1px); opacity: 0.9; }
+  .cowork-req .req-btn-alt {
+    background: #fff; color: var(--ink);
+    border: 1px solid var(--ink);
+  }
+  .cowork-req .fallback {
+    font-size: 13px; color: var(--muted); line-height: 1.5;
+  }
+  .cowork-req .fallback a {
+    color: var(--blue); font-weight: 700;
+    border-bottom: 1px solid rgba(42, 111, 255, 0.35);
+    transition: border-color 0.15s;
+  }
+  .cowork-req .fallback a:hover { border-bottom-color: var(--blue); }
+  .cowork-req .opt {
+    padding-top: 12px; margin-top: 2px;
+    border-top: 1px solid var(--line);
+    font-size: 13px;
+  }
+  @media (max-width: 860px) { .cowork { grid-template-columns: 1fr; padding: 32px 28px; } }
+
+  /* — TIMELINE — */
+  .timeline-wrap {
+    background: var(--surface);
+    border-radius: var(--radius-xl);
+    padding: 44px;
+    box-shadow: var(--shadow-soft);
+  }
+  .timeline-wrap > h2 {
+    font-family: "Sora", sans-serif; font-size: 32px;
+    font-weight: 700; line-height: 1.1; letter-spacing: -0.02em;
+    margin-bottom: 8px;
+  }
+  .timeline-wrap > .sub { color: var(--muted); font-size: 15px; margin-bottom: 28px; }
+
+  .program-meta {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+    margin-bottom: 28px;
+  }
+  .pm-chip {
+    background: var(--bg);
+    border-radius: 14px;
+    padding: 14px 16px;
+    display: flex; flex-direction: column; gap: 4px;
+  }
+  .pm-chip .pm-k {
+    font-family: "Sora", sans-serif;
+    font-size: 16px; font-weight: 700; letter-spacing: -0.01em;
+    color: var(--ink);
+  }
+  .pm-chip .pm-v {
+    font-size: 12px; color: var(--muted); line-height: 1.4;
+  }
+  @media (max-width: 820px) { .program-meta { grid-template-columns: repeat(2, 1fr); } }
+  @media (max-width: 480px) { .program-meta { grid-template-columns: 1fr; } }
+
+  .calls {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 14px;
+  }
+  .call-card {
+    background: var(--bg);
+    border-radius: var(--radius-lg);
+    padding: 24px;
+    display: flex; flex-direction: column; gap: 10px;
+    position: relative;
+  }
+  .call-card .call-num {
+    display: inline-block;
+    width: fit-content;
+    font-size: 11px; font-weight: 800;
+    text-transform: uppercase; letter-spacing: 0.08em;
+    padding: 5px 12px;
+    background: var(--yellow); color: var(--ink);
+    border-radius: 999px;
+  }
+  .call-card .call-date {
+    font-size: 13px; font-weight: 700; color: var(--ink);
+  }
+  .call-card h3 {
+    font-family: "Sora", sans-serif;
+    font-size: 22px; font-weight: 700;
+    letter-spacing: -0.01em; line-height: 1.15;
+    margin: 0;
+  }
+  .call-card p {
+    color: var(--muted); font-size: 14px; line-height: 1.5;
+  }
+  @media (max-width: 820px) { .calls { grid-template-columns: 1fr; } }
+
+  .week { margin-bottom: 34px; }
+  .week:last-child { margin-bottom: 0; }
+  .week-tag {
+    display: inline-block;
+    font-size: 11px; font-weight: 800; text-transform: uppercase;
+    letter-spacing: 0.08em; color: var(--orange);
+    margin-bottom: 8px;
+  }
+  .week h3 {
+    font-family: "Sora", sans-serif; font-size: 22px;
+    font-weight: 700; letter-spacing: -0.01em;
+    margin-bottom: 18px;
+  }
+  .event {
+    display: grid;
+    grid-template-columns: 120px 1fr;
+    gap: 20px;
+    padding: 14px 0;
+    border-top: 1px solid var(--line);
+  }
+  .event .date {
+    font-size: 13px; font-weight: 700;
+    color: var(--ink);
+    display: flex; align-items: center; gap: 8px;
+  }
+  .event.call .date::before {
+    content: ""; width: 8px; height: 8px; border-radius: 50%;
+    background: var(--yellow);
+  }
+  .event.quest .date::before {
+    content: ""; width: 8px; height: 8px; border-radius: 50%;
+    background: var(--blue);
+  }
+  .event .what { font-size: 15px; color: var(--ink); }
+  .event .what b { font-weight: 700; }
+  .event .out {
+    display: block; margin-top: 4px;
+    font-size: 13px; color: var(--muted);
+  }
+  .event .what code {
+    background: var(--bg); padding: 2px 7px; border-radius: 6px;
+    font-family: inherit; font-size: 13px;
+  }
+  @media (max-width: 640px) { .event { grid-template-columns: 1fr; gap: 6px; } }
+
+  /* — QUEST CARD — */
+  .quest-card {
+    background: var(--ink); color: #fff;
+    border-radius: var(--radius-xl);
+    padding: 40px;
+    position: relative; overflow: hidden;
+  }
+  .quest-card::before {
+    content: ""; position: absolute;
+    width: 300px; height: 300px; border-radius: 50%;
+    background: var(--violet); opacity: 0.4;
+    top: -80px; right: -80px; filter: blur(30px);
+  }
+  .quest-card h2 {
+    font-family: "Sora", sans-serif; font-size: 28px;
+    font-weight: 700; letter-spacing: -0.02em;
+    margin-bottom: 6px; position: relative; z-index: 2;
+  }
+  .quest-card .sub { color: #9aa0aa; margin-bottom: 22px; font-size: 14px; position: relative; z-index: 2; }
+  .quest-card .q-title {
+    font-size: 20px; font-weight: 700; margin-bottom: 14px;
+    position: relative; z-index: 2;
+  }
+  .quest-card .q-meta {
+    display: flex; flex-wrap: wrap; gap: 16px;
+    font-size: 13px; color: #9aa0aa;
+    padding-bottom: 18px; margin-bottom: 18px;
+    border-bottom: 1px solid rgba(255,255,255,0.12);
+    position: relative; z-index: 2;
+  }
+  .quest-card .q-meta b { color: #fff; font-weight: 700; }
+  .quest-card .goal {
+    font-size: 15px; color: #d8dbe0; margin-bottom: 18px;
+    position: relative; z-index: 2;
+  }
+  .quest-card .goal b { color: #fff; font-weight: 700; }
+  .quest-card ol {
+    list-style: none; counter-reset: step;
+    display: grid; gap: 10px;
+    position: relative; z-index: 2;
+  }
+  .quest-card ol li {
+    counter-increment: step;
+    padding: 14px 16px 14px 48px;
+    background: rgba(255,255,255,0.06);
+    border-radius: 12px;
+    font-size: 14px; color: #d8dbe0;
+    position: relative;
+  }
+  .quest-card ol li::before {
+    content: counter(step);
+    position: absolute; left: 14px; top: 12px;
+    width: 22px; height: 22px; border-radius: 50%;
+    background: var(--yellow); color: var(--ink);
+    font-size: 12px; font-weight: 800;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .quest-card ol li b { color: #fff; font-weight: 700; }
+  .quest-card .bonfire {
+    margin-top: 18px; padding: 14px 16px;
+    background: rgba(255, 158, 44, 0.12);
+    border: 1px dashed var(--orange);
+    border-radius: 12px; font-size: 14px; color: #ffd6a8;
+    position: relative; z-index: 2;
+  }
+  .quest-card .bonfire b { color: var(--orange); font-weight: 800; }
+
+  /* — PRINCIPLES — */
+  .principles { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
+  .p-card {
+    background: var(--surface);
+    border-radius: var(--radius-lg);
+    padding: 24px;
+    box-shadow: var(--shadow-soft);
+  }
+  .p-card .icon {
+    width: 36px; height: 36px; border-radius: 10px;
+    display: grid; place-items: center;
+    font-size: 18px; margin-bottom: 14px;
+  }
+  .p-card .icon.c1 { background: #fff5cc; }
+  .p-card .icon.c2 { background: #e5f2ff; }
+  .p-card .icon.c3 { background: #fde7f3; }
+  .p-card .icon.c4 { background: #e3f6ea; }
+  .p-card b {
+    display: block; font-family: "Sora", sans-serif;
+    font-size: 17px; font-weight: 700; margin-bottom: 6px;
+    letter-spacing: -0.01em;
+  }
+  .p-card span { color: var(--muted); font-size: 14px; line-height: 1.5; }
+  @media (max-width: 900px) { .principles { grid-template-columns: repeat(2, 1fr); } }
+  @media (max-width: 520px) { .principles { grid-template-columns: 1fr; } }
+
+  /* — OUTCOMES — */
+  .outcomes-wrap {
+    display: grid;
+    grid-template-columns: 1fr 1.3fr;
+    gap: 32px;
+    align-items: start;
+  }
+  .outcomes-wrap h2 {
+    font-family: "Sora", sans-serif; font-size: 34px;
+    font-weight: 700; line-height: 1.1; letter-spacing: -0.02em;
+  }
+  .outcomes-wrap .sub { color: var(--muted); font-size: 15px; margin-top: 12px; }
+  .outcomes {
+    list-style: none;
+    background: var(--surface);
+    border-radius: var(--radius-lg);
+    padding: 12px 28px;
+    box-shadow: var(--shadow-soft);
+  }
+  .outcomes li {
+    padding: 18px 0;
+    display: grid; grid-template-columns: 32px 1fr; gap: 14px;
+    font-size: 16px; line-height: 1.5;
+    border-bottom: 1px solid var(--line);
+  }
+  .outcomes li:last-child { border-bottom: none; }
+  .outcomes li::before {
+    content: "→"; color: var(--orange);
+    font-weight: 800; font-size: 20px;
+  }
+  @media (max-width: 860px) { .outcomes-wrap { grid-template-columns: 1fr; } }
+
+  /* — CTA — */
+  .cta {
+    background: var(--yellow);
+    border-radius: var(--radius-xl);
+    padding: 56px 48px;
+    display: grid;
+    grid-template-columns: 1.3fr 1fr;
+    gap: 32px;
+    align-items: center;
+    position: relative; overflow: hidden;
+  }
+  .cta::before {
+    content: ""; position: absolute;
+    width: 220px; height: 220px; border-radius: 50%;
+    background: var(--orange); opacity: 0.35;
+    top: -40px; right: 20%;
+  }
+  .cta h2 {
+    font-family: "Sora", sans-serif;
+    font-size: clamp(30px, 4vw, 44px);
+    font-weight: 800; line-height: 1.05; letter-spacing: -0.02em;
+    margin-bottom: 14px;
+    position: relative; z-index: 2;
+  }
+  .cta p { font-size: 16px; color: var(--ink); max-width: 460px; margin-bottom: 22px; position: relative; z-index: 2; }
+  .cta-actions { display: flex; gap: 12px; flex-wrap: wrap; position: relative; z-index: 2; }
+  .cta .right {
+    background: var(--ink); color: #fff;
+    border-radius: var(--radius-lg); padding: 28px 32px;
+    position: relative; z-index: 2;
+    display: flex; flex-direction: column; gap: 10px;
+  }
+  .cta .right b { font-family: "Sora", sans-serif; font-size: 15px; color: var(--yellow); font-weight: 700; letter-spacing: 0.04em; text-transform: uppercase; }
+  .cta .right .row { font-size: 14px; color: #d8dbe0; }
+  .cta .right .row strong { color: #fff; font-weight: 700; }
+  .price-tiers { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin: 18px 0 22px; position: relative; z-index: 2; max-width: 460px; }
+  .price-tier { background: rgba(13,13,13,0.08); border-radius: var(--radius-md); padding: 14px 16px; display: flex; flex-direction: column; gap: 4px; }
+  .price-tier.primary { background: var(--ink); color: #fff; }
+  .price-tier .pt-label { font-size: 12px; font-weight: 700; opacity: 0.75; }
+  .price-tier .pt-price { font-family: "Sora", sans-serif; font-size: 24px; font-weight: 800; letter-spacing: -0.02em; }
+  @media (max-width: 860px) { .cta { grid-template-columns: 1fr; padding: 40px 28px; } }
+
+  /* — FOOTER — */
+  footer {
+    width: min(var(--maxw), 100%);
+    margin: 0 auto;
+    padding: 32px 20px 0;
+    display: flex; justify-content: space-between; flex-wrap: wrap; gap: 12px;
+    color: var(--muted); font-size: 13px;
+  }
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <a href="index.html" class="back">← brain love &amp; robots</a>
+  <nav>
+    <a href="#phases">как устроено</a>
+    <a href="#library">библиотека</a>
+    <a href="#program">программа</a>
+    <a href="#cta">записаться</a>
+  </nav>
+  <a href="#cta" class="btn btn-dark" style="padding:10px 18px;font-size:14px;">→ записаться</a>
+</header>
+
+<main>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-headline">
+      <div class="hero-pills">
+        <span class="pill"><span class="dot"></span>11 мая · старт</span>
+        <span class="pill ghost">2 недели</span>
+      </div>
+      <h1>собери свою <em>операционку</em> <em>здоровья</em> за 2 недели</h1>
+      <p class="hero-lede">лаба — короткий формат для фокусного исследования одной темы вместе с AI. сейчас — здоровье.</p>
+      <ul class="hero-questions">
+        <li>как я думаю про своё здоровье?</li>
+        <li>что мне важно и что я про него знаю?</li>
+        <li>какие есть особенности моей нервной системы?</li>
+        <li>как AI может мне помочь — не в теории, а сегодня?</li>
+      </ul>
+      <div class="hero-meta">
+        <span><b>старт:</b> 11 мая 2026</span>
+        <span><b>длительность:</b> 2 недели</span>
+        <span><b>формат:</b> 3 звонка + 6 квестов</span>
+        <span><b>нагрузка:</b> 15–30 мин раз в пару дней</span>
+      </div>
+    </div>
+
+    <aside class="hero-card-side">
+      <div>
+        <p class="card-kicker">откуда лаба</p>
+        <h2>весь апрель мы копали здоровье</h2>
+        <p class="copy">6 протагонистов принесли свои AI-сетапы. ты берёшь то, что откликается тебе:</p>
+        <ul class="hero-cases">
+          <li><b>тренироваться без срывов</b> — как Влад</li>
+          <li><b>разобрать непонятный показатель</b> — как Тоня с 7-летним холестерином</li>
+          <li><b>настроить уход за родителем</b> — как Маша для мамы</li>
+          <li><b>видеть своё тело в данных</b> — как Лёша на глюкозе</li>
+          <li><b>собрать команду коучей под себя</b> — как Катя с 8 агентами</li>
+          <li><b>перестать срываться вечером</b> — как Мика со сном</li>
+        </ul>
+        <p class="copy" style="margin-top:18px;">лаба — формат, где мы за ручку поможем интегрировать это всё в <em style="font-style:normal;color:var(--yellow);">твою</em> жизнь.</p>
+      </div>
+      <div class="cta-wrap">
+        <a href="#cta" class="btn btn-yellow">→ занять место</a>
+        <a href="#phases" class="btn btn-on-dark-ghost">как это устроено</a>
+      </div>
+    </aside>
+  </section>
+
+  <!-- PHASES -->
+  <section id="phases">
+    <div class="phases-head">
+      <h2>как устроено</h2>
+      <p>две недели в трёх фазах — от разгона вокруг своего здоровья до работающей операционки.</p>
+    </div>
+    <div class="phases">
+      <article class="phase">
+        <div class="ph-num"><span>1</span> фаза · разгон</div>
+        <h3>смотрим с разных углов</h3>
+        <p>открывающая практика с AI-сетапом. смотришь на своё здоровье через несколько оптик: что я на самом деле оптимизирую? что мне важно? какие процессы работают, какие — нет, как их поменять, где меня может поддержать AI.</p>
+      </article>
+      <article class="phase">
+        <div class="ph-num"><span>2</span> фаза · микро-квесты</div>
+        <h3>эксперименты через микро-квест</h3>
+        <p>раз в три дня — микро-квест-эксперимент. внутри каждого — артефакты протагонистов как use case, через которые ты смотришь на свою health os чужой линзой и сразу пробуешь на себе.</p>
+      </article>
+      <article class="phase">
+        <div class="ph-num"><span>3</span> фаза · интеграция</div>
+        <h3>собираем своё</h3>
+        <p>закрывающий звонок — что получилось, как ты теперь про это думаешь, куда дальше. выходишь с работающей системой + людьми, с которыми можно продолжать.</p>
+      </article>
+    </div>
+  </section>
+
+  <!-- LIBRARY -->
+  <section id="library">
+    <div class="rail-head">
+      <h2>библиотека — из чего выбираешь</h2>
+      <p>6 готовых протагонист-сетапов из первого спринта. раскатываются одной командой. на лабе берёшь 2 — остальные остаются в доступе.</p>
+    </div>
+    <div class="library-grid">
+      <article class="lib-card">
+        <div class="tag t1">сетап #1 · тренировки без воли</div>
+        <h3>Влад Куклев · Health OS</h3>
+        <p>5 лет пытался собрать систему — huberman, attia, obsidian, шиты. всё забивал через пару недель. собрал AI-агента — 5 недель без пропусков, 5-6 тренировок в неделю. без волевых усилий.</p>
+      </article>
+      <article class="lib-card">
+        <span class="top-badge">
+          <svg viewBox="0 0 16 16" fill="none" aria-hidden="true">
+            <path d="M8 0.5 L9.6 5.4 L14.8 5.4 L10.6 8.5 L12.2 13.4 L8 10.3 L3.8 13.4 L5.4 8.5 L1.2 5.4 L6.4 5.4 Z" fill="#FFD200" stroke="#FFD200" stroke-width="0.5" stroke-linejoin="round"/>
+          </svg>
+          топ-1 в комьюнити
+        </span>
+        <div class="tag t2">сетап #2 · deep research</div>
+        <h3>Тоня Жукова · 18 агентов</h3>
+        <p>скауты, критики, статистики, фактчекеры — команда из 18 AI-исследователей. разобралась с семилетним высоким холестерином, с которым врачи разводили руками.</p>
+      </article>
+      <article class="lib-card">
+        <div class="tag t3">сетап #3 · swarm клиника</div>
+        <h3>Маша Куликовская · AI-врачи</h3>
+        <p>несколько AI-врачей с разными специализациями совещаются, спорят, приходят к рекомендациям. построила персональную AI-клинику для мамы.</p>
+      </article>
+      <article class="lib-card">
+        <div class="tag t4">сетап #4 · глюкоза</div>
+        <h3>Лёша Евдокимов · Monitor</h3>
+        <p>16 дней непрерывного мониторинга глюкозы. AI показывает не цифру «6.2», а картинку: как блюдо повлияло, как прогулка сбила пик. живой эндокринолог удивился качеству заключения.</p>
+      </article>
+      <article class="lib-card">
+        <div class="tag t5">сетап #5 · life os</div>
+        <h3>Катя Кириллова · 8 коучей</h3>
+        <p>8 агентов-коучей: longevity, sport, beauty, nutrition. плюс 3 ловушки оптимизации: «мне не нравится само слово longevity — оно не задаёт мне вопрос: а кто я?»</p>
+      </article>
+      <article class="lib-card">
+        <div class="tag t6">сетап #6 · sleep coach</div>
+        <h3>Мика Ян · один рычаг</h3>
+        <p>одна фундаментальная вещь вместо десяти. агент пишет в 9 вечера: «план на вечер?» — игноришь → фоллоап → звонок на телефон → звонок жене. Мика — founder Manychat.</p>
+      </article>
+      <div class="lib-pack">
+        <span class="kicker">+ бонус</span>
+        <div class="txt"><b>Пак из 3 видосов по мета-навыкам:</b> коуч-промпт · tone of voice · фреймворк разгона</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- COWORK -->
+  <section>
+    <div class="cowork">
+      <div>
+        <p class="card-kicker" style="color:var(--blue);">наша рабочая среда</p>
+        <h2>всю лабу работаем в <em>Codex / Claude Code</em></h2>
+        <p>AI-агент (Codex от OpenAI или Claude Code от Anthropic). устанавливаем на свой компьютер, помогаем настроить, рассказываем первые паттерны и принципы взаимодействия — и начинаем собирать свой health os вместе.</p>
+        <ul>
+          <li><b>порог входа — нулевой.</b> без тех-бэкграунда, без командной строки</li>
+          <li><b>от разгона до сборки</b> своего health os — всё внутри одного инструмента</li>
+          <li><b>единая логика</b> — все квесты и звонки идут внутри Codex / Claude Code</li>
+        </ul>
+      </div>
+      <div class="cowork-req">
+        <div class="row">
+          <span class="req-label">минимальные требования</span>
+          <ul class="req-list">
+            <li><span>подписка — <b>$20 Codex</b> (OpenAI Plus) или <b>$17 Claude Code</b> (Claude Pro)</span></li>
+            <li><span>компьютер, на который можно установить один из них</span></li>
+          </ul>
+        </div>
+        <div class="row check-row">
+          <span>проверь, что встанет на твой комп:</span>
+          <div class="check-btns">
+            <a class="req-btn" href="https://chatgpt.com/ru-RU/codex/?openaicom_referred=true" target="_blank" rel="noopener">Codex</a>
+            <a class="req-btn req-btn-alt" href="https://claude.com/claude-code" target="_blank" rel="noopener">Claude Code</a>
+          </div>
+        </div>
+        <div class="row fallback">
+          работаем тем, что встало — у Codex и Claude Code одинаковый опыт, для лабы подходит любой.
+        </div>
+        <div class="row opt"><b>опционально:</b> WHOOP / Oura / Apple Health · генетический отчёт · анализы</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TIMELINE -->
+  <section id="program">
+    <div class="timeline-wrap">
+      <h2>программа</h2>
+      <p class="sub">две недели · три звонка · микро-квесты между ними.</p>
+
+      <div class="program-meta">
+        <div class="pm-chip"><span class="pm-k">2 недели</span><span class="pm-v">11 — 24 мая</span></div>
+        <div class="pm-chip"><span class="pm-k">3 звонка</span><span class="pm-v">60 мин · 11:00 МСК</span></div>
+        <div class="pm-chip"><span class="pm-k">микро-квесты</span><span class="pm-v">60 мин · раз в 3 дня</span></div>
+        <div class="pm-chip"><span class="pm-k">записи</span><span class="pm-v">остаются, доступ не сгорает</span></div>
+      </div>
+
+      <div class="calls">
+        <article class="call-card">
+          <div class="call-num">звонок 1</div>
+          <div class="call-date">пн · 11 мая</div>
+          <h3>открытие</h3>
+          <p>знакомимся, шерим «как я сейчас с телом», собираем stake каждого на эту лабу.</p>
+        </article>
+        <article class="call-card">
+          <div class="call-num">звонок 2</div>
+          <div class="call-date">вт · 12 мая</div>
+          <h3>практика разгона</h3>
+          <p>смотрим на своё здоровье с разных углов — сидим вместе в Codex / Claude Code, каждый разгоняет свой запрос.</p>
+        </article>
+        <article class="call-card">
+          <div class="call-num">звонок 3</div>
+          <div class="call-date">пт · 22 мая</div>
+          <h3>интеграция · костёр</h3>
+          <p>что теперь работает по-другому. с чем уходишь, куда дальше.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- PRINCIPLES -->
+  <section>
+    <div class="rail-head">
+      <h2>принципы</h2>
+      <p>на чём стоит лаба — и что мы друг другу обещаем.</p>
+    </div>
+    <div class="principles">
+      <div class="p-card">
+        <div class="icon c1">🎢</div>
+        <b>фомо будет — и это ок</b>
+        <span>нет задачи взять всё. все доступы останутся, можно двигаться своим темпом — и унести именно то, что сможешь</span>
+      </div>
+      <div class="p-card">
+        <div class="icon c2">✨</div>
+        <b>а что так можно было?</b>
+        <span>сейчас никто не знает как правильно. самое ценное здесь — другие участники и их кейсы. через это расширяются границы возможного</span>
+      </div>
+      <div class="p-card">
+        <div class="icon c4">🌱</div>
+        <b>do my best</b>
+        <span>делаем просто лучше, на что способны. главное — кайфануть процесс и максимально в это поиграть</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- OUTCOMES -->
+  <section>
+    <div class="outcomes-wrap">
+      <div>
+        <h2>что уносишь</h2>
+        <p class="sub">лаба — классная точка входа в ии, если вы совсем новичок и не знали, как к этому подступиться. уносишь не папку с записями, а рабочие паттерны и свою систему.</p>
+      </div>
+      <ul class="outcomes">
+        <li>первые паттерны и принципы взаимодействия с ии — работают с любым агентом, не только в рамках этой лабы</li>
+        <li>свой первый подход к тому, как ты думаешь про здоровье — что важно именно тебе и где тут может помочь ии</li>
+        <li>настроенные первые процессы по здоровью — не теория, а то что уже крутится у тебя на компьютере</li>
+        <li>понимание, как соединить разные тулы в одну систему: трекеры, анализы, свои ощущения</li>
+        <li>доступ к артефактам спринта по здоровью из комьюнити</li>
+        <li>комьюнити людей, с которыми можно продолжать — через их кейсы расширяются границы возможного</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section id="cta">
+    <div class="cta">
+      <div>
+        <h2>вступить в лабу</h2>
+        <p>старт 11 мая · 2 недели до 24 мая. мест ограниченное количество — лаба идёт в живом формате, не запись.</p>
+        <div class="price-tiers">
+          <div class="price-tier primary">
+            <span class="pt-label">участникам комьюнити</span>
+            <span class="pt-price">125 €</span>
+          </div>
+          <div class="price-tier">
+            <span class="pt-label">всем остальным</span>
+            <span class="pt-price">250 €</span>
+          </div>
+        </div>
+        <div class="cta-actions">
+          <a class="btn btn-dark" href="https://t.me/matskevichaibot?start=start">→ вступить</a>
+          <a class="btn btn-ghost" href="#library">посмотреть библиотеку</a>
+        </div>
+      </div>
+      <div class="right">
+        <b>ключевые даты</b>
+        <div class="row"><strong>11 мая</strong> — открытие</div>
+        <div class="row"><strong>12 мая</strong> — разгон с AI</div>
+        <div class="row"><strong>11–23 мая</strong> — квесты</div>
+        <div class="row"><strong>24 мая</strong> — костёр · закрытие</div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <span>brain love &amp; robots · health os lab · cohort #2</span>
+  <span>11 мая — 24 мая 2026</span>
+</footer>
+
+<script src="ticker.js" defer></script>
+</body>
+</html>
