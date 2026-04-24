@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>brain love & robots — AI-комьюнити</title>
+<title>brain love & robots - AI-комьюнити</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -51,20 +51,22 @@
   .btn.light { border-color: rgba(255,255,255,0.4); color: #ffffff; background: transparent; }
 
   .hero { padding: 120px 0 72px; }
+  .hero-inner { display: grid; grid-template-columns: 1.15fr 1fr; gap: 56px; align-items: center; }
   .hero h1 {
-    font-size: 92px; font-weight: 800;
+    font-size: 76px; font-weight: 800;
     line-height: 1.02; letter-spacing: -2.5px;
     margin-bottom: 28px;
-    max-width: 1100px;
   }
   .hero p {
-    font-size: 21px; color: #5C5A57;
-    max-width: 920px; line-height: 1.5;
+    font-size: 19px; color: #5C5A57;
+    line-height: 1.5;
   }
   .hero-actions { display: flex; gap: 12px; margin-top: 32px; flex-wrap: wrap; }
   .hero-actions .btn { padding: 14px 28px; font-size: 15px; }
   .hero-actions .btn.filled { padding: 14px 32px; }
   .hero-meta { margin-top: 24px; font-size: 13px; color: #999999; }
+  .hero-video { aspect-ratio: 16 / 9; width: 100%; border-radius: 20px; overflow: hidden; background: #000; box-shadow: 0 20px 60px rgba(0,0,0,0.12); }
+  .hero-video iframe { width: 100%; height: 100%; border: 0; display: block; }
 
   /* протагонисты */
   .protagonists { padding: 72px 0; background: transparent; }
@@ -167,6 +169,33 @@
   .section h2 { font-size: 36px; font-weight: 800; letter-spacing: -0.8px; line-height: 1.05; margin-bottom: 14px; }
   .section-sub { font-size: 16px; color: #5C5A57; line-height: 1.5; margin-bottom: 28px; max-width: 620px; }
 
+  /* anti-patterns / third way */
+  .anti-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin: 28px 0 20px; }
+  .anti-card { background: #ffffff; border: 1px solid #E8E5DD; border-radius: 16px; padding: 24px; }
+  .anti-card .tag { font-size: 11px; font-weight: 700; color: #B8622E; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 10px; }
+  .anti-card h3 { font-size: 22px; font-weight: 800; letter-spacing: -0.4px; margin-bottom: 10px; }
+  .anti-card p { font-size: 15px; color: #5C5A57; line-height: 1.5; }
+  .third-way { background: #F5D866; border-radius: 16px; padding: 28px; margin-top: 8px; }
+  .third-way .tag { font-size: 11px; font-weight: 700; color: #2D2C2B; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 10px; opacity: 0.7; }
+  .third-way h3 { font-size: 24px; font-weight: 800; letter-spacing: -0.4px; margin-bottom: 10px; }
+  .third-way p { font-size: 16px; color: #2D2C2B; line-height: 1.5; }
+
+  /* operating system layers */
+  .os-layers { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-top: 28px; align-items: start; }
+  .os-layer { background: #ffffff; border: 1px solid #E8E5DD; border-radius: 14px; padding: 20px; position: relative; }
+  .os-layer .step { font-size: 11px; font-weight: 700; color: #999; letter-spacing: 0.5px; margin-bottom: 8px; text-transform: uppercase; }
+  .os-layer h4 { font-size: 18px; font-weight: 800; margin-bottom: 8px; }
+  .os-layer p { font-size: 14px; color: #5C5A57; line-height: 1.5; }
+  /* featured variant - dark theme */
+  .os-layer.featured { background: #1a1a1a; color: #fff; border-color: #2a2a2a; padding: 24px; }
+  .os-layer.featured .step { color: #FFCE00; }
+  .os-layer.featured h4 { color: #fff; font-size: 22px; margin-bottom: 12px; }
+  .os-layer.featured p { color: #b3b3b3; }
+  .os-cases { list-style: none; margin: 14px 0; display: flex; flex-direction: column; gap: 10px; }
+  .os-cases li { font-size: 14px; line-height: 1.45; color: #ccc; padding-left: 16px; position: relative; }
+  .os-cases li::before { content: "▸"; position: absolute; left: 0; color: #FFCE00; font-weight: 700; }
+  .os-cases strong { color: #fff; font-weight: 700; }
+
   /* подписка */
   .pricing { background: transparent; padding: 72px 0; color: #2D2C2B; }
   .pricing-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
@@ -242,7 +271,7 @@
   .pricing-cta:hover { transform: translateY(-1px); }
   .pricing-note { font-size: 12px; color: #2D2C2B; opacity: 0.6; line-height: 1.5; }
 
-  /* форматы — карусель карточек */
+  /* форматы - карусель карточек */
   .formats-section { background: transparent; padding: 72px 0; }
   .formats-head { max-width: 1440px; margin: 0 auto 28px; padding: 0 64px; }
   .formats-head h2 {
@@ -301,6 +330,9 @@
     opacity: 0.88;
   }
   .fcard a.fcard-link { color: inherit; text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 3px; }
+  .fcard-schedule { list-style: none; margin-top: 14px; display: flex; flex-direction: column; gap: 8px; }
+  .fcard-schedule li { font-size: 14px; line-height: 1.4; opacity: 0.9; }
+  .fcard-schedule strong { font-weight: 700; opacity: 1; }
 
   .fc-yellow { background: #FFCE00; color: #2D2C2B; }
   .fc-pink { background: #ffa1cc; color: #2D2C2B; }
@@ -313,7 +345,7 @@
   .fc-dark h3 { color: #FFCE00; }
   .fc-dark .fcard-freq { background: rgba(255,255,255,0.08); color: #aaa; }
 
-  /* что делают внутри — карусель высоких карточек */
+  /* что делают внутри - карусель высоких карточек */
   .cases-section { padding: 72px 0 48px; background: transparent; }
   .cases-head { max-width: 1440px; margin: 0 auto 28px; padding: 0 64px; }
   .cases-head h2 { font-size: 40px; font-weight: 800; letter-spacing: -0.8px; line-height: 1.05; margin-bottom: 14px; color: #2D2C2B; }
@@ -461,9 +493,14 @@
     .nav-inner { flex-direction: column; gap: 12px; align-items: flex-start; }
     .nav-links { flex-wrap: wrap; gap: 12px; }
     .hero { padding: 48px 0 32px; }
+    .hero-inner { grid-template-columns: 1fr; gap: 32px; }
     .hero h1 { font-size: 42px; letter-spacing: -1px; margin-bottom: 16px; }
     .hero p { font-size: 16px; }
     .hero-actions { gap: 10px; }
+    .hero-video { border-radius: 14px; }
+    .anti-grid { grid-template-columns: 1fr; }
+    .os-layers { grid-template-columns: 1fr; }
+    .section h2 { font-size: 28px; }
     .cases-head { padding: 0 20px; }
     .cases-head h2 { font-size: 22px; }
     .cases-carousel { padding: 4px 20px 16px; }
@@ -502,16 +539,159 @@
 
   <header class="hero">
     <div class="container">
-      <h1>brain love &amp; robots</h1>
-      <p>подписочное комьюнити где люди применяют AI в реальной жизни: в здоровье, работе, творчестве и личных системах. здесь собраны форматы которые работают, истории участников которые прошли путь, спринты которые уже случились — и методология на которой всё держится. не курс и не учебник. живые практики живых людей.</p>
-      <div class="hero-actions">
-        <a class="btn filled" href="#cases">читать кейсы</a>
-        <a class="btn secondary" href="#for-whom">это для меня?</a>
-        <a class="btn secondary" href="health-os-lab.html">health os лаба · 11 мая</a>
+      <div class="hero-inner">
+        <div class="hero-text">
+          <h1>brain love &amp; robots</h1>
+          <p>подписочное комьюнити где люди применяют AI в реальной жизни: в здоровье, работе, творчестве и личных системах. постоянные спринты, каждый месяц - новая тема, встречи с протагонистами, артефакты, мета-навыки, практика в zoom, мужские круги.</p>
+          <div class="hero-actions">
+            <a class="btn filled" href="community.html">расписание</a>
+            <a class="btn secondary" href="health-os-lab.html">health os лаба · 11 мая</a>
+          </div>
+        </div>
+        <div class="hero-video">
+          <iframe src="https://www.youtube.com/embed/CyqZX-Jjydk" title="brain love &amp; robots" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy"></iframe>
+        </div>
       </div>
-      <div class="hero-meta">109 участников · 6+ спринтов · открытая библиотека</div>
     </div>
   </header>
+
+  <!-- ТРИ ОПОРЫ -->
+  <section id="for-whom" class="section">
+    <div class="container">
+      <h2>как устроено комьюнити</h2>
+      <p class="section-sub">комьюнити - это не курс и не обучение. это плейграунд и среда для расширения своего представления о том, что сейчас возможно вместе с AI, и постоянной сборки своей ai-first операционной системы.</p>
+      <div class="os-layers">
+        <div class="os-layer">
+          <div class="step">01</div>
+          <h4>пробовать &gt; учиться</h4>
+          <p>continuous education превращается в прокрастинацию. граница возможного постоянно двигается вверх - важно экспериментировать и смотреть, что уже возможно. то, что было невозможно вчера, сегодня уже могло измениться.</p>
+        </div>
+        <div class="os-layer">
+          <div class="step">02</div>
+          <h4>второй мозг растёт вместе с комьюнити</h4>
+          <p>все звонки, артефакты спринтов, истории протагонистов складываются в общий контекст. в любое время можно попросить свой кодекс узнать что нового в комьюнити и что есть ценного лично для тебя.</p>
+        </div>
+        <div class="os-layer">
+          <div class="step">03</div>
+          <h4>контакт с собой</h4>
+          <p>комьюнити делается с вниманием к контакту с собой, глубоким контактом с другим человеком, интенсивными эмоциями. внутри - практики заземления, мужские круги и лабы от участников комьюнити.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="formats" class="formats-section">
+    <div class="formats-head">
+      <h2>форматы внутри комьюнити</h2>
+      <div class="formats-sub">регулярка, на которой держится комьюнити между спринтами. приходишь на то, что отзывается - не обязан на всё</div>
+    </div>
+    <div class="formats-carousel">
+      <div class="formats-track">
+
+        <article class="fcard fc-yellow">
+          <div class="fcard-top">
+            <span class="fcard-freq">раз в неделю</span>
+            <h3>мужской круг</h3>
+          </div>
+          <p>горизонтальное пространство без ролей и советов. приносишь своё - и смотришь туда, куда одному сложно. контакт с собой через контакт с другими</p>
+        </article>
+
+        <article class="fcard fc-pink">
+          <div class="fcard-top">
+            <span class="fcard-freq">вторник · 11 мск</span>
+            <h3>протагонист</h3>
+          </div>
+          <p>человек с вдохновляющим кейсом про использование AI - от личных историй до рабочих процессов. после каждой встречи - артефакт для твоего агента, который поможет интегрировать подход у себя. запись встречи всегда публичная, артефакт - только для комьюнити</p>
+        </article>
+
+        <article class="fcard fc-purple">
+          <div class="fcard-top">
+            <span class="fcard-freq">раз в месяц</span>
+            <h3>unblocking</h3>
+          </div>
+          <p>формат для новичков в AI. практика в zoom на 60 минут - получаем первый опыт взаимодействия с агентами на простых и интересных кейсах: собираем игру вместе с codex, встаём на место AI, тренируем практику разгона</p>
+        </article>
+
+        <article class="fcard fc-green">
+          <div class="fcard-top">
+            <span class="fcard-freq">раз в 3 месяца</span>
+            <h3>alignment</h3>
+          </div>
+          <p>про то, чтобы заметить: что мне больше не служит, какие свои особенности я учитываю - какие нет. как выстроить контекст для AI, цели, систему принятия решений. на выходе - артефакт для себя и агентов, на который можно опереться</p>
+        </article>
+
+        <article class="fcard fc-blue">
+          <div class="fcard-top">
+            <span class="fcard-freq">постоянно фоном</span>
+            <h3>метанавыки</h3>
+          </div>
+          <p>пробовать - главный мета-навык. маленькие эксперименты расширяют горизонт возможного быстрее любой теории. cognitive light: телесный опыт «что сейчас возможно» обгоняет любое обучение</p>
+        </article>
+
+        <article class="fcard fc-dark">
+          <div class="fcard-top">
+            <span class="fcard-freq">4–6 недель</span>
+            <h3>спринты</h3>
+          </div>
+          <p>раз в 1–2 месяца комьюнити берёт тему и идёт в неё вместе.</p>
+          <ul class="fcard-schedule">
+            <li><strong>май</strong> - creative os</li>
+            <li><strong>июнь</strong> - ии и дети</li>
+            <li><strong>июль</strong> - radical alignment</li>
+          </ul>
+          <a class="fcard-link" href="community.html" style="margin-top:14px; display:inline-block; font-size:13px; font-weight:600">расписание спринтов →</a>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- РАСПИСАНИЕ СПРИНТОВ -->
+  <section id="schedule" class="section">
+    <div class="container">
+      <h2>расписание спринтов</h2>
+      <p class="section-sub">ближайшие 3 месяца - какие темы комьюнити берёт и разбирает вместе. между спринтами - неделя перерыва на восстановление</p>
+      <div class="os-layers">
+        <div class="os-layer featured">
+          <div class="step">11 мая - 10 июня · вторники 11 мск</div>
+          <h4>creative os</h4>
+          <p>раскачать свою творческую часть с AI. не про контент и не про деньги - про self-expression и эксперимент. снижаем ставки, играем с формой.</p>
+          <ul class="os-cases">
+            <li><strong>написать свой трек</strong> - любой жанр, залить в него свой смысл, как Микиян про свои треки</li>
+            <li><strong>собрать свой аватар</strong> - видео-фэйс, который говорит за тебя</li>
+            <li><strong>сгенерить видео через AI</strong> - клип, short-story, экспериментальный формат через text-to-video и image-to-video</li>
+            <li><strong>выстроить контент-процесс</strong> - свой lofi-канал, ambient, ритуал публикации</li>
+            <li><strong>сделать продукт ради интереса</strong> - не для денег, а «потому что захотелось»</li>
+          </ul>
+          <p>главная энергия - «а что будет, если?». если выйдет что-то живое - бонус.</p>
+        </div>
+        <div class="os-layer featured">
+          <div class="step">18 июня - 18 июля · вторники 11 мск</div>
+          <h4>ии и дети</h4>
+          <p>как жить родителем в мире, где дети растут с AI.</p>
+          <ul class="os-cases">
+            <li><strong>что делать вместо скроллинга</strong> - до 14-16 лет без соцсетей, но с чем тогда - игры, истории, проекты вместе с ребёнком</li>
+            <li><strong>сотворчество с ребёнком через AI</strong> - как проводить время вместе, делая что-то руками и через агента: свой мультфильм, сказку на ночь, игру по их сюжету</li>
+            <li><strong>раскрыть творческий потенциал ребёнка</strong> - дать AI как инструмент самовыражения: его мультики, его сказки, его музыка, его игры по его замыслу</li>
+          </ul>
+          <p>главная рамка - дети растут в мире с AI независимо от нас. вопрос - как мы с ними в нём живём.</p>
+        </div>
+        <div class="os-layer featured">
+          <div class="step">26 июля - 25 августа · вторники 11 мск</div>
+          <h4>radical alignment</h4>
+          <p>пересобрать цели, контекст и систему решений. заметить что больше не служит - в проектах, отношениях, ролях, подписках.</p>
+          <ul class="os-cases">
+            <li><strong>пересобрать цели</strong> - что реально хочу сейчас, а что тащу по инерции с прошлого года</li>
+            <li><strong>отпустить то, что не служит</strong> - проект, роль, привычка, круг общения - назвать и разжать</li>
+            <li><strong>собрать персональный codex</strong> - кто я, что ценю, как принимаю решения - один артефакт для себя и агентов</li>
+            <li><strong>контекст для AI</strong> - как научить свой агент действовать в твою сторону, а не в среднюю</li>
+            <li><strong>система решений</strong> - рамка, по которой выбираешь, чтобы не оптимизировать каждый раз с нуля</li>
+          </ul>
+          <p>главный вопрос - какой процесс может поддерживать меня в моих целях каждый день. не рывок, не ретрит - рабочая опора.</p>
+        </div>
+      </div>
+    </div>
+  </section>
 
   <!-- ПРОТАГОНИСТЫ -->
   <section id="protagonists" class="protagonists">
@@ -520,7 +700,7 @@
         <h2>протагонисты</h2>
         <div class="meta">артефакты · видео · промпты</div>
       </div>
-      <div class="protag-sub">люди из комьюнити, прошедшие свой путь с AI, рассказывают как. на каждой странице — полная запись звонка, артефакты и инсайты.</div>
+      <div class="protag-sub">люди из комьюнити, прошедшие свой путь с AI, рассказывают как. на каждой странице - полная запись звонка, артефакты и инсайты.</div>
 
       <div class="protag-grid">
 
@@ -533,7 +713,7 @@
               <div class="protag-role">AI-тренер в Telegram</div>
             </div>
           </div>
-          <div class="protag-quote">«5 недель. 5–6 тренировок в неделю. без волевых усилий.» — агент сам пишет, помнит историю, не даёт сорваться.</div>
+          <div class="protag-quote">«5 недель. 5–6 тренировок в неделю. без волевых усилий.» - агент сам пишет, помнит историю, не даёт сорваться.</div>
           <span class="protag-cta">читать кейс →</span>
         </a>
 
@@ -572,7 +752,7 @@
               <div class="protag-role">8 агентов · Oura + Garmin</div>
             </div>
           </div>
-          <div class="protag-quote">команда из 8 AI-коучей + Garmin Watch: longevity, спорт, красота, питание — тренировка каждое утро автоматически.</div>
+          <div class="protag-quote">команда из 8 AI-коучей + Garmin Watch: longevity, спорт, красота, питание - тренировка каждое утро автоматически.</div>
           <span class="protag-cta">читать кейс →</span>
         </a>
 
@@ -598,7 +778,7 @@
               <div class="protag-role">founder ManyChat</div>
             </div>
           </div>
-          <div class="protag-quote">один рычаг вместо десяти. если не лёг спать — агент пишет, игноришь → фоллоап → звонок на телефон. работает.</div>
+          <div class="protag-quote">один рычаг вместо десяти. если не лёг спать - агент пишет, игноришь → фоллоап → звонок на телефон. работает.</div>
           <span class="protag-cta">читать кейс →</span>
         </a>
 
@@ -608,78 +788,18 @@
         <div class="ft-thumb"><img src="https://img.youtube.com/vi/J9cvaJ5enIw/maxresdefault.jpg" alt="Дима × Лёша Хахунов" loading="lazy"></div>
         <div class="ft-text">
           <strong>разговор основателей</strong>
-          <div class="ft-title">Дима Мацкевич × Лёша Хахунов — вайбкодинг мёртв</div>
-          <div class="ft-quote">«кодинг-агенты — это офигенная возможность делать гиперперсонализированные вещи»</div>
+          <div class="ft-title">Дима Мацкевич × Лёша Хахунов - вайбкодинг мёртв</div>
+          <div class="ft-quote">«кодинг-агенты - это офигенная возможность делать гиперперсонализированные вещи»</div>
         </div>
         <a href="kb.html#talk-founders">смотреть →</a>
       </div>
 
       <div class="protag-bottom-cta">
         <div class="pbc-text">
-          <strong>в комьюнити — все артефакты</strong>
-          <span>сетапы, промпты, транскрипты, код. не просто посмотреть — раскатить у себя такое же.</span>
+          <strong>в комьюнити - все артефакты</strong>
+          <span>сетапы, промпты, транскрипты, код. не просто посмотреть - раскатить у себя такое же.</span>
         </div>
         <a href="https://t.me/matskevichaibot?start=start" target="_blank">зайти в комьюнити →</a>
-      </div>
-    </div>
-  </section>
-
-  <section id="formats" class="formats-section">
-    <div class="formats-head">
-      <h2>форматы внутри комьюнити</h2>
-      <div class="formats-sub">регулярка, на которой держится комьюнити между спринтами. приходишь на то, что отзывается — не обязан на всё</div>
-    </div>
-    <div class="formats-carousel">
-      <div class="formats-track">
-
-        <article class="fcard fc-yellow">
-          <div class="fcard-top">
-            <span class="fcard-freq">пятница · еженедельно</span>
-            <h3>костёр</h3>
-          </div>
-          <p>круг, шеринг без непрошеных советов. всё что родилось — в общее пространство. social glue, не контент</p>
-        </article>
-
-        <article class="fcard fc-pink">
-          <div class="fcard-top">
-            <span class="fcard-freq">1–2 в неделю</span>
-            <h3>протагонист</h3>
-          </div>
-          <p>человек из комьюнити, прошедший свой путь с AI, рассказывает как. не теория — конкретика: что сделал, что не получилось, где застрял</p>
-        </article>
-
-        <article class="fcard fc-purple">
-          <div class="fcard-top">
-            <span class="fcard-freq">раз в месяц</span>
-            <h3>unblocking</h3>
-          </div>
-          <p>час на один твой затык. приходишь со своим зависанием — уходишь с движением. фасилитатор ведёт, ты работаешь</p>
-        </article>
-
-        <article class="fcard fc-green">
-          <div class="fcard-top">
-            <span class="fcard-freq">раз в 3 месяца</span>
-            <h3>alignment</h3>
-          </div>
-          <p>кто я сейчас, куда двигаюсь, что приоритет, что отвлечение. артефакт-контракт + AI коуч. якорный формат, к которому возвращаешься</p>
-        </article>
-
-        <article class="fcard fc-blue">
-          <div class="fcard-top">
-            <span class="fcard-freq">постоянно фоном</span>
-            <h3>метанавыки</h3>
-          </div>
-          <p>философия использования AI — что остаётся когда инструменты сменятся. «расширяй до сужения», антипаттерны, ритуалы</p>
-        </article>
-
-        <article class="fcard fc-dark">
-          <div class="fcard-top">
-            <span class="fcard-freq">4–6 недель</span>
-            <h3>спринты</h3>
-          </div>
-          <p>раз в 1–2 месяца комьюнити берёт тему и идёт в неё вместе. сейчас — <a class="fcard-link" href="community.html">creative os → родительство → alignment</a></p>
-        </article>
-
       </div>
     </div>
   </section>
@@ -687,7 +807,7 @@
   <section id="cases" class="cases-section">
     <div class="cases-head">
       <h2>что делают внутри</h2>
-      <div class="section-sub">живые кейсы участников. без имён — приватный чат остаётся приватным. то, что там родилось, участники сами выносят наружу когда готовы</div>
+      <div class="section-sub">живые кейсы участников. без имён - приватный чат остаётся приватным. то, что там родилось, участники сами выносят наружу когда готовы</div>
     </div>
     <div class="cases-carousel">
       <div class="cases-track">
@@ -696,7 +816,7 @@
           <span class="ccard-tag t-health">здоровье</span>
           <div class="ccard-body">
             <div class="ccard-title">медицинская ОС для себя и мамы</div>
-            <div class="ccard-text">можно не ждать системы здравоохранения — собрать свою</div>
+            <div class="ccard-text">можно не ждать системы здравоохранения - собрать свою</div>
           </div>
         </article>
 
@@ -704,7 +824,7 @@
           <span class="ccard-tag t-health">здоровье</span>
           <div class="ccard-body">
             <div class="ccard-title">интеграция сенсоров и генетики</div>
-            <div class="ccard-text">AI не просто читает данные — ищет противоречия и сверяется сам</div>
+            <div class="ccard-text">AI не просто читает данные - ищет противоречия и сверяется сам</div>
           </div>
         </article>
 
@@ -728,7 +848,7 @@
           <span class="ccard-tag t-work">работа</span>
           <div class="ccard-body">
             <div class="ccard-title">unified os для проектов</div>
-            <div class="ccard-text">AI — не «помощник», а соавтор, с которым вместе думаешь и строишь</div>
+            <div class="ccard-text">AI - не «помощник», а соавтор, с которым вместе думаешь и строишь</div>
           </div>
         </article>
 
@@ -736,7 +856,7 @@
           <span class="ccard-tag t-work">работа</span>
           <div class="ccard-body">
             <div class="ccard-title">open-source voice kit на Rust</div>
-            <div class="ccard-text">инструмент, сделанный для себя, работает и для других — это и есть комьюнити</div>
+            <div class="ccard-text">инструмент, сделанный для себя, работает и для других - это и есть комьюнити</div>
           </div>
         </article>
 
@@ -750,14 +870,14 @@
         <div class="pricing-whats">
           <h2>что входит в подписку</h2>
           <ul class="pricing-list">
-            <li><strong>приватный чат 24/7</strong> — люди из комьюнити делятся тем, что реально делают с AI</li>
-            <li><strong>протагонист-звонки</strong> — 1–2 в неделю, с живыми людьми, прошедшими свой путь</li>
-            <li><strong>unblocking</strong> — час в месяц на твой затык, с фасилитатором</li>
-            <li><strong>костры</strong> — еженедельный круг, без непрошеных советов</li>
-            <li><strong>спринты</strong> — участие в текущей теме: creative os, родительство, alignment</li>
-            <li><strong>база знаний</strong> — архив прошлых спринтов, артефакты, промпты, транскрипты</li>
-            <li><strong>AI-сетапы</strong> — готовые шаблоны протагонистов, можно раскатить у себя</li>
-            <li><strong>starter-pack</strong> — промпты и гайды для старта с AI</li>
+            <li><strong>приватный чат 24/7</strong> - люди из комьюнити делятся тем, что реально делают с AI</li>
+            <li><strong>протагонист-звонки</strong> - 1–2 в неделю, с живыми людьми, прошедшими свой путь</li>
+            <li><strong>unblocking</strong> - час в месяц на твой затык, с фасилитатором</li>
+            <li><strong>костры</strong> - еженедельный круг, без непрошеных советов</li>
+            <li><strong>спринты</strong> - участие в текущей теме: creative os, родительство, alignment</li>
+            <li><strong>база знаний</strong> - архив прошлых спринтов, артефакты, промпты, транскрипты</li>
+            <li><strong>AI-сетапы</strong> - готовые шаблоны протагонистов, можно раскатить у себя</li>
+            <li><strong>starter-pack</strong> - промпты и гайды для старта с AI</li>
           </ul>
         </div>
 
@@ -782,68 +902,8 @@
           </div>
 
           <a class="pricing-cta" href="https://t.me/matskevichaibot?start=start" target="_blank">подписаться →</a>
-          <div class="pricing-note">оплата картой — российской или иностранной</div>
+          <div class="pricing-note">оплата картой - российской или иностранной</div>
         </div>
-      </div>
-    </div>
-  </section>
-
-  <section id="sprints" class="section">
-    <div class="container">
-      <h2>спринты</h2>
-      <div class="section-sub">раз в 1–2 месяца комьюнити берёт тему и идёт в неё вместе — звонки, практики, истории участников</div>
-      <div class="grid-3x2">
-        <article class="card">
-          <div class="sprint-head">
-            <div>
-              <div class="sprint-title">Radical Alignment</div>
-              <div class="sprint-meta">апрель 2026</div>
-            </div>
-            <div class="badge active">активный</div>
-          </div>
-          <div class="sprint-list">
-            <div style="font-size:12px; color:#555; margin-bottom:6px">10 дней джорналинга: понять где ты сейчас и куда правда хочешь</div>
-            <div><span>Тема:</span> остаться собой и найти своё место рядом с AI</div>
-            <div><span>Формат:</span> протокол Пеннебейкера — джорналинг + AI каждый день, шеринг артефактов в чат</div>
-            <div><span>Протагонист:</span> Макс Янукович — философия субъектности и AI</div>
-            <div><span>Инсайт:</span> AI как зеркало для мышления, а не инструмент автоматизации</div>
-          </div>
-        </article>
-
-        <article class="card">
-          <div class="sprint-head">
-            <div>
-              <div class="sprint-title">Health OS</div>
-              <div class="sprint-meta">февраль–апрель 2026</div>
-            </div>
-            <div class="badge done">завершён</div>
-          </div>
-          <div class="sprint-list">
-            <div style="font-size:12px; color:#555; margin-bottom:6px">5 участников показали как выстроить систему здоровья с AI — от Telegram-бота до анализа ДНК</div>
-            <div><span>Тема:</span> персональные системы здоровья на AI</div>
-            <div><span>Протагонисты:</span> Маша Куликовская, Тоня Жукова, Влад Куклев, Катя Кирилова, Лёша Евдокимов</div>
-            <div><span>Инсайт:</span> AI снижает барьер между «хочу понять своё здоровье» и реальным инструментом</div>
-            <div><span>Артефакт:</span> Automoy skill — в открытом доступе</div>
-          </div>
-        </article>
-
-        <!-- HIDDEN: NY sprint card
-        <article class="card">
-          <div class="sprint-head">
-            <div>
-              <div class="sprint-title">Новогодний марафон</div>
-              <div class="sprint-meta">январь 2026</div>
-            </div>
-            <div class="badge done">завершён</div>
-          </div>
-          <div class="sprint-list">
-            <div><span>Тема:</span> первые шаги с AI через письмо и уязвимость</div>
-            <div><span>Участники:</span> 30 активных из 80</div>
-            <div><span>Инсайт:</span> уязвимость без живого отклика не работает асинхронно</div>
-            <div><span>Вывод:</span> формат переработан — от уязвимости к артефактам</div>
-          </div>
-        </article>
-        -->
       </div>
     </div>
   </section>
@@ -851,7 +911,7 @@
   <section class="section" id="what-happens">
     <div class="container">
       <h2>что происходит в BLR</h2>
-      <p class="section-sub">форматы живого взаимодействия, спринты и истории участников — всё в базе знаний</p>
+      <p class="section-sub">форматы живого взаимодействия, спринты и истории участников - всё в базе знаний</p>
       <div style="text-align:center; margin-top:24px">
         <a href="kb.html" class="btn filled">открыть базу знаний →</a>
       </div>
@@ -862,7 +922,7 @@
     <div class="container">
       <div class="radical" style="margin-top:0">
         <div class="radical-title" style="font-size:15px">хочешь узнать больше?</div>
-        <div class="radical-text">следи за анонсами — рассказываем про спринты, звонки и что делают участники. всё здесь: <a href="https://t.me/brainloveandrobots" style="color:#2D2C2B; text-decoration:underline">@brainloveandrobots</a></div>
+        <div class="radical-text">следи за анонсами - рассказываем про спринты, звонки и что делают участники. всё здесь: <a href="https://t.me/brainloveandrobots" style="color:#2D2C2B; text-decoration:underline">@brainloveandrobots</a></div>
         <div style="margin-top:12px"><a href="https://t.me/matskevichaibot?start=start" style="display:inline-block; padding:8px 20px; background:#3a3a8c; color:#fff; border-radius:6px; text-decoration:none; font-size:13px; font-weight:600">написать боту →</a></div>
       </div>
     </div>
@@ -877,6 +937,12 @@
         <a href="kb.html">база знаний</a>
       </div>
       <div class="footer-right"><a href="https://t.me/brainloveandrobots" target="_blank">→ telegram</a></div>
+    </div>
+  </footer>
+<script src="ticker.js"></script>
+</body>
+</html>
+/t.me/brainloveandrobots" target="_blank">→ telegram</a></div>
     </div>
   </footer>
 <script src="ticker.js"></script>
