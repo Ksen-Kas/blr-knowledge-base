@@ -75,52 +75,62 @@
   .protag-head .meta { font-size: 12px; color: #999; }
   .protag-sub { font-size: 14px; color: #555; max-width: 640px; line-height: 1.5; margin-bottom: 28px; }
 
-  .protag-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 16px; }
+  .protag-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 16px; margin-top: 28px; }
   .protag-card {
+    position: relative;
     display: flex; flex-direction: column;
-    background: #fff; border: 1px solid #E2DED9;
-    border-radius: 14px; padding: 22px;
-    transition: transform 0.15s ease, box-shadow 0.15s ease, border-color 0.15s ease;
+    background: #ffffff;
+    border-radius: 24px;
+    padding: 24px;
+    box-shadow: 0 16px 44px rgba(20, 27, 43, 0.09);
+    transition: transform 0.15s;
     text-decoration: none; color: inherit;
     cursor: pointer;
   }
-  .protag-card:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 10px 24px rgba(0,0,0,0.07);
-    border-color: #2D2C2B;
+  .protag-card:hover { transform: translateY(-2px); }
+  .protag-top-badge {
+    position: absolute; top: -14px; right: 16px;
+    display: inline-flex; align-items: center; gap: 8px;
+    height: 38px; padding: 0 18px;
+    border-radius: 999px;
+    background: #2D2C2B; color: #fff;
+    font-weight: 700; font-size: 14px;
+    letter-spacing: -0.02em;
+    white-space: nowrap;
+    z-index: 3;
+    box-shadow: 0 8px 20px rgba(45, 44, 43, 0.22);
   }
-  .protag-top { display: flex; align-items: center; gap: 14px; margin-bottom: 14px; }
-  .avatar {
-    width: 80px; height: 80px; border-radius: 50%;
-    background: #E2DED9; color: #2D2C2B;
-    display: grid; place-items: center;
-    font-size: 14px; font-weight: 700;
-    flex-shrink: 0;
-    overflow: hidden;
-  }
-  .avatar img {
-    width: 100%; height: 100%;
-    object-fit: cover; object-position: center;
-    display: block;
-  }
-  .avatar.a1 { background: #FFCE00; }
-  .avatar.a2 { background: #f3eeff; }
-  .avatar.a3 { background: #ffeaea; }
-  .avatar.a4 { background: #e6f7ee; }
-  .avatar.a5 { background: #fff5e6; }
-  .avatar.a6 { background: #E2DED9; }
-  .protag-who { flex: 1; min-width: 0; }
-  .protag-badge {
+  .protag-top-badge svg { width: 16px; height: 16px; flex-shrink: 0; }
+  .protag-tag {
     display: inline-block;
-    font-size: 10px; font-weight: 700;
-    text-transform: uppercase; letter-spacing: 0.6px;
-    color: #2D2C2B; background: #FFCE00;
-    padding: 3px 9px; border-radius: 20px;
-    margin-bottom: 6px;
+    font-size: 11px; font-weight: 700;
+    padding: 4px 10px; border-radius: 999px;
+    margin-bottom: 10px;
+    width: fit-content;
   }
-  .protag-name { font-size: 16px; font-weight: 700; color: #2D2C2B; line-height: 1.2; }
-  .protag-role { font-size: 12px; color: #999; margin-top: 3px; line-height: 1.3; }
-  .protag-quote { font-size: 13px; color: #555; line-height: 1.55; margin-bottom: 16px; flex: 1; }
+  .protag-tag.t1 { background: #fff5cc; color: #8a6d00; }
+  .protag-tag.t2 { background: #e5f2ff; color: #1f4fbf; }
+  .protag-tag.t3 { background: #ffe9e9; color: #b93b3b; }
+  .protag-tag.t4 { background: #e3f6ea; color: #0d7a3e; }
+  .protag-tag.t5 { background: #f3eeff; color: #4a2bb3; }
+  .protag-tag.t6 { background: #fde7f3; color: #a63371; }
+  .protag-name {
+    font-size: 20px; font-weight: 800;
+    line-height: 1.2; letter-spacing: -0.01em;
+    margin-bottom: 10px; color: #2D2C2B;
+  }
+  .protag-regalia {
+    display: inline-flex; align-items: center; gap: 7px;
+    font-size: 12px; font-weight: 500;
+    color: #5f6672; margin-bottom: 12px;
+    width: fit-content;
+  }
+  .protag-regalia::before {
+    content: "";
+    width: 5px; height: 5px; border-radius: 50%;
+    background: #ff9e2c;
+  }
+  .protag-text { color: #5f6672; font-size: 14px; line-height: 1.55; flex: 1; margin-bottom: 16px; }
   .protag-cta {
     display: inline-flex; align-items: center; gap: 6px;
     font-size: 13px; font-weight: 600; color: #2D2C2B;
@@ -700,85 +710,59 @@
         <h2>протагонисты</h2>
         <div class="meta">артефакты · видео · промпты</div>
       </div>
-      <div class="protag-sub">люди из комьюнити, прошедшие свой путь с AI, рассказывают как. на каждой странице - полная запись звонка, артефакты и инсайты.</div>
+      <div class="protag-sub">находим гостей с реальными кейсами, которые действительно работают. от каждого протагониста - артефакт для вашего агента, по которому он сможет раскатить подход и кейс у себя.</div>
 
       <div class="protag-grid">
 
         <a class="protag-card" href="case-vlad.html">
-          <div class="protag-top">
-            <div class="avatar a4"><img src="https://img.youtube.com/vi/calHnWdfPjs/maxresdefault.jpg" alt="Влад Куклев" loading="lazy"></div>
-            <div class="protag-who">
-              <div class="protag-badge">ai-тренер</div>
-              <div class="protag-name">Влад Куклев</div>
-              <div class="protag-role">AI-тренер в Telegram</div>
-            </div>
-          </div>
-          <div class="protag-quote">«5 недель. 5–6 тренировок в неделю. без волевых усилий.» - агент сам пишет, помнит историю, не даёт сорваться.</div>
+          <span class="protag-tag t1">сетап #1 · тренировки без воли</span>
+          <h3 class="protag-name">Влад Куклев · Health OS</h3>
+          <span class="protag-regalia">AI-предприниматель</span>
+          <p class="protag-text">5 лет пытался собрать систему - huberman, attia, obsidian, шиты. всё забивал через пару недель. собрал AI-агента в телеге - 5 недель без пропусков, 5-6 тренировок в неделю. без волевых усилий. агент помнит историю и не даёт сорваться.</p>
           <span class="protag-cta">читать кейс →</span>
         </a>
 
         <a class="protag-card" href="case-tonya.html">
-          <div class="protag-top">
-            <div class="avatar a2"><img src="https://img.youtube.com/vi/jb2vEdBIGks/maxresdefault.jpg" alt="Тоня Жукова" loading="lazy"></div>
-            <div class="protag-who">
-              <div class="protag-badge">18 агентов</div>
-              <div class="protag-name">Тоня Жукова</div>
-              <div class="protag-role">deep research · Lp(a)</div>
-            </div>
-          </div>
-          <div class="protag-quote">система нашла связь между витамином D, железом и генетическим Lp(a), которую 7 лет не видели врачи.</div>
+          <span class="protag-top-badge">
+            <svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M8 0.5 L9.6 5.4 L14.8 5.4 L10.6 8.5 L12.2 13.4 L8 10.3 L3.8 13.4 L5.4 8.5 L1.2 5.4 L6.4 5.4 Z" fill="#FFD200" stroke="#FFD200" stroke-width="0.5" stroke-linejoin="round"/></svg>
+            топ-1 в комьюнити
+          </span>
+          <span class="protag-tag t2">сетап #2 · deep research</span>
+          <h3 class="protag-name">Тоня Жукова · 18 агентов</h3>
+          <span class="protag-regalia">предприниматель, вайб-кодер, атлет</span>
+          <p class="protag-text">скауты, критики, статистики, фактчекеры - команда из 18 AI-исследователей. разобралась с семилетним высоким холестерином, с которым врачи разводили руками. система нашла связь между витамином D, железом и генетическим Lp(a).</p>
           <span class="protag-cta">читать кейс →</span>
         </a>
 
         <a class="protag-card" href="case-masha.html">
-          <div class="protag-top">
-            <div class="avatar a3"><img src="https://img.youtube.com/vi/T13PJgHVDJM/maxresdefault.jpg" alt="Маша Куликовская" loading="lazy"></div>
-            <div class="protag-who">
-              <div class="protag-badge">медицинская ос</div>
-              <div class="protag-name">Маша Куликовская</div>
-              <div class="protag-role">consilium + дашборд</div>
-            </div>
-          </div>
-          <div class="protag-quote">персональная клиника для мамы: дашборд, таблицы рисков, полярные мнения AI-врачей на одном экране.</div>
-          <span class="protag-cta">читать кейс →</span>
-        </a>
-
-        <a class="protag-card" href="case-katya.html">
-          <div class="protag-top">
-            <div class="avatar a1"><img src="https://img.youtube.com/vi/lnFgG0-zpp8/maxresdefault.jpg" alt="Катя Кирилова" loading="lazy"></div>
-            <div class="protag-who">
-              <div class="protag-badge">health os</div>
-              <div class="protag-name">Катя Кирилова</div>
-              <div class="protag-role">8 агентов · Oura + Garmin</div>
-            </div>
-          </div>
-          <div class="protag-quote">команда из 8 AI-коучей + Garmin Watch: longevity, спорт, красота, питание - тренировка каждое утро автоматически.</div>
+          <span class="protag-tag t3">сетап #3 · swarm клиника</span>
+          <h3 class="protag-name">Маша Куликовская · AI-врачи</h3>
+          <span class="protag-regalia">врач по бэкграунду</span>
+          <p class="protag-text">несколько AI-врачей с разными специализациями совещаются, спорят, приходят к общим рекомендациям. построила персональную AI-клинику для мамы: дашборд, таблицы рисков, полярные мнения врачей на одном экране.</p>
           <span class="protag-cta">читать кейс →</span>
         </a>
 
         <a class="protag-card" href="case-lyosha.html">
-          <div class="protag-top">
-            <div class="avatar a5"><img src="https://img.youtube.com/vi/tR3S7c-pU9c/maxresdefault.jpg" alt="Лёша Евдокимов" loading="lazy"></div>
-            <div class="protag-who">
-              <div class="protag-badge">cgm + метаболика</div>
-              <div class="protag-name">Лёша Евдокимов</div>
-              <div class="protag-role">CGM · 16 дней</div>
-            </div>
-          </div>
-          <div class="protag-quote">не цифра «6.2», а картинка: как блюдо повлияло, как прогулка сбила пик. живой эндокринолог удивился заключению.</div>
+          <span class="protag-tag t4">сетап #4 · глюкоза</span>
+          <h3 class="protag-name">Лёша Евдокимов · Monitor</h3>
+          <span class="protag-regalia">предприниматель</span>
+          <p class="protag-text">16 дней непрерывного мониторинга глюкозы. AI показывает не цифру «6.2», а картинку: как блюдо повлияло, как прогулка сбила пик. живой эндокринолог удивился качеству заключения.</p>
+          <span class="protag-cta">читать кейс →</span>
+        </a>
+
+        <a class="protag-card" href="case-katya.html">
+          <span class="protag-tag t5">сетап #5 · life os</span>
+          <h3 class="protag-name">Катя Кирилова · 8 коучей</h3>
+          <span class="protag-regalia">10 лет в health-оптимизации</span>
+          <p class="protag-text">8 агентов-коучей: longevity, sport, beauty, nutrition + Garmin Watch. тренировка каждое утро автоматически. плюс 3 ловушки оптимизации - «мне не нравится само слово longevity, оно не задаёт вопрос: а кто я?»</p>
           <span class="protag-cta">читать кейс →</span>
         </a>
 
         <a class="protag-card" href="case-mika.html">
-          <div class="protag-top">
-            <div class="avatar a6"><img src="https://img.youtube.com/vi/eHM8go3DWFA/maxresdefault.jpg" alt="Мика Ян" loading="lazy"></div>
-            <div class="protag-who">
-              <div class="protag-badge">ai sleep coach</div>
-              <div class="protag-name">Мика Ян</div>
-              <div class="protag-role">founder ManyChat</div>
-            </div>
-          </div>
-          <div class="protag-quote">один рычаг вместо десяти. если не лёг спать - агент пишет, игноришь → фоллоап → звонок на телефон. работает.</div>
+          <span class="protag-tag t6">сетап #6 · sleep coach</span>
+          <h3 class="protag-name">Мика Ян · один рычаг</h3>
+          <span class="protag-regalia">founder ManyChat</span>
+          <p class="protag-text">одна фундаментальная вещь вместо десяти. агент пишет в 9 вечера: «план на вечер?» - игноришь → фоллоап → звонок на телефон → звонок жене. работает.</p>
           <span class="protag-cta">читать кейс →</span>
         </a>
 
