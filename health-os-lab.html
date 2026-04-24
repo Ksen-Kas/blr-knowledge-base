@@ -251,6 +251,37 @@
 
   @media (max-width: 860px) { .hero { grid-template-columns: 1fr; } }
 
+  /* — MOBILE — */
+  @media (max-width: 640px) {
+    main { padding: 20px 14px 80px; gap: 22px; }
+    .hero-headline { padding: 28px 22px; }
+    .hero-headline h1 { font-size: 40px; line-height: 1.02; }
+    .hero-lede { font-size: 16px; }
+    .hero-questions li { font-size: 14px; }
+    .hero-price { grid-template-columns: 1fr; gap: 8px; }
+    .hero-price .hp-price { font-size: 20px; }
+    .hero-meta { font-size: 12px; gap: 6px 14px; }
+    .hero-card-side { padding: 26px 22px; border-radius: var(--radius-lg); }
+    .hero-card-side h2 { font-size: 26px; }
+    .phases-head h2, .rail-head h2, .cowork h2, #program h2, .principles-head h2, .outcomes-wrap h2, .cta h2 { font-size: 28px !important; }
+    .cowork h2 { font-size: 26px !important; line-height: 1.1; }
+    .phase { padding: 24px; }
+    .phase h3 { font-size: 22px; }
+    .lib-card { padding: 22px; }
+    .lib-card h3 { font-size: 22px; }
+    .cowork { padding: 26px 22px; }
+    .cowork-req { padding: 20px; }
+    .cta { padding: 32px 22px; border-radius: var(--radius-lg); }
+    .cta h2 { font-size: 30px; }
+    .cta .right { padding: 20px; }
+    .price-tiers { grid-template-columns: 1fr; }
+    .call-card { padding: 20px; }
+    .p-card { padding: 20px; }
+    .stack-chip { font-size: 12px; padding: 7px 11px 7px 9px; }
+    .stack-chip .chip-ico { width: 16px; height: 16px; }
+    footer { padding: 22px 14px; flex-direction: column; gap: 6px; align-items: flex-start; }
+  }
+
   /* — PHASES — */
   .phases-head { display: flex; align-items: end; justify-content: space-between; margin-bottom: 22px; flex-wrap: wrap; gap: 12px; }
   .phases-head h2 {
